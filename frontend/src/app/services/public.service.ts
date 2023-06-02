@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ReturnAddressDto } from '../models/ReturnAddress.dto';
 
 @Injectable({
@@ -16,7 +16,8 @@ export class PublicService {
   }
 
   createAddress(address: ReturnAddressDto) {
-    return this.http.post(`${this.api_url}/address`, address);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(this.api_url + 'address/2', address, { headers });
   }
 
   getMessage() {

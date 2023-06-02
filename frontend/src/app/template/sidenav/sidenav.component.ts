@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 
-
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+  styleUrls: ['./sidenav.component.css'],
 })
 export class SidenavComponent {
   @Input() sideNavStatus: boolean = false;
@@ -14,14 +13,19 @@ export class SidenavComponent {
       number: '1',
       name: 'dashboard',
       icon: 'fa-solid fa-house',
-      path:  "",
+      path: '',
     },
     {
       number: '2',
       name: 'esctop',
       icon: 'fa-solid fa-house',
-      path:  "/esctop",
+      path: '/esctop',
     },
-  ]
-  
+    {
+      number: '3',
+      name: 'address',
+      icon: 'fa-solid fa-house',
+      path: '/address',
+    },
+  ];
 }

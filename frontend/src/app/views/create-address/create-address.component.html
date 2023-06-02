@@ -1,0 +1,47 @@
+<form (ngSubmit)="createAddress()">
+  <div>
+    <label for="complement">Complement:</label>
+    <input
+      type="text"
+      id="complement"
+      [(ngModel)]="newAddress.complement"
+      name="complement"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="numberAddress">Number Address:</label>
+    <input
+      type="number"
+      id="numberAddress"
+      [(ngModel)]="newAddress.numberAddress"
+      name="numberAddress"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="cep">CEP:</label>
+    <input
+      type="text"
+      id="cep"
+      [(ngModel)]="newAddress.cep"
+      name="cep"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="city">City:</label>
+    <input
+      type="number"
+      id="city"
+      [(ngModel)]="newAddress.city"
+      name="city"
+      required
+    />
+  </div>
+
+  <button type="submit">Create Address</button>
+</form>
