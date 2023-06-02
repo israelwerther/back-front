@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2">
+
+    <div class="side-nav-button p-2 me-3 text-light" (click)="SideNavToggle()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <a class="navbar-brand px-4" routerLink="/">Início</a>
+
+    <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+            
+        </ul>
+    </div>
+
+    <form class="d-flex me-5">
+        <input class="form-control me-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+    </form>
+
+    <div class="profile-logo dropstart">
+        <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+            Administrador
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a href="#" class="dropdown-item">Cadastro</a></li>
+            <li><a href="#" class="dropdown-item">Entrar</a></li>
+            <li><a href="#" class="dropdown-item">Perfil</a></li>
+            <li><a href="#" class="dropdown-item">Sair</a></li>
+        </ul>
+    </div>
+
+</nav>
