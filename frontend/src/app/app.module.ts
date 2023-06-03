@@ -9,6 +9,7 @@ import { HomeComponent } from './views/home/home.component';
 import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { CreateAddressComponent } from './views/create-address/create-address.component';
 import { FormsModule } from '@angular/forms';
+import { CreateUserComponent } from './views/user/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     EsctopCrudComponent,
     CreateAddressComponent,
+    CreateUserComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

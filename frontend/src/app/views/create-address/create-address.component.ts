@@ -10,24 +10,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class CreateAddressComponent {
   newAddress: ReturnAddressDto = {
-    complement: '',
-    numberAddress: 0,
-    cep: '',
-    city: undefined,
+    complement: 'Complement test',
+    numberAddress: 100,
+    cep: '59101101',
+    city: 4430,
   };
 
   constructor(private publicService: PublicService) {}
 
   createAddress() {
-    this.publicService.createAddress(this.newAddress).subscribe(
-      (response) => {
-        console.log('Address created successfully');
+    this.publicService.createAddress(this.newAddress).subscribe({
+      next: (response) => {
+        console.log('Address created successfully', response);
         // Realize qualquer ação adicional após a criação do endereço
       },
-      (error) => {
+      error: (error) => {
         console.error('Error creating address:', error);
         // Trate qualquer erro ocorrido durante a criação do endereço
-      }
-    );
+      },
+    });
   }
 }
