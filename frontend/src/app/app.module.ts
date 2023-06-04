@@ -7,6 +7,8 @@ import { HeaderComponent } from './template/header/header.component';
 import { SidenavComponent } from './template/sidenav/sidenav.component';
 import { HomeComponent } from './views/home/home.component';
 import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
+import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,14 +16,11 @@ import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
     HeaderComponent,
     SidenavComponent,
     HomeComponent,
-    EsctopCrudComponent
+    EsctopCrudComponent,
+    StatesCitiesComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

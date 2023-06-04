@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="stateSelect">Selecione um estado:</label>
+    <select
+      class="form-select"
+      [(ngModel)]="selectedState"
+      name="selectedState"
+    >
+      <option *ngFor="let state of states" [value]="state.id">
+        {{ state.name }}
+      </option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Buscar Cidades</button>
+</form>
+
+<div *ngIf="cities && cities.length > 0">
+  <h2>Cidades:</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let city of cities">{{ city.name }}</li>
+  </ul>
+</div>
+
+<div *ngIf="cities && cities.length === 0">
+  <p>Nenhuma cidade encontrada para o estado selecionado.</p>
+</div>
