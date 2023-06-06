@@ -19,4 +19,10 @@ export class CityService {
     const url = `${this.api_url}/state`;
     return this.http.get<any[]>(url);
   }
+
+  createAddress(addressData: any): Observable<any> {
+    const url = `${this.api_url}/address/1`; // Altere a URL conforme necessário
+
+    return this.http.post(url, addressData);
+  }
 }

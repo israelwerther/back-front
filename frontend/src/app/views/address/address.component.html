@@ -1,0 +1,61 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="complement">Complemento:</label>
+    <input
+      type="text"
+      id="complement"
+      name="complement"
+      [(ngModel)]="complement"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="numberAddress">Número do endereço:</label>
+    <input
+      type="number"
+      id="numberAddress"
+      name="numberAddress"
+      [(ngModel)]="numberAddress"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="cep">CEP:</label>
+    <input type="text" id="cep" name="cep" [(ngModel)]="cep" required />
+  </div>
+
+  <div class="form-group">
+    <label for="stateSelect">Selecione um estado:</label>
+    <ng-select
+      class="form-select"
+      [(ngModel)]="selectedState"
+      name="selectedState"
+      (ngModelChange)="onStateChange()"
+    >
+      <ng-option [value]="-1" disabled selected
+        >Selecione o seu estado</ng-option
+      >
+      <ng-option *ngFor="let state of states" [value]="state.id">
+        {{ state.name }}
+      </ng-option>
+    </ng-select>
+  </div>
+
+  <div class="form-group">
+    <label for="citySelect">Selecione uma cidade:</label>
+    <ng-select
+      class="form-select"
+      [(ngModel)]="selectedCity"
+      name="selectedCity"
+      [disabled]="!selectedState"
+    >
+      <ng-option *ngFor="let city of cities" [value]="city.id">
+        {{ city.name }}
+      </ng-option>
+    </ng-select>
+  </div>
+
+  <button type="submit">Enviar</button>
+</form>

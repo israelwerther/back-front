@@ -27,5 +27,11 @@ export class SidenavComponent {
       icon: 'fa-solid fa-house',
       path: '/states',
     },
+    {
+      number: '4',
+      name: 'address',
+      icon: 'fa-solid fa-house',
+      path: '/address',
+    },
   ];
 }

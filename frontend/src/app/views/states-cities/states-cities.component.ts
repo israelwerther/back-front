@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CityService } from 'src/app/services/city.service';
-import { PublicService } from 'src/app/services/public.service';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-states-cities',

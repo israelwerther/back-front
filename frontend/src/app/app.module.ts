@@ -10,6 +10,7 @@ import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
+import { AddressComponent } from './views/address/address.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { StatesCitiesComponent } from './views/states-cities/states-cities.compo
     EsctopCrudComponent,
 
     StatesCitiesComponent,
+     AddressComponent,
   ],
   imports: [
     BrowserModule,
