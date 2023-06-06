@@ -3,6 +3,8 @@ import { CityService } from 'src/app/services/city.service';
 import { PublicService } from 'src/app/services/public.service';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-states-cities',
@@ -11,14 +13,11 @@ import { catchError } from 'rxjs/operators';
 })
 export class StatesCitiesComponent implements OnInit {
   selectedState: number = -1;
+  selectedCity: number | null = null;
   cities: any[] = []; // Alterado para tipo any[]
-
   states: any[] = []; // Alterado para tipo any[]
 
-  constructor(
-    private publicService: PublicService,
-    private cityService: CityService
-  ) {}
+  constructor(private cityService: CityService) {}
 
   ngOnInit() {
     this.getStates();

@@ -7,8 +7,9 @@ import { HeaderComponent } from './template/header/header.component';
 import { SidenavComponent } from './template/sidenav/sidenav.component';
 import { HomeComponent } from './views/home/home.component';
 import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
-import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,13 @@ import { FormsModule } from '@angular/forms';
     EsctopCrudComponent,
     StatesCitiesComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgSelectModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

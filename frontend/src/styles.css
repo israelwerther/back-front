@@ -2,3 +2,5 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+@import "~@ng-select/ng-select/themes/default.theme.css";

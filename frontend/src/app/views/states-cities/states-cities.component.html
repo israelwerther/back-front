@@ -1,26 +1,42 @@
-<form (ngSubmit)="onSubmit()">
+<form>
   <div class="form-group">
     <label for="stateSelect">Selecione um estado:</label>
-    <select
+    <ng-select
       class="form-select"
       [(ngModel)]="selectedState"
       name="selectedState"
+      (ngModelChange)="onSubmit()"
     >
-      <option *ngFor="let state of states" [value]="state.id">
+      <ng-option [value]="-1" disabled selected
+        >Selecione o seu estado</ng-option
+      >
+      <ng-option *ngFor="let state of states" [value]="state.id">
         {{ state.name }}
-      </option>
-    </select>
+      </ng-option>
+    </ng-select>
   </div>
-  <button type="submit" class="btn btn-primary">Buscar Cidades</button>
+
+  <div class="form-group">
+    <label for="citySelect">Selecione uma cidade:</label>
+    <ng-select
+      class="form-select"
+      [(ngModel)]="selectedCity"
+      name="selectedCity"
+      [disabled]="!selectedState"
+    >
+      <ng-option *ngFor="let city of cities" [value]="city.id">
+        {{ city.name }}
+      </ng-option>
+    </ng-select>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="display: none"></button>
 </form>
 
-<div *ngIf="cities && cities.length > 0">
-  <h2>Cidades:</h2>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let city of cities">{{ city.name }}</li>
-  </ul>
+<div *ngIf="selectedCity === null">
+  <p>Selecione um estado para ver as cidades correspondentes.</p>
 </div>
 
-<div *ngIf="cities && cities.length === 0">
+<div *ngIf="cities && cities.length === 0 && selectedCity !== null">
   <p>Nenhuma cidade encontrada para o estado selecionado.</p>
 </div>
