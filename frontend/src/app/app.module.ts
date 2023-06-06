@@ -9,7 +9,6 @@ import { HomeComponent } from './views/home/home.component';
 import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
-import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { StatesCitiesComponent } from './views/states-cities/states-cities.compo
     SidenavComponent,
     HomeComponent,
     EsctopCrudComponent,
-    StatesCitiesComponent,
   ],
   imports: [
     BrowserModule,
