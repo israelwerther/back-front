@@ -34,7 +34,6 @@ export class StatesCitiesComponent implements OnInit {
         })
       )
       .subscribe((result: any[]) => {
-        console.log('result', result);
         // Alterado para tipo any[]
         this.states = result;
       });

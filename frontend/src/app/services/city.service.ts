@@ -12,13 +12,11 @@ export class CityService {
 
   getCitiesByState(stateId: number): Observable<any> {
     const url = `${this.api_url}/city/${stateId}`;
-    console.log('111111111111111111111', this.http.get<any>(url));
     return this.http.get<any>(url);
   }
 
   getStates(): Observable<any[]> {
     const url = `${this.api_url}/state`;
-    console.log('22222222222222222222', this.http.get<any[]>(url));
     return this.http.get<any[]>(url);
   }
 }
