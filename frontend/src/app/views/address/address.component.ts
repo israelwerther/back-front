@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CityService } from 'src/app/services/city.service';
+import { CityService } from 'src/app/services/address.service';
 
 @Component({
   selector: 'app-address',
@@ -7,7 +7,7 @@ import { CityService } from 'src/app/services/city.service';
   styleUrls: ['./address.component.css'],
 })
 export class AddressComponent implements OnInit {
-  selectedState: any = null;
+  selectedState: number = -1;
   selectedCity: any = null;
   cities: any[] = [];
   states: any[] = [];

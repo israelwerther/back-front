@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CityService } from 'src/app/services/city.service';
+import { CityService } from 'src/app/services/address.service';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 

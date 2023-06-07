@@ -11,6 +11,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 import { AddressComponent } from './views/address/address.component';
+import { UserComponent } from './views/user/user.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,9 @@ import { AddressComponent } from './views/address/address.component';
     SidenavComponent,
     HomeComponent,
     EsctopCrudComponent,
-
     StatesCitiesComponent,
-     AddressComponent,
+    AddressComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

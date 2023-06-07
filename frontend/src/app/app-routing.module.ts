@@ -4,6 +4,7 @@ import { HomeComponent } from './views/home/home.component';
 import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 import { AddressComponent } from './views/address/address.component';
+import { UserComponent } from './views/user/user.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'address',
     component: AddressComponent,
+  },
+  {
+    path: 'user',
+    component: UserComponent,
   },
 ];
 
