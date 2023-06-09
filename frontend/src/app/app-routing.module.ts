@@ -5,6 +5,7 @@ import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
+import { AuthComponent } from './views/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+  },
+  {
+    path: 'login',
+    component: AuthComponent,
   },
 ];
 

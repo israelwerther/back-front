@@ -21,9 +21,9 @@ export class UserComponent {
   cpf: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  criarUsuario(): void {
+  createUser(): void {
     const user: CreateUserDto = {
       name: this.name,
       email: this.email,

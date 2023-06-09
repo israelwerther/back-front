@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CityService } from 'src/app/services/address.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-address',
@@ -16,7 +18,10 @@ export class AddressComponent implements OnInit {
   numberAddress: number | null = null;
   cep: string = '';
 
-  constructor(private cityService: CityService) {}
+  constructor(
+    private cityService: CityService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.getStates();
@@ -56,17 +61,25 @@ export class AddressComponent implements OnInit {
       cityId: this.selectedCity,
     };
 
-    console.log(formData); // Exemplo: exibindo no console para fins de teste
+    const userId = this.authService.getUserId() ?? 0;
 
-    this.cityService.createAddress(formData).subscribe(
-      (response: any) => {
-        console.log('Endereço criado com sucesso:', response);
-        // Lógica adicional, se necessário
-      },
-      (error) => {
-        console.error('Erro ao criar o endereço:', error);
-        // Lógica adicional, se necessário
-      }
-    );
+    const accessToken = this.authService.getAccessToken();
+    console.log('accessToken 1', accessToken)
+    if (accessToken) {
+      const headers = new HttpHeaders().set('Authorization', accessToken);
+      this.cityService.createAddress(formData, userId, accessToken).subscribe(
+        (response: any) => {
+          console.log('Endereço criado com sucesso:', response);
+          // Lógica adicional, se necessário
+        },
+        (error) => {
+          console.error('Erro ao criar o endereço:', error);
+          // Lógica adicional, se necessário
+        }
+      );
+    } else {
+      console.error('Usuário não autenticado');
+      // Lógica adicional, se necessário
+    }
   }
 }

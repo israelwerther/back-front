@@ -12,10 +12,10 @@ import { AddressEntity } from './entities/address.entity';
 import { Roles } from 'src/decorators/roles.decorators';
 import { UserType } from 'src/user/enum/user-type.enum';
 
-// @Roles(UserType.User)
+@Roles(UserType.User)
 @Controller('address')
 export class AddressController {
-  constructor(private readonly addressService: AddressService) {}
+  constructor(private readonly addressService: AddressService) { }
 
   @Post('/:userId')
   @UsePipes(ValidationPipe)

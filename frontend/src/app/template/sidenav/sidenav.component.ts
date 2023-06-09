@@ -39,5 +39,11 @@ export class SidenavComponent {
       icon: 'fa-solid fa-house',
       path: '/user',
     },
+    {
+      number: '6',
+      name: 'login',
+      icon: 'fa-solid fa-house',
+      path: '/login',
+    },
   ];
 }

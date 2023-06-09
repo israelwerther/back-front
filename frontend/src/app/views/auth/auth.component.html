@@ -1,0 +1,10 @@
+<!-- login.component.html -->
+<form (submit)="login()">
+  <label for="email">Email:</label>
+  <input type="email" id="email" [(ngModel)]="loginData.email" name="email" />
+
+  <label for="password">Senha:</label>
+  <input type="password" id="password" [(ngModel)]="loginData.password" name="password" />
+
+  <button type="submit">Entrar</button>
+</form>

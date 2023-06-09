@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
+import { AuthComponent } from './views/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserComponent } from './views/user/user.component';
     StatesCitiesComponent,
     AddressComponent,
     UserComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
