@@ -21,10 +21,8 @@ export class CityService {
   }
 
   createAddress(addressData: any, userId: number, token: string): Observable<any> {
-    console.log('@@@@@@@@@@@@@@', token)
     const url = `${this.api_url}/address/${userId}`;
-    console.log('${userId}90909090909090909', `${userId}`)
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.post(url, addressData, { headers });
   }
 }
