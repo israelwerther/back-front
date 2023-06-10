@@ -34,11 +34,14 @@ export class AuthComponent {
       .subscribe(
         (response) => {
           const { user, accessToken } = response;
-          console.log('accessToken', accessToken)
+          console.log('user = ', user)
+          // console.log('accessToken', accessToken)
           this.authService.setAccessToken(accessToken);
-          this.authService.setUserId(user.id);
-          this.authService.getUserId();
-          console.log('this.authService.getUserId()', this.authService.getUserId())
+
+          localStorage.setItem('accessToken', accessToken);
+
+          // this.authService.setUserId(user.id);
+          // this.authService.getUserId();
           if (user.id !== null) {
             this.authService.setUserId(user.id);
           }

@@ -30,6 +30,7 @@ export class AddressComponent implements OnInit {
   getStates() {
     this.cityService.getStates().subscribe(
       (result: any[]) => {
+        console.log('Entrou getStates', result)
         this.states = result;
       },
       (error) => {
@@ -70,11 +71,9 @@ export class AddressComponent implements OnInit {
       this.cityService.createAddress(formData, userId, accessToken).subscribe(
         (response: any) => {
           console.log('Endereço criado com sucesso:', response);
-          // Lógica adicional, se necessário
         },
         (error) => {
           console.error('Erro ao criar o endereço:', error);
-          // Lógica adicional, se necessário
         }
       );
     } else {
