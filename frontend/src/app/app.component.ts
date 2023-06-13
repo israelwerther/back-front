@@ -10,7 +10,7 @@ export class AppComponent {
   msg: any;
   sideNavStatus: boolean = true;
 
-  constructor(private pService: PublicService) {}
+  constructor(private pService: PublicService) { }
   ngOnInit(): void {
     this.showMessage();
   }

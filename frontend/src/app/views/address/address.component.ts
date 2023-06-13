@@ -64,9 +64,7 @@ export class AddressComponent implements OnInit {
     const userId = Number(localStorage.getItem('id_storage'));
     const token = localStorage.getItem('token_storage');
 
-    console.log('token 1', token)
     if (token) {
-      const headers = new HttpHeaders().set('Authorization', token);
       this.cityService.createAddress(formData, userId, token).subscribe(
         (response: any) => {
           console.log('Endereço criado com sucesso:', response);
