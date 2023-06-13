@@ -30,7 +30,6 @@ export class AddressComponent implements OnInit {
   getStates() {
     this.cityService.getStates().subscribe(
       (result: any[]) => {
-        console.log('Entrou getStates', result)
         this.states = result;
       },
       (error) => {
@@ -62,13 +61,13 @@ export class AddressComponent implements OnInit {
       cityId: this.selectedCity,
     };
 
-    const userId = this.authService.getUserId() ?? 0;
+    const userId = Number(localStorage.getItem('id_storage'));
+    const token = localStorage.getItem('token_storage');
 
-    const accessToken = this.authService.getAccessToken();
-    console.log('accessToken 1', accessToken)
-    if (accessToken) {
-      const headers = new HttpHeaders().set('Authorization', accessToken);
-      this.cityService.createAddress(formData, userId, accessToken).subscribe(
+    console.log('token 1', token)
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', token);
+      this.cityService.createAddress(formData, userId, token).subscribe(
         (response: any) => {
           console.log('Endereço criado com sucesso:', response);
         },
@@ -78,7 +77,6 @@ export class AddressComponent implements OnInit {
       );
     } else {
       console.error('Usuário não autenticado');
-      // Lógica adicional, se necessário
     }
   }
 }

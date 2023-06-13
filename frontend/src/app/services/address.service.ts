@@ -20,9 +20,9 @@ export class CityService {
     return this.http.get<any[]>(url);
   }
 
-  createAddress(addressData: any, userId: number, token: string): Observable<any> {
-    const url = `${this.api_url}/address/${userId}`;
-    const headers = new HttpHeaders().set('Authorization', `${token}`);
+  createAddress(addressData: any, id_storage: number, token_storage: string): Observable<any> {
+    const url = `${this.api_url}/address/${id_storage}`;
+    const headers = new HttpHeaders().set('Authorization', `${token_storage}`);
     return this.http.post(url, addressData, { headers });
   }
 }
