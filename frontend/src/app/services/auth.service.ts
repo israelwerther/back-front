@@ -16,8 +16,6 @@ interface ReturnLogin {
   providedIn: 'root',
 })
 export class AuthService {
-  // private accessToken: string | null = null;
-  // private userId: string | null = null;
 
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
