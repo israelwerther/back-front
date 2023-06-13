@@ -16,8 +16,8 @@ interface ReturnLogin {
   providedIn: 'root',
 })
 export class AuthService {
-  private accessToken: string | null = null;
-  private userId: string | null = null;
+  // private accessToken: string | null = null;
+  // private userId: string | null = null;
 
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
@@ -43,14 +43,15 @@ export class AuthService {
     );
   }
 
-
   logout(): void {
     this._isLoggedIn$.next(false);
     localStorage.removeItem('token_storage');
   }
 
   isLoggedIn(): boolean {
-    console.log('!!this.accessToken', !!this.accessToken)
-    return !!this.accessToken;
+    console.log('*******************', this._isLoggedIn$.getValue())
+    return this._isLoggedIn$.getValue();
   }
+
+
 }

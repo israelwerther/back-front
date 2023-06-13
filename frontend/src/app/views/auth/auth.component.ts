@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent {
   loginData = { email: 'auth@gmail.com', password: '123456' };
+  isLoggedIn = false;
 
   constructor(
     private authService: AuthService,
@@ -18,7 +19,17 @@ export class AuthComponent {
 
   login() {
     this.authService.login(this.loginData.email, this.loginData.password).subscribe(() => {
-      this.router.navigate(['/address']);
+      // this.router.navigate(['/address']);
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  ngOnInit() {
+    this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
     });
   }
 

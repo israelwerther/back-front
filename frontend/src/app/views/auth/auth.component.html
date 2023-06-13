@@ -7,3 +7,13 @@
 
   <button type="submit">Entrar</button>
 </form>
+
+<button (click)="logout()">Sair</button>
+
+<div *ngIf="isLoggedIn; else notLoggedInMessage">
+  <p>Você está logado.</p>
+</div>
+
+<ng-template #notLoggedInMessage>
+  <p>Você não está logado.</p>
+</ng-template>
