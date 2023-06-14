@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-esctop-crud',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./esctop-crud.component.css']
 })
 export class EsctopCrudComponent {
-
+  subject = new Subject<any>();
 }

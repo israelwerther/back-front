@@ -13,6 +13,8 @@ import { StatesCitiesComponent } from './views/states-cities/states-cities.compo
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
+import { CardComponent } from './elements/card/card.component';
+import { CardXComponent } from './elements/card-x/card-x.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AuthComponent } from './views/auth/auth.component';
     AddressComponent,
     UserComponent,
     AuthComponent,
+    CardComponent,
+    CardXComponent,
   ],
   imports: [
     BrowserModule,
