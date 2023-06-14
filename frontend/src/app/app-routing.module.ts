@@ -6,27 +6,33 @@ import { StatesCitiesComponent } from './views/states-cities/states-cities.compo
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'esctop',
     component: EsctopCrudComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'states',
     component: StatesCitiesComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'address',
     component: AddressComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'login',
@@ -38,4 +44,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
