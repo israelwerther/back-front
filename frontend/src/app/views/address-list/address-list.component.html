@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-6 border border-dark">
+        <div class="container">
+            <h3>Detalhes do Usuário:</h3>
+
+            <div class="mb-3">
+                <label class="fw-bold">ID:</label>
+                <span class="ms-2">{{ getJsonValue?.id }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Nome:</label>
+                <span class="ms-2">{{ getJsonValue?.name }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">E-mail:</label>
+                <span class="ms-2">{{ getJsonValue?.email }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Telefone:</label>
+                <span class="ms-2">{{ getJsonValue?.phone }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">CPF:</label>
+                <span class="ms-2">{{ getJsonValue?.cpf }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Endereços:</label>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let address of getJsonValue?.addresses">
+                        <div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>ID:</strong>
+                                    <span class="ms-2">{{ address.id }}</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="ms-2">{{ address.complement }}</span>
+
+                                </div>
+                                <div class="col-6">
+                                    <button (click)="onDeleteAddress( address.id )"
+                                        class="btn btn-danger btn-sm float-end">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Número:</strong>
+                            <span class="ms-2">{{ address.numberAddress }}</span>
+                        </div>
+                        <div>
+                            <strong>CEP:</strong>
+                            <span class="ms-2">{{ address.cep }}</span>
+                        </div>
+                        <div>
+                            <strong>Cidade:</strong>
+                            <span class="ms-2">{{ address.city.name }}</span>
+                        </div>
+                        <div>
+                            <strong>Estado:</strong>
+                            <span class="ms-2">{{ address.city.state.name }}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-6 border border-dark">
+        Post a new adress
+
+    </div>
+
+</div>

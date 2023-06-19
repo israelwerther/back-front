@@ -26,4 +26,21 @@ export class AddressService {
       userId,
     });
   }
+
+  async deleteAddress(addressId: number, userId: number): Promise<void> {
+    const address = await this.addressRepository.findOne({
+      where: {
+        id: addressId,
+        userId: userId,
+      },
+    });
+
+    if (!address) {
+      throw new Error(
+        `Endereço com ID ${addressId} não encontrado para o usuário com ID ${userId}.`,
+      );
+    }
+
+    await this.addressRepository.remove(address);
+  }
 }

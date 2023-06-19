@@ -9,11 +9,12 @@ import { PublicService } from 'src/app/services/public.service';
 export class HomeComponent {
   userList: any[] = [];
 
-  constructor(private publicService: PublicService) {}
+  constructor(private publicService: PublicService) { }
 
   ngOnInit(): void {
     this.getUserList();
   }
+
   getUserList(): void {
     this.publicService.getUser().subscribe(
       (data: Object) => {

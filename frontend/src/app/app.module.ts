@@ -8,11 +8,12 @@ import { SidenavComponent } from './template/sidenav/sidenav.component';
 import { HomeComponent } from './views/home/home.component';
 import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
+import { AddressListComponent } from './views/address-list/address-list.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthComponent } from './views/auth/auth.component';
     AddressComponent,
     UserComponent,
     AuthComponent,
+    AddressListComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { AuthComponent } from './views/auth/auth.component';
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

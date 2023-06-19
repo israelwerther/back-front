@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -34,5 +35,10 @@ export class UserController {
     return new ReturnUserDto(
       await this.userService.getUserByIdUsingRelations(userId),
     );
+  }
+
+  @Delete(':id')
+  deleteUser(@Param('id') id: number) {
+    return this.userService.deleteUser(id);
   }
 }

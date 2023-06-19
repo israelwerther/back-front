@@ -14,6 +14,11 @@ export class PublicService {
     return this.http.get(url);
   }
 
+  getAddresses() {
+    const url = `${this.api_url}address/`;
+    return this.http.get(url);
+  }
+
   getMessage() {
     const url = this.api_url;
     return this.http.get(url);

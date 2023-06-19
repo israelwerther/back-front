@@ -6,6 +6,7 @@ import { StatesCitiesComponent } from './views/states-cities/states-cities.compo
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
+import { AddressListComponent } from './views/address-list/address-list.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     component: AddressComponent,
   },
   {
+    path: 'address-list',
+    component: AddressListComponent,
+  },
+  {
     path: 'user',
     component: UserComponent,
   },
@@ -38,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

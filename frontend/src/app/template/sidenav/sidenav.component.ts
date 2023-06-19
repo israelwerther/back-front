@@ -35,12 +35,18 @@ export class SidenavComponent {
     },
     {
       number: '5',
+      name: 'address-list',
+      icon: 'fa-solid fa-list',
+      path: '/address-list',
+    },
+    {
+      number: '6',
       name: 'user',
       icon: 'fa-solid fa-house',
       path: '/user',
     },
     {
-      number: '6',
+      number: '7',
       name: 'login',
       icon: 'fa-solid fa-house',
       path: '/login',

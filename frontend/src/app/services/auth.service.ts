@@ -16,29 +16,35 @@ interface ReturnLogin {
   providedIn: 'root',
 })
 export class AuthService {
-
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token_storage');
-    const userId = (localStorage.getItem('id_storage'));
+    const userId = localStorage.getItem('id_storage');
     this._isLoggedIn$.next(!!token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token_storage') ?? null;
   }
 
   login(email: string, password: string) {
     const loginData: LoginDto = {
       email: email,
-      password: password
+      password: password,
     };
 
-    return this.http.post<ReturnLogin>('http://localhost:8080/auth/', loginData).pipe(
-      tap((response: ReturnLogin) => {
-        this._isLoggedIn$.next(true);
-        localStorage.setItem('token_storage', response.accessToken);
-        localStorage.setItem('id_storage', response.user.id);
-      })
-    );
+    return this.http
+      .post<ReturnLogin>('http://localhost:8080/auth/', loginData)
+      .pipe(
+        tap((response: ReturnLogin) => {
+          this._isLoggedIn$.next(true);
+          localStorage.setItem('token_storage', response.accessToken);
+          console.log('response.accessToken::: ', response.accessToken);
+          localStorage.setItem('id_storage', response.user.id);
+        })
+      );
   }
 
   logout(): void {
@@ -49,5 +55,4 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this._isLoggedIn$.getValue();
   }
-
 }

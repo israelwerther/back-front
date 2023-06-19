@@ -21,7 +21,7 @@ export class AddressComponent implements OnInit {
   constructor(
     private cityService: CityService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getStates();
@@ -63,6 +63,7 @@ export class AddressComponent implements OnInit {
 
     const userId = Number(localStorage.getItem('id_storage'));
     const token = localStorage.getItem('token_storage');
+    console.log('token::: ', token);
 
     if (token) {
       this.cityService.createAddress(formData, userId, token).subscribe(
