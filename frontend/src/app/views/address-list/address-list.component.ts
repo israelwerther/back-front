@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AddressListComponent implements OnInit {
   public getJsonValue: any;
   public postJsonValue: any;
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
   private api_url = 'http://localhost:8080';
 
   ngOnInit(): void {
@@ -25,26 +25,45 @@ export class AddressListComponent implements OnInit {
     });
   }
 
+  // onDeleteAddress(addressId: number): void {
+  //   const token = this.authService.getToken();
+  //   const userId = Number(localStorage.getItem('id_storage'));
+
+  //   if (token !== null) {
+  //     const headers = new HttpHeaders().set('Authorization', token);
+  //     this.http
+  //       .delete(`http://localhost:8080/address/${userId}/${addressId}`, {
+  //         headers,
+  //       })
+  //       .toPromise()
+  //       .then(() => {
+  //         this.getMethod();
+  //       })
+  //       .catch((error) => {
+  //         // Trate os erros da exclusão, se necessário
+  //         console.error('Erro ao excluir o endereço:', error);
+  //       });
+  //   } else {
+  //     // Tratar o caso em que o token é nulo
+  //     console.error('Token is null');
+  //   }
+  // }
+
   onDeleteAddress(addressId: number): void {
     const token = this.authService.getToken();
     const userId = Number(localStorage.getItem('id_storage'));
+
     if (token !== null) {
       const headers = new HttpHeaders().set('Authorization', token);
-      this.http
-        .delete(`http://localhost:8080/address/${userId}/${addressId}`, {
-          headers,
-        })
-        .toPromise()
-        .then(() => {
-          // Atualize a lista de endereços após a exclusão
+      this.http.delete(`http://localhost:8080/address/${userId}/${addressId}`, { headers }).subscribe({
+        next: () => {
           this.getMethod();
-        })
-        .catch((error) => {
-          // Trate os erros da exclusão, se necessário
-          console.error('Erro ao excluir o endereço:', error);
-        });
+        },
+        error: (error) => {
+          console.error('Erro ao obter as cidades:', error);
+        },
+      });
     } else {
-      // Tratar o caso em que o token é nulo
       console.error('Token is null');
     }
   }
