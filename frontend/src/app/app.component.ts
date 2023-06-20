@@ -21,4 +21,10 @@ export class AppComponent {
       console.log('this.msg', this.msg);
     });
   }
+
+  //Sidebar toggle show hide function
+  status = false;
+  addToggle() {
+    this.status = !this.status;
+  }
 }
