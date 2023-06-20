@@ -13,7 +13,6 @@ export class AddressComponent implements OnInit {
   selectedCity: any = null;
   cities: any[] = [];
   states: any[] = [];
-
   complement: string = '';
   numberAddress: number | null = null;
   cep: string = '';
@@ -21,7 +20,7 @@ export class AddressComponent implements OnInit {
   constructor(
     private cityService: CityService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getStates();

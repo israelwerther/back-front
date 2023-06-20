@@ -1,75 +1,109 @@
 <div class="row">
-    <div class="col-6 border border-dark">
-        <div class="container">
-            <h3>Detalhes do Usuário:</h3>
-
-            <div class="mb-3">
-                <label class="fw-bold">ID:</label>
-                <span class="ms-2">{{ getJsonValue?.id }}</span>
-            </div>
-            <div class="mb-3">
-                <label class="fw-bold">Nome:</label>
-                <span class="ms-2">{{ getJsonValue?.name }}</span>
-            </div>
-            <div class="mb-3">
-                <label class="fw-bold">E-mail:</label>
-                <span class="ms-2">{{ getJsonValue?.email }}</span>
-            </div>
-            <div class="mb-3">
-                <label class="fw-bold">Telefone:</label>
-                <span class="ms-2">{{ getJsonValue?.phone }}</span>
-            </div>
-            <div class="mb-3">
-                <label class="fw-bold">CPF:</label>
-                <span class="ms-2">{{ getJsonValue?.cpf }}</span>
-            </div>
-            <div class="mb-3">
-                <label class="fw-bold">Endereços:</label>
-                <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let address of getJsonValue?.addresses">
-                        <div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <strong>ID:</strong>
-                                    <span class="ms-2">{{ address.id }}</span>
+    <div class="col-6">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Detalhes do Usuário:</h3>
+                <div class="mb-3">
+                    <label class="fw-bold">ID:</label>
+                    <span class="ms-2">{{ getJsonValue?.id }}</span>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Nome:</label>
+                    <span class="ms-2">{{ getJsonValue?.name }}</span>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">E-mail:</label>
+                    <span class="ms-2">{{ getJsonValue?.email }}</span>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Telefone:</label>
+                    <span class="ms-2">{{ getJsonValue?.phone }}</span>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">CPF:</label>
+                    <span class="ms-2">{{ getJsonValue?.cpf }}</span>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Endereços:</label>
+                    <div *ngFor="let address of getJsonValue?.addresses">
+                        <div class="card mb-3"
+                            [ngClass]="{ 'bg-primary': address.id % 2 === 0, 'bg-secondary': address.id % 2 !== 0 }">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>ID:</strong>
+                                        <span class="ms-2">{{ address.id }}</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="ms-2">{{ address.complement }}</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <button (click)="onDeleteAddress(address.id)"
+                                            class="btn btn-danger btn-sm float-end">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <span class="ms-2">{{ address.complement }}</span>
-
+                                <div>
+                                    <strong>Número:</strong>
+                                    <span class="ms-2">{{ address.numberAddress }}</span>
                                 </div>
-                                <div class="col-6">
-                                    <button (click)="onDeleteAddress( address.id )"
-                                        class="btn btn-danger btn-sm float-end">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                <div>
+                                    <strong>CEP:</strong>
+                                    <span class="ms-2">{{ address.cep }}</span>
+                                </div>
+                                <div>
+                                    <strong>Cidade:</strong>
+                                    <span class="ms-2">{{ address.city.name }}</span>
+                                </div>
+                                <div>
+                                    <strong>Estado:</strong>
+                                    <span class="ms-2">{{ address.city.state.name }}</span>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <strong>Número:</strong>
-                            <span class="ms-2">{{ address.numberAddress }}</span>
-                        </div>
-                        <div>
-                            <strong>CEP:</strong>
-                            <span class="ms-2">{{ address.cep }}</span>
-                        </div>
-                        <div>
-                            <strong>Cidade:</strong>
-                            <span class="ms-2">{{ address.city.name }}</span>
-                        </div>
-                        <div>
-                            <strong>Estado:</strong>
-                            <span class="ms-2">{{ address.city.state.name }}</span>
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-    <div class="col-6 border border-dark">
-        Post a new adress
-
+    <div class="col-6">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Post a new address</h3>
+                <form (ngSubmit)="createAddress()">
+                    <div class="mb-3">
+                        <label for="complement">Complemento:</label>
+                        <input type="text" id="complement" name="complement" [(ngModel)]="complement"
+                            class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="numberAddress">Número do endereço:</label>
+                        <input type="number" id="numberAddress" name="numberAddress" [(ngModel)]="numberAddress"
+                            class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" [(ngModel)]="cep" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="stateSelect">Selecione um estado:</label>
+                        <ng-select class="form-select" [(ngModel)]="selectedState" name="selectedState"
+                            (ngModelChange)="onStateChange()">
+                            <ng-option [value]="-1" disabled selected>Selecione o seu estado</ng-option>
+                            <ng-option *ngFor="let state of states" [value]="state.id">{{ state.name }}</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="form-group">
+                        <label for="citySelect">Selecione uma cidade:</label>
+                        <ng-select class="form-select" [(ngModel)]="selectedCity" name="selectedCity"
+                            [disabled]="!selectedState">
+                            <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</ng-option>
+                        </ng-select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
     </div>
-
 </div>
