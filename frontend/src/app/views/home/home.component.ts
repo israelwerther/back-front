@@ -12,17 +12,8 @@ export class HomeComponent {
   constructor(private publicService: PublicService) { }
 
   ngOnInit(): void {
-    this.getUserList();
+
   }
 
-  getUserList(): void {
-    this.publicService.getUser().subscribe(
-      (data: Object) => {
-        this.userList = data as any[];
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+
 }
