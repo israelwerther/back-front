@@ -14,6 +14,7 @@ import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { AddressListComponent } from './views/address-list/address-list.component';
+import { NavigationComponent } from './template/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddressListComponent } from './views/address-list/address-list.componen
     UserComponent,
     AuthComponent,
     AddressListComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

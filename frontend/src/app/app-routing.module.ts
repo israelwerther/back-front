@@ -10,7 +10,7 @@ import { AddressListComponent } from './views/address-list/address-list.componen
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {

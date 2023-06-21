@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-6 border border-danger">
         <div class="card shadow mb-4">
             <div class="card-body">
                 <h3 class="card-title">Post a new address</h3>
@@ -81,10 +81,6 @@
                         <label for="numberAddress">Número do endereço:</label>
                         <input type="number" id="numberAddress" name="numberAddress" [(ngModel)]="numberAddress"
                             class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="cep">CEP:</label>
-                        <input type="text" id="cep" name="cep" [(ngModel)]="cep" class="form-control" required />
                     </div>
                     <div class="form-group">
                         <label for="stateSelect">Selecione um estado:</label>
@@ -100,6 +96,10 @@
                             [disabled]="!selectedState">
                             <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</ng-option>
                         </ng-select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" [(ngModel)]="cep" class="form-control" required />
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>

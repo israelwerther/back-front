@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PublicService } from './services/public.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,9 +9,8 @@ import { PublicService } from './services/public.service';
 export class AppComponent {
   title = 'frontend';
   msg: any;
-  sideNavStatus: boolean = true;
 
-  constructor(private publicService: PublicService) { }
+  constructor(private publicService: PublicService, private router: Router) { }
   ngOnInit(): void {
     this.showMessage();
   }
@@ -26,5 +26,9 @@ export class AppComponent {
   status = false;
   addToggle() {
     this.status = !this.status;
+  }
+
+  navigateToAddressList() {
+    this.router.navigate(['address-list']);
   }
 }
