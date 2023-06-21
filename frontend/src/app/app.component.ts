@@ -10,13 +10,13 @@ export class AppComponent {
   msg: any;
   sideNavStatus: boolean = true;
 
-  constructor(private pService: PublicService) { }
+  constructor(private publicService: PublicService) { }
   ngOnInit(): void {
     this.showMessage();
   }
 
   showMessage() {
-    this.pService.getMessage().subscribe((data) => {
+    this.publicService.getMessage().subscribe((data) => {
       this.msg = data;
       console.log('this.msg', this.msg);
     });
