@@ -14,7 +14,7 @@ import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { AddressListComponent } from './views/address-list/address-list.component';
-import { NavigationComponent } from './template/navigation/navigation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { NavigationComponent } from './template/navigation/navigation.component'
     UserComponent,
     AuthComponent,
     AddressListComponent,
-    NavigationComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,8 +37,9 @@ import { NavigationComponent } from './template/navigation/navigation.component'
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

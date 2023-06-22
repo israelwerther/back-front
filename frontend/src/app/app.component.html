@@ -1,4 +1,5 @@
 <!-- SIDEBAR -->
+
 <section id="sidebar" [ngClass]="status ? 'hide' : ''">
 
   <a href="#" class="brand">
@@ -30,6 +31,12 @@
       <a [routerLink]="['states']">
         <i class='bx bxs-shopping-bag-alt'></i>
         <span class="text">My Store</span>
+      </a>
+    </li>
+    <li [routerLinkActive]="'active'">
+      <a [routerLink]="['login']">
+        <i class='bx bxs-shopping-bag-alt'></i>
+        <span class="text">Login</span>
       </a>
     </li>
 
