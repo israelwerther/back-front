@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
+
   loginData = { email: 'auth@gmail.com', password: '123456' };
+
   isLoggedIn = false;
 
   constructor(
@@ -19,7 +21,7 @@ export class AuthComponent {
 
   login() {
     this.authService.login(this.loginData.email, this.loginData.password).subscribe(() => {
-      // this.router.navigate(['/address']);
+      this.router.navigate(['/home']);
     });
   }
 

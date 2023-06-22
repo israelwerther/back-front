@@ -40,9 +40,11 @@ export class AppComponent {
     this.router.navigate(['address-list']);
   }
 
-
-
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

@@ -1,4 +1,8 @@
-<form (submit)="login()">
+<!-- <form (submit)="login()">
+  <div class="form-outline">
+    <input type="text" id="form12" class="form-control" />
+    <label class="form-label" for="form12">Example label</label>
+  </div>
   <label for="email">Email:</label>
   <input type="email" id="email" [(ngModel)]="loginData.email" name="email" />
 
@@ -8,12 +12,32 @@
   <button type="submit">Entrar</button>
 </form>
 
-<button (click)="logout()">Sair</button>
+<button (click)="logout()">Sair</button> -->
+<form (submit)="login()">
+  <div class="form">
 
-<div *ngIf="isLoggedIn; else notLoggedInMessage">
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="email" [(ngModel)]="loginData.email" name="email"
+        placeholder="name@example.com" />
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="password" [(ngModel)]="loginData.password" name="password" />
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div>
+      <button class="btn btn-primary btn-block w-100" type="submit">
+        Entrar
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- <div *ngIf="isLoggedIn; else notLoggedInMessage">
   <p>Você está logado.</p>
-</div>
+</div> -->
 
-<ng-template #notLoggedInMessage>
+<!-- <ng-template #notLoggedInMessage>
   <p>Você não está logado.</p>
-</ng-template>
+</ng-template> -->
