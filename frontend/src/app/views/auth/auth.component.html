@@ -1,38 +1,35 @@
-<!-- <form (submit)="login()">
-  <div class="form-outline">
-    <input type="text" id="form12" class="form-control" />
-    <label class="form-label" for="form12">Example label</label>
-  </div>
-  <label for="email">Email:</label>
-  <input type="email" id="email" [(ngModel)]="loginData.email" name="email" />
+<div class="d-flex justify-content-center">
+  <div class="row">
+    <div class="col">
+      <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+          <form (submit)="login()">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email" [(ngModel)]="loginData.email" name="email">
+            </mat-form-field>
+            <br>
 
-  <label for="password">Senha:</label>
-  <input type="password" id="password" [(ngModel)]="loginData.password" name="password" />
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input type="password" matInput placeholder="Password" [(ngModel)]="loginData.password" name="password">
+            </mat-form-field>
 
-  <button type="submit">Entrar</button>
-</form>
-
-<button (click)="logout()">Sair</button> -->
-<form (submit)="login()">
-  <div class="form">
-
-    <div class="form-floating mb-3">
-      <input type="email" class="form-control" id="email" [(ngModel)]="loginData.email" name="email"
-        placeholder="name@example.com" />
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="password" class="form-control" id="password" [(ngModel)]="loginData.password" name="password" />
-      <label for="floatingPassword">Password</label>
-    </div>
-
-    <div>
-      <button class="btn btn-primary btn-block w-100" type="submit">
-        Entrar
-      </button>
+            <div class="button">
+              <button type="submit" mat-raised-button color="primary">Login</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
-</form>
+</div>
+
+
+
+
+
 
 <!-- <div *ngIf="isLoggedIn; else notLoggedInMessage">
   <p>Você está logado.</p>

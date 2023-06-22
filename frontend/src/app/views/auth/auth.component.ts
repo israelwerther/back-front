@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-auth',
@@ -21,7 +24,7 @@ export class AuthComponent {
 
   login() {
     this.authService.login(this.loginData.email, this.loginData.password).subscribe(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['']);
     });
   }
 

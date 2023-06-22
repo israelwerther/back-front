@@ -11,7 +11,12 @@ export class AppComponent {
   title = 'frontend';
   msg: any;
 
-  constructor(private publicService: PublicService, private router: Router, private authService: AuthService) { }
+  constructor(
+    private publicService: PublicService,
+    private router: Router,
+    private authService: AuthService
+  ) { }
+
   ngOnInit(): void {
     this.showMessage();
     // Verifica se o usuário está autenticado

@@ -10,7 +10,7 @@
     <ul class="side-menu top">
 
       <li [routerLinkActive]="'active'">
-        <a [routerLink]="['home']">
+        <a [routerLink]="['']">
           <i class='bx bxs-dashboard'></i>
           <span class="text">Dashboard</span>
         </a>
@@ -82,6 +82,4 @@
   </section>
 </ng-container>
 <!-- CONTENT -->
-<ng-container *ngIf="!isLoggedIn">
-  <app-auth></app-auth>
-</ng-container>
+<app-auth></app-auth>
