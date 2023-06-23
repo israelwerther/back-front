@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -12,9 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
+  loginData = { email: '', password: '' };
+  email = new FormControl('', [Validators.required, Validators.email]);
 
-  loginData = { email: 'auth@gmail.com', password: '123456' };
-
+  loginErrorMessage: string = '';
   isLoggedIn = false;
 
   constructor(
@@ -25,7 +23,10 @@ export class AuthComponent {
   login() {
     this.authService.login(this.loginData.email, this.loginData.password).subscribe(() => {
       this.router.navigate(['']);
-    });
+    },
+      () => {
+        this.loginErrorMessage = 'Dados inválidos.';
+      });
   }
 
   logout() {
@@ -36,6 +37,14 @@ export class AuthComponent {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+  }
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'Digite um email válido';
+    }
+
+    return this.email.hasError('email') ? 'Não é um email válido' : '';
   }
 
 }

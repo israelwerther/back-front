@@ -22,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -37,8 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
     UserComponent,
     AuthComponent,
     AddressListComponent,
-
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
