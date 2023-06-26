@@ -22,7 +22,7 @@ export class AuthComponent {
 
   login() {
     this.authService.login(this.loginData.email, this.loginData.password).subscribe(() => {
-      this.router.navigate(['']);
+      this.router.navigate(['home']);
     },
       () => {
         this.loginErrorMessage = 'Dados inválidos.';

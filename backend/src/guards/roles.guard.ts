@@ -10,7 +10,7 @@ export class RolesGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const requiredRoles = this.reflector.getAllAndOverride<UserType[]>(

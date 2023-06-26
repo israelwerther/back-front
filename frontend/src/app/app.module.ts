@@ -23,6 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { LoanDashboardComponent } from './views/loan/loan-dashboard/loan-dashboard.component';
+import { LoanCreateComponent } from './views/loan/loan-create/loan-create.component';
+import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     UserComponent,
     AuthComponent,
     AddressListComponent,
+    LoanDashboardComponent,
+    LoanCreateComponent,
+    LoanListComponent,
   ],
 
   imports: [

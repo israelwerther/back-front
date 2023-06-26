@@ -1,5 +1,5 @@
 <!-- SIDEBAR -->
-<ng-container *ngIf="isLoggedIn">
+<div *ngIf="isLoggedIn">
   <section id="sidebar" [ngClass]="status ? 'hide' : ''">
 
     <a href="#" class="brand">
@@ -10,9 +10,16 @@
     <ul class="side-menu top">
 
       <li [routerLinkActive]="'active'">
-        <a [routerLink]="['']">
+        <a [routerLink]="['home']">
           <i class='bx bxs-dashboard'></i>
           <span class="text">Dashboard</span>
+        </a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a [routerLink]="['emprestimo-dashboard']">
+          <i class='bx bxs-dashboard'></i>
+          <span class="text">Empréstimo</span>
         </a>
       </li>
 
@@ -75,11 +82,9 @@
     </nav>
     <!-- NAVBAR -->
     <!-- MAIN -->
-    <div class="p-3">
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
     <!-- MAIN -->
   </section>
-</ng-container>
+</div>
 <!-- CONTENT -->
-<app-auth></app-auth>
+<app-auth *ngIf="!isLoggedIn"></app-auth>
