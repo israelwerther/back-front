@@ -41,11 +41,11 @@ const routes: Routes = [
     component: AuthComponent,
   },
   {
-    path: 'emprestimo-dashboard/emprestimo-cadastro',
+    path: 'emprestimo-cadastro',
     component: LoanCreateComponent,
   },
   {
-    path: 'emprestimo-dashboard/emprestimo-lista',
+    path: 'emprestimo-lista',
     component: LoanListComponent,
   },
   {
