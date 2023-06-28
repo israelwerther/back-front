@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
+import { LoanModule } from './loan/loan.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { JwtModule } from '@nestjs/jwt';
     CacheModule,
     AuthModule,
     JwtModule,
+    LoanModule,
   ],
   controllers: [],
   providers: [
@@ -43,4 +45,4 @@ import { JwtModule } from '@nestjs/jwt';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
