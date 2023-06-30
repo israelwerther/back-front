@@ -1,0 +1,15 @@
+<main>
+    <form (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nome do cliente</mat-label>
+                    <input type="text" matInput [(ngModel)]="clientName" name="clientName"
+                        placeholder="Ex. pat@example.com">
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button color="primary">Cadastrar</button>
+    </form>
+
+</main>

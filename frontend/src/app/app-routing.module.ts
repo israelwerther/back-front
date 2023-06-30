@@ -10,11 +10,21 @@ import { AddressListComponent } from './views/address-list/address-list.componen
 import { LoanDashboardComponent } from './views/loan/loan-dashboard/loan-dashboard.component';
 import { LoanCreateComponent } from './views/loan/loan-create/loan-create.component';
 import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
+import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
+import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'credcoop',
+    component: ClientCredcoopComponent,
+  },
+  {
+    path: 'cadastrar-cliente-credcoop',
+    component: ClientCredcoopCreateComponent,
   },
   {
     path: 'esctop',

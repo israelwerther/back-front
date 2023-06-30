@@ -26,6 +26,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { LoanDashboardComponent } from './views/loan/loan-dashboard/loan-dashboard.component';
 import { LoanCreateComponent } from './views/loan/loan-create/loan-create.component';
 import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
+import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
+import { ClientEsctopComponent } from './views/client-esctop/client-esctop.component';
+import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
 
 
 @NgModule({
@@ -43,6 +46,9 @@ import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
     LoanDashboardComponent,
     LoanCreateComponent,
     LoanListComponent,
+    ClientCredcoopComponent,
+    ClientEsctopComponent,
+    ClientCredcoopCreateComponent,
   ],
 
   imports: [
