@@ -15,14 +15,6 @@ import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { AddressListComponent } from './views/address-list/address-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormControl, FormGroup } from '@angular/forms';
-
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { LoanDashboardComponent } from './views/loan/loan-dashboard/loan-dashboard.component';
 import { LoanCreateComponent } from './views/loan/loan-create/loan-create.component';
 import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
@@ -59,12 +51,6 @@ import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-cr
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

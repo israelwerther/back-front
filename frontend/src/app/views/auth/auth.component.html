@@ -1,28 +1,25 @@
 <div class="d-flex justify-content-center" *ngIf="!isLoggedIn">
   <div class="row">
     <div class="col">
-      <mat-card class="p-4">
-        <mat-card-title class="text-center">Esctop</mat-card-title>
-        <mat-card-content class="">
-          <form (submit)="login()">
-            <div class="row">
-              <div class="col">
-                <div class="col">
-                  <label for="email" class="form-label">Email</label>
-                  <input [(ngModel)]="email" class="form-control" name="email" id="email" /><br />
-                  <label for="password" class="form-label">Senha</label>
-                  <input [(ngModel)]="password" class="form-control" name="password" id="password" />
-                </div>
-              </div>
+
+      <form (submit)="login()">
+        <div class="row">
+          <div class="col">
+            <div class="col">
+              <label for="email" class="form-label">Email</label>
+              <input [(ngModel)]="email" class="form-control" name="email" id="email" /><br />
+              <label for="password" class="form-label">Senha</label>
+              <input [(ngModel)]="password" class="form-control" name="password" id="password" />
             </div>
-            <div>
-              <button type="submit" class="btn btn-primary w-100">
-                Login
-              </button>
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card>
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary w-100">
+            Login
+          </button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>

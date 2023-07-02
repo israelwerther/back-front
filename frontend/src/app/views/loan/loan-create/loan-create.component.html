@@ -16,18 +16,13 @@
     <div class="row">
         <div class="col-md-6 col-lg-3">
             <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Nome do cliente</mat-label>
-                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                <div class="form-group">
+                    <label for="nomeCliente">Nome do cliente</label>
+                    <input type="email" class="form-control" id="nomeCliente" [formControl]="emailFormControl"
+                        [ngClass]="{ 'is-invalid': emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched) }"
                         placeholder="Ex. pat@example.com">
-                    <mat-hint>Errors appear instantly!</mat-hint>
-                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                        Please enter a valid email address
-                    </mat-error>
-                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                        Nome do cliente é <strong>obrigatório</strong>
-                    </mat-error>
-                </mat-form-field>
+                </div>
+
             </form>
         </div>
 

@@ -12,14 +12,18 @@
 
     <div class="row">
         <div class="col-md-6 col-lg-3">
-            <mat-card class="card-pop my-2 custom-card" role="button" [routerLink]="['/emprestimo-cadastro']">
-                <mat-card-content>Cadastrar</mat-card-content>
-            </mat-card>
+            <div class="card card-pop my-2 custom-card">
+                <div class="card-body" role="button" [routerLink]="['/emprestimo-cadastro']">
+                    Cadastrar
+                </div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-3">
-            <mat-card class="card-pop my-2 custom-card" [routerLink]="['/emprestimo-lista']">
-                <mat-card-content>Listar</mat-card-content>
-            </mat-card>
+            <div class="card card-pop my-2 custom-card" [routerLink]="['/emprestimo-lista']">
+                <div class="card-body">
+                    Listar
+                </div>
+            </div>
         </div>
     </div>
 
