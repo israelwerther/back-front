@@ -578,17 +578,17 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+.border-right-primary {
+  border-right: 50px solid #4e73df !important;
 }
 
-.border-left-primary {
-  border-left: 0.25rem solid #4e73df !important;
+.custom-card-effect {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.custom-card-effect:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .form-control {
