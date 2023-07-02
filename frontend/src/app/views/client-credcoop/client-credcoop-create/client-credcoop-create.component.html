@@ -1,14 +1,27 @@
 <main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Credcoop</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a [routerLink]="['/credcoop']" class="active">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li>
+                    <a>Cadastrar Credcoop</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <form (ngSubmit)="onSubmit()">
         <div class="row">
-            <div class="col-3">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Nome do cliente</mat-label>
-                    <input type="text" matInput [(ngModel)]="clientName" name="clientName"
-                        placeholder="Ex. pat@example.com">
-                </mat-form-field>
+            <div class="col-sm-4">
+                <label for="clientName" class="form-label">Email address</label>
+                <input [(ngModel)]="clientName" class="form-control" name="clientName" id="clientName">
             </div>
+
         </div>
+
         <button mat-raised-button color="primary">Cadastrar</button>
     </form>
 

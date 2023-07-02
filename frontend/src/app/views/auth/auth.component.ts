@@ -9,8 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
-  loginData = { email: '', password: '' };
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = "";
+  password = "";
 
   loginErrorMessage: string = '';
   isLoggedIn = false;
@@ -21,7 +21,7 @@ export class AuthComponent {
   ) { }
 
   login() {
-    this.authService.login(this.loginData.email, this.loginData.password).subscribe(() => {
+    this.authService.login(this.email, this.password).subscribe(() => {
       this.router.navigate(['home']);
     },
       () => {
@@ -37,14 +37,6 @@ export class AuthComponent {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
-  }
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Digite um email válido';
-    }
-
-    return this.email.hasError('email') ? 'Não é um email válido' : '';
   }
 
 }

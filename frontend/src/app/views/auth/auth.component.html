@@ -5,35 +5,20 @@
         <mat-card-title class="text-center">Esctop</mat-card-title>
         <mat-card-content class="">
           <form (submit)="login()">
-
             <div class="row">
               <div class="col">
-                <div class="example-container">
-                  <mat-form-field>
-                    <mat-label>Enter your email</mat-label>
-                    <input matInput placeholder="pat@example.com" [formControl]="email" [(ngModel)]="loginData.email"
-                      required>
-                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                  </mat-form-field>
+                <div class="col">
+                  <label for="email" class="form-label">Email</label>
+                  <input [(ngModel)]="email" class="form-control" name="email" id="email" /><br />
+                  <label for="password" class="form-label">Senha</label>
+                  <input [(ngModel)]="password" class="form-control" name="password" id="password" />
                 </div>
-                <br>
-                <mat-form-field>
-                  <mat-label>Password</mat-label>
-                  <input type="password" matInput placeholder="Password" [(ngModel)]="loginData.password"
-                    name="password" required>
-
-                </mat-form-field>
               </div>
             </div>
-
-            <div class="error-message text-danger text-center">
-              <small *ngIf="loginErrorMessage" class="error-message">{{loginErrorMessage}}</small>
-            </div>
-
-            <!-- <div class="error-message" *ngIf="loginError">Erro no preenchimento. Por favor, verifique os campos.</div> -->
-
             <div>
-              <button type="submit" mat-raised-button color="primary" class="w-100">Login</button>
+              <button type="submit" class="btn btn-primary w-100">
+                Login
+              </button>
             </div>
           </form>
         </mat-card-content>
@@ -41,12 +26,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 <!-- <div *ngIf="isLoggedIn; else notLoggedInMessage">
   <p>Você está logado.</p>
