@@ -11,6 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { LoanModule } from './loan/loan.module';
+import { ClientCredcoopModule } from './client-credcoop/client-credcoop.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { LoanModule } from './loan/loan.module';
       entities: [`${__dirname}/**/*.entity{.js,.ts}`],
       migrations: [`${__dirname}/migration/{.ts,*.js}`],
       migrationsRun: true,
+      synchronize: true,
     }),
     UserModule,
     StateModule,
@@ -36,6 +38,7 @@ import { LoanModule } from './loan/loan.module';
     AuthModule,
     JwtModule,
     LoanModule,
+    ClientCredcoopModule,
   ],
   controllers: [],
   providers: [
