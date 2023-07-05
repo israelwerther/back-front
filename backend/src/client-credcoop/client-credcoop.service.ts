@@ -20,7 +20,7 @@ export class ClientCredcoopService {
     const user = await this.createClientCredcoopDto.findOne({
       where: { id: ClientCredcoopId },
     });
-    console.log('::: ===============', ClientCredcoopId);
+
     if (!user) {
       throw new NotFoundException(`User ${ClientCredcoopId} not found`);
     }

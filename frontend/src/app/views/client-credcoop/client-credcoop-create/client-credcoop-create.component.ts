@@ -9,26 +9,48 @@ import { ClientCredcoopService } from '../client-credcoop.service';
 export class ClientCredcoopCreateComponent {
   clientName: string = '';
   cpf: string = '';
+  zipCode: string = '';
+  street: string = '';
+  neighborhood: string = '';
+  state: string = '';
+  city: string = '';
+  buildingNumber: string = '';
+  referencePoint: string = '';
+  complement: string = '';
 
   constructor(private clientCredcoopService: ClientCredcoopService) { }
 
+  ngOnInit() {
+
+  }
+
   onSubmit() {
+    const addressData = {
+      zipCode: this.zipCode,
+      street: this.street,
+      neighborhood: this.neighborhood,
+      state: this.state,
+      city: this.city,
+      buildingNumber: this.buildingNumber,
+      referencePoint: this.referencePoint,
+      complement: this.complement
+    };
+
     const formData = {
       clientName: this.clientName,
       cpf: this.cpf,
+      address: addressData
     };
 
-    // const userId = Number(localStorage.getItem('id_storage'));
     const token = localStorage.getItem('token_storage');
-    console.log('token::: ', token);
 
     if (token) {
-      this.clientCredcoopService.createCredcoopClient(formData, token).subscribe(
+      this.clientCredcoopService.createCredcoopClient(formData, addressData, token).subscribe(
         (response: any) => {
-          console.log('Endereço criado com sucesso:', response);
+          console.log('Cliente e endereço criados com sucesso:', response);
         },
         (error) => {
-          console.error('Erro ao cadastrar o cliente:', error);
+          console.error('Erro ao cadastrar o cliente e endereço:', error);
         }
       );
     } else {

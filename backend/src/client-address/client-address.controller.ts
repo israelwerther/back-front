@@ -3,7 +3,10 @@ import { ClientAddressService } from './client-address.service';
 import { CreateClientAddressDto } from './dto/create-client-address.dto';
 import { UpdateClientAddressDto } from './dto/update-client-address.dto';
 import { ClientAddressEntity } from './entities/client-address.entity';
+import { Roles } from 'src/decorators/roles.decorators';
+import { UserType } from 'src/user/enum/user-type.enum';
 
+@Roles(UserType.User)
 @Controller('client-address')
 export class ClientAddressController {
   constructor(private readonly clientAddressService: ClientAddressService) { }

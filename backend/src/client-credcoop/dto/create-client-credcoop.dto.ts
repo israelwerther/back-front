@@ -1,7 +1,7 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsString } from "class-validator";
 
 export class CreateClientCredcoopDto {
-    @IsNumber()
+    @IsString()
     clientName: string;
 
     @IsString()

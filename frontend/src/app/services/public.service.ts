@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class PublicService {
-  api_url = 'http://localhost:8080/';
+  baseUrl = 'http://localhost:8080/';
   statusSubject = new Subject<boolean>();
   status: boolean;
 
@@ -19,17 +19,17 @@ export class PublicService {
   }
 
   getUser() {
-    const url = `${this.api_url}user/`;
+    const url = `${this.baseUrl}user/`;
     return this.http.get(url);
   }
 
   getAddresses() {
-    const url = `${this.api_url}address/`;
+    const url = `${this.baseUrl}address/`;
     return this.http.get(url);
   }
 
   getMessage() {
-    const url = this.api_url;
+    const url = this.baseUrl;
     return this.http.get(url);
   }
 

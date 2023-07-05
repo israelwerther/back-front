@@ -18,17 +18,54 @@
         <div class="row">
             <div class="col-sm-4">
                 <label for="clientName" class="form-label">Nome completo</label>
-                <input [(ngModel)]="clientName" class="form-control" name="clientName" id="clientName">
+                <input [(ngModel)]="clientName" class="form-control form-control-sm" name="clientName" id="clientName">
             </div>
             <div class="col-sm-4">
                 <label for="cpf" class="form-label">CPF</label>
-                <input [(ngModel)]="cpf" class="form-control" name="cpf" id="cpf">
+                <input [(ngModel)]="cpf" class="form-control form-control-sm" name="cpf" id="cpf">
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="zipCode" class="form-label">CEP</label>
+                <input [(ngModel)]="zipCode" class="form-control form-control-sm" name="zipCode" id="zipCode">
+            </div>
+            <div class="col-sm-4">
+                <label for="street" class="form-label">Rua</label>
+                <input [(ngModel)]="street" class="form-control form-control-sm" name="street" id="street">
+            </div>
+            <div class="col-sm-4">
+                <label for="neighborhood" class="form-label">Bairro</label>
+                <input [(ngModel)]="neighborhood" class="form-control form-control-sm" name="neighborhood"
+                    id="neighborhood">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="state" class="form-label">Estado</label>
+                <input [(ngModel)]="state" class="form-control form-control-sm" name="state" id="state">
+            </div>
+            <div class="col-sm-4">
+                <label for="city" class="form-label">Cidade</label>
+                <input [(ngModel)]="city" class="form-control form-control-sm" name="city" id="city">
+            </div>
+            <div class="col-sm-4">
+                <label for="buildingNumber" class="form-label">Número do prédio</label>
+                <input [(ngModel)]="buildingNumber" class="form-control form-control-sm" name="buildingNumber"
+                    id="buildingNumber">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="referencePoint" class="form-label">Ponto de referência</label>
+                <input [(ngModel)]="referencePoint" class="form-control form-control-sm" name="referencePoint"
+                    id="referencePoint">
+            </div>
+            <div class="col-sm-6">
+                <label for="complement" class="form-label">Complemento</label>
+                <input [(ngModel)]="complement" class="form-control form-control-sm" name="complement" id="complement">
+            </div>
+        </div>
         <button class="btn btn-primary">Cadastrar</button>
     </form>
-
-
-
 </main>
