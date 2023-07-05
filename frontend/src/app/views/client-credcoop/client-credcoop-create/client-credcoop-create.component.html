@@ -13,16 +13,22 @@
             </ul>
         </div>
     </div>
-    <form (ngSubmit)="onSubmit()">
+
+    <form (ngSubmit)="onSubmit()" class="card card-body">
         <div class="row">
             <div class="col-sm-4">
-                <label for="clientName" class="form-label">Email address</label>
+                <label for="clientName" class="form-label">Nome completo</label>
                 <input [(ngModel)]="clientName" class="form-control" name="clientName" id="clientName">
             </div>
-
+            <div class="col-sm-4">
+                <label for="cpf" class="form-label">CPF</label>
+                <input [(ngModel)]="cpf" class="form-control" name="cpf" id="cpf">
+            </div>
         </div>
 
-        <button class="btn btn-outline-primary">Cadastrar</button>
+        <button class="btn btn-primary">Cadastrar</button>
     </form>
+
+
 
 </main>

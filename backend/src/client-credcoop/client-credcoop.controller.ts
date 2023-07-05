@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ClientCredcoopService } from './client-credcoop.service';
 import { CreateClientCredcoopDto } from './dto/create-client-credcoop.dto';
 import { UpdateClientCredcoopDto } from './dto/update-client-credcoop.dto';
@@ -7,6 +7,7 @@ import { UpdateClientCredcoopDto } from './dto/update-client-credcoop.dto';
 export class ClientCredcoopController {
   constructor(private readonly clientCredcoopService: ClientCredcoopService) { }
 
+  @UsePipes(ValidationPipe)
   @Post()
   async create(@Body() createClientCredcoopDto: CreateClientCredcoopDto) {
     return await this.clientCredcoopService.createClientCredcoop(createClientCredcoopDto);

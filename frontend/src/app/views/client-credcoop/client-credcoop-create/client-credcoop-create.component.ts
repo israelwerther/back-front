@@ -8,12 +8,14 @@ import { ClientCredcoopService } from '../client-credcoop.service';
 })
 export class ClientCredcoopCreateComponent {
   clientName: string = '';
+  cpf: string = '';
 
   constructor(private clientCredcoopService: ClientCredcoopService) { }
 
   onSubmit() {
     const formData = {
       clientName: this.clientName,
+      cpf: this.cpf,
     };
 
     // const userId = Number(localStorage.getItem('id_storage'));

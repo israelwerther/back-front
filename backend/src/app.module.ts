@@ -12,6 +12,7 @@ import { RolesGuard } from './guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { LoanModule } from './loan/loan.module';
 import { ClientCredcoopModule } from './client-credcoop/client-credcoop.module';
+import { ClientAddressModule } from './client-address/client-address.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { ClientCredcoopModule } from './client-credcoop/client-credcoop.module';
     JwtModule,
     LoanModule,
     ClientCredcoopModule,
+    ClientAddressModule,
   ],
   controllers: [],
   providers: [

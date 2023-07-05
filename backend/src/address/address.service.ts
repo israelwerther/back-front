@@ -13,11 +13,11 @@ export class AddressService {
     private readonly addressRepository: Repository<AddressEntity>,
     private readonly userService: UserService,
     private readonly cityService: CityService,
-  ) {}
+  ) { }
 
   async createAddress(
     createAddressDto: CreateAddressDto,
-    userId: number,
+    userId: number
   ): Promise<AddressEntity> {
     await this.userService.findUserById(userId);
     await this.cityService.findCityById(createAddressDto.cityId);

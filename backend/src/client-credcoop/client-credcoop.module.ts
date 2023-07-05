@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [TypeOrmModule.forFeature([ClientCredcoopEntity])],
   controllers: [ClientCredcoopController],
-  providers: [ClientCredcoopService]
+  providers: [ClientCredcoopService],
+  exports: [ClientCredcoopService],
 })
 export class ClientCredcoopModule { }
