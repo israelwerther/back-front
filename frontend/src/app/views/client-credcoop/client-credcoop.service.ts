@@ -12,7 +12,6 @@ export class ClientCredcoopService {
 
   createCredcoopClient(clientData: any, addressData: any, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('token::: ', token);
     const clientUrl = `${this.baseUrl}/client-credcoop`;
     const addressUrl = `${this.baseUrl}/client-address`;
 

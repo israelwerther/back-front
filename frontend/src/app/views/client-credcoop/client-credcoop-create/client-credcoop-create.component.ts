@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientCredcoopService } from '../client-credcoop.service';
+import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
 
 @Component({
   selector: 'app-client-credcoop-create',
@@ -7,8 +8,14 @@ import { ClientCredcoopService } from '../client-credcoop.service';
   styleUrls: ['./client-credcoop-create.component.css']
 })
 export class ClientCredcoopCreateComponent {
-  clientName: string = '';
-  cpf: string = '';
+
+  clientCredcoop: ClientCredcoop = {
+    clientName: "",
+    cpf: "",
+  }
+
+
+  // Client address
   zipCode: string = '';
   street: string = '';
   neighborhood: string = '';

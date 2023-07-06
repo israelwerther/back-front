@@ -1,5 +1,5 @@
 import { ClientAddressEntity } from "src/client-address/entities/client-address.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "client_credcoop" })
 export class ClientCredcoopEntity {
@@ -12,6 +12,7 @@ export class ClientCredcoopEntity {
     @Column({ name: 'cpf', nullable: true })
     cpf: string
 
-    @OneToMany(() => ClientAddressEntity, (clientAddress) => clientAddress.clientCredcoop)
-    client_addresses?: ClientAddressEntity[];
+    @OneToMany(() => ClientAddressEntity, (clientAddress) => clientAddress.clientCredcoop, { cascade: true })
+    @JoinColumn({ name: 'client_credcoop_id' })
+    clientAddresses?: ClientAddressEntity[];
 }

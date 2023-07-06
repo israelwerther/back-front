@@ -30,9 +30,7 @@ export class ClientAddressEntity {
     @Column({ name: 'complement', nullable: true })
     complement: string
 
-    @Column({ name: 'client_credcoop_id', nullable: true })
-    clientCredcoopId: number;
-    @ManyToOne(() => ClientCredcoopEntity, (clientCredcoop) => clientCredcoop.client_addresses)
-    @JoinColumn({ name: 'client_credcoop_id', referencedColumnName: 'id' })
+    @ManyToOne(() => ClientCredcoopEntity, (clientCredcoop) => clientCredcoop.clientAddresses, { nullable: true })
+    @JoinColumn({ name: 'client_credcoop_id' })
     clientCredcoop?: ClientCredcoopEntity;
 }
