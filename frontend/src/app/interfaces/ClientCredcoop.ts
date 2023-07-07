@@ -1,7 +1,7 @@
 import { ClientAddress } from "./ClientAddress";
 
 export interface ClientCredcoop {
-    clientName: string;
-    cpf: string;
+    clientName: string | null | undefined;
+    cpf: string | null | undefined;
     clientAddresses: ClientAddress[];
 }
