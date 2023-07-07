@@ -43,17 +43,19 @@ export class ClientCredcoopCreateComponent {
       clientAddresses: [addressData]
     };
 
-    const token = localStorage.getItem('token_storage');
+    // const token = localStorage.getItem('token_storage');
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInR5cGVVc2VyIjoxLCJpYXQiOjE2ODg2NzEyMzQsImV4cCI6MTY4OTI3NjAzNH0.gzAFTV4-Qb7YvwajVg5GrhYyYEOvDse0XWNAJE9nG3s"
+    console.log('token::: ', token);
 
     if (token) {
-      this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe(
-        (response: any) => {
-          console.log('Cliente e endereço criados com sucesso:', response);
+      this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe({
+        next: () => {
+          console.log('Cliente e endereço criados com sucesso');
         },
-        (error) => {
+        error: (error) => {
           console.error('Erro ao cadastrar o cliente e endereço:', error);
         }
-      );
+      });
     }
   }
 }
