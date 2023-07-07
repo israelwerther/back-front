@@ -43,9 +43,7 @@ export class ClientCredcoopCreateComponent {
       clientAddresses: [addressData]
     };
 
-    // const token = localStorage.getItem('token_storage');
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInR5cGVVc2VyIjoxLCJpYXQiOjE2ODg2NzEyMzQsImV4cCI6MTY4OTI3NjAzNH0.gzAFTV4-Qb7YvwajVg5GrhYyYEOvDse0XWNAJE9nG3s"
-    console.log('token::: ', token);
+    const token = localStorage.getItem('token_storage');
 
     if (token) {
       this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe({
