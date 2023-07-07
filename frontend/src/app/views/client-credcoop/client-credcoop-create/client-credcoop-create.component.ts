@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ClientCredcoopService } from '../client-credcoop.service';
+import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
+
 
 @Component({
   selector: 'app-client-credcoop-create',
@@ -8,14 +10,8 @@ import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
   styleUrls: ['./client-credcoop-create.component.css']
 })
 export class ClientCredcoopCreateComponent {
-
-  clientCredcoop: ClientCredcoop = {
-    clientName: "",
-    cpf: "",
-  }
-
-
-  // Client address
+  clientName: string = '';
+  cpf: string = '';
   zipCode: string = '';
   street: string = '';
   neighborhood: string = '';
@@ -25,14 +21,12 @@ export class ClientCredcoopCreateComponent {
   referencePoint: string = '';
   complement: string = '';
 
-  constructor(private clientCredcoopService: ClientCredcoopService) { }
-
-  ngOnInit() {
-
-  }
+  constructor(
+    private clientCredcoopService: ClientCredcoopService
+  ) { }
 
   onSubmit() {
-    const addressData = {
+    const addressData: ClientAddress = {
       zipCode: this.zipCode,
       street: this.street,
       neighborhood: this.neighborhood,
@@ -43,16 +37,16 @@ export class ClientCredcoopCreateComponent {
       complement: this.complement
     };
 
-    const formData = {
+    const clientData: ClientCredcoop = {
       clientName: this.clientName,
       cpf: this.cpf,
-      address: addressData
+      clientAddresses: [addressData]
     };
 
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.clientCredcoopService.createCredcoopClient(formData, addressData, token).subscribe(
+      this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe(
         (response: any) => {
           console.log('Cliente e endereço criados com sucesso:', response);
         },
@@ -60,8 +54,6 @@ export class ClientCredcoopCreateComponent {
           console.error('Erro ao cadastrar o cliente e endereço:', error);
         }
       );
-    } else {
-      console.error('Usuário não autenticado');
     }
   }
 }
