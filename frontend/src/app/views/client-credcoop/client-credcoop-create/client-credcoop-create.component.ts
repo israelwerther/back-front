@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ClientCredcoopService } from '../client-credcoop.service';
 import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
-
+import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-client-credcoop-create',
@@ -10,37 +10,45 @@ import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
   styleUrls: ['./client-credcoop-create.component.css']
 })
 export class ClientCredcoopCreateComponent {
-  clientName: string = '';
-  cpf: string = '';
-  zipCode: string = '';
-  street: string = '';
-  neighborhood: string = '';
-  state: string = '';
-  city: string = '';
-  buildingNumber: string = '';
-  referencePoint: string = '';
-  complement: string = '';
+  clientForm: FormGroup;
 
-  constructor(
-    private clientCredcoopService: ClientCredcoopService
-  ) { }
+  constructor(private clientCredcoopService: ClientCredcoopService, private fb: FormBuilder) {
+    this.clientForm = this.fb.group({
+      clientName: ['', Validators.required],
+      cpf: ['', Validators.required],
+      addresses: this.fb.array([
+        this.createAddressFormGroup()
+      ])
+    });
+  }
+
+  createAddressFormGroup(): FormGroup {
+    return this.fb.group({
+      zipCode: [''],
+      street: [''],
+      neighborhood: [''],
+      state: [''],
+      city: [''],
+      buildingNumber: [''],
+      referencePoint: [''],
+      complement: ['']
+    });
+  }
+
+  get addresses() {
+    return this.clientForm.get('addresses') as FormArray;
+  }
+
+  addAddress() {
+    this.addresses.push(this.createAddressFormGroup());
+  }
 
   onSubmit() {
-    const addressData: ClientAddress = {
-      zipCode: this.zipCode,
-      street: this.street,
-      neighborhood: this.neighborhood,
-      state: this.state,
-      city: this.city,
-      buildingNumber: this.buildingNumber,
-      referencePoint: this.referencePoint,
-      complement: this.complement
-    };
 
     const clientData: ClientCredcoop = {
-      clientName: this.clientName,
-      cpf: this.cpf,
-      clientAddresses: [addressData]
+      clientName: this.clientForm.value.clientName,
+      cpf: this.clientForm.value.cpf,
+      clientAddresses: this.clientForm.value.addresses
     };
 
     const token = localStorage.getItem('token_storage');
