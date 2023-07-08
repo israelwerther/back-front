@@ -23,6 +23,7 @@ import { ClientEsctopComponent } from './views/client-esctop/client-esctop.compo
 import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

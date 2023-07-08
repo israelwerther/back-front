@@ -13,6 +13,7 @@ import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
 import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
 import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
 
+
 const routes: Routes = [
   {
     path: 'home',

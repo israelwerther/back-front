@@ -45,6 +45,10 @@ export class ClientCredcoopCreateComponent {
     }));
   }
 
+  deleteAddress(index: number) {
+    this.addresses.removeAt(index);
+  }
+
   onSubmit() {
     const clientData: ClientCredcoop = {
       clientName: this.profileForm.value.clientName,

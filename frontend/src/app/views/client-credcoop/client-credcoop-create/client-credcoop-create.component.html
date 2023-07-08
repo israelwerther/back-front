@@ -31,7 +31,7 @@
             </div>
         </div>
         <div formArrayName="addresses">
-            <div class="row" *ngFor="let address of addresses.controls; let i=index" [formGroupName]="i">
+            <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
                 <h2>Endereço {{i+1}}</h2>
                 <div class="col-sm-4">
                     <label for="zipCode" class="form-label">CEP</label>
@@ -64,6 +64,10 @@
                 <div class="col-sm-4">
                     <label for="buildingNumber" class="form-label">Número do prédio</label>
                     <input formControlName="buildingNumber" class="form-control form-control-sm" id="buildingNumber">
+                </div>
+                <div class="col-sm-4">
+                    <button *ngIf="i > 0" type="button" class="btn btn-danger float-right"
+                        (click)="deleteAddress(i)">Delete</button>
                 </div>
             </div>
         </div>
