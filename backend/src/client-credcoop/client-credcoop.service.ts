@@ -12,8 +12,12 @@ export class ClientCredcoopService {
     private readonly createClientCredcoopDto: Repository<ClientCredcoopEntity>
   ) { }
 
-  async createClientCredcoop(createClientCredcoopDto: CreateClientCredcoopDto): Promise<CreateClientCredcoopDto> {
+  async createClientCredcoop(createClientCredcoopDto: CreateClientCredcoopDto): Promise<ClientCredcoopEntity> {
     return await this.createClientCredcoopDto.save(createClientCredcoopDto);
+  }
+
+  async getAllClientCredcoop(): Promise<ClientCredcoopEntity[]> {
+    return await this.createClientCredcoopDto.find();
   }
 
   async findClientCredcoopById(ClientCredcoopId: number): Promise<ClientCredcoopEntity> {

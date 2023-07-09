@@ -10,7 +10,7 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
-  ) {}
+  ) { }
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const saltOrRounds = 10;

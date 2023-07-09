@@ -4,6 +4,8 @@ import { CreateClientCredcoopDto } from './dto/create-client-credcoop.dto';
 import { UpdateClientCredcoopDto } from './dto/update-client-credcoop.dto';
 import { Roles } from 'src/decorators/roles.decorators';
 import { UserType } from 'src/user/enum/user-type.enum';
+import { ReturnClientCredcoopDto } from './dto/return-client-credcoop.dto';
+import { ClientCredcoopEntity } from './entities/client-credcoop.entity';
 
 @Roles(UserType.User)
 @Controller('client-credcoop')
@@ -12,8 +14,15 @@ export class ClientCredcoopController {
 
   @UsePipes(ValidationPipe)
   @Post()
-  async create(@Body() createClientCredcoopDto: CreateClientCredcoopDto) {
-    return await this.clientCredcoopService.createClientCredcoop(createClientCredcoopDto);
+  async create(@Body() createClientCredcoop: CreateClientCredcoopDto): Promise<ClientCredcoopEntity> {
+    return await this.clientCredcoopService.createClientCredcoop(createClientCredcoop);
+  }
+
+  @Get()
+  async getAllClientCredcoop(): Promise<ReturnClientCredcoopDto[]> {
+    return (await this.clientCredcoopService.getAllClientCredcoop()).map(
+      (clientCredcoopEntity) => new ReturnClientCredcoopDto(clientCredcoopEntity),
+    );
   }
 
   @Get()

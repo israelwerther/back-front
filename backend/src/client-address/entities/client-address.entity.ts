@@ -1,5 +1,5 @@
 import { ClientCredcoopEntity } from "src/client-credcoop/entities/client-credcoop.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: "client_address" })
 export class ClientAddressEntity {
@@ -29,6 +29,12 @@ export class ClientAddressEntity {
 
     @Column({ name: 'complement', nullable: true })
     complement: string
+
+    @CreateDateColumn({ name: 'created_at' })
+    createdAt: Date;
+
+    @UpdateDateColumn({ name: 'updated_at' })
+    updatedAt: Date;
 
     @ManyToOne(() => ClientCredcoopEntity, (clientCredcoop) => clientCredcoop.clientAddresses, { nullable: true })
     @JoinColumn({ name: 'client_credcoop_id' })

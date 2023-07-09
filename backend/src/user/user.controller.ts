@@ -15,7 +15,7 @@ import { ReturnUserDto } from './dtos/returnUser.dto';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @UsePipes(ValidationPipe)
   @Post()
