@@ -12,6 +12,7 @@ import { LoanCreateComponent } from './views/loan/loan-create/loan-create.compon
 import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
 import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
 import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
+import { ClientCredcoopListComponent } from './views/client-credcoop/client-credcoop-list/client-credcoop-list.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'cadastrar-cliente-credcoop',
     component: ClientCredcoopCreateComponent,
+  },
+  {
+    path: 'credcoop-lista',
+    component: ClientCredcoopListComponent,
   },
   {
     path: 'esctop',

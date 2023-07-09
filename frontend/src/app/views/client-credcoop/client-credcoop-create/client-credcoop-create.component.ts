@@ -9,6 +9,8 @@ import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
   styleUrls: ['./client-credcoop-create.component.css']
 })
 export class ClientCredcoopCreateComponent {
+  constructor(private clientCredcoopService: ClientCredcoopService, private fb: FormBuilder) { }
+
   profileForm = this.fb.group({
     clientName: ['', Validators.required],
     cpf: [''],
@@ -30,7 +32,6 @@ export class ClientCredcoopCreateComponent {
     return this.profileForm.get('addresses') as FormArray;
   }
 
-  constructor(private clientCredcoopService: ClientCredcoopService, private fb: FormBuilder) { }
 
   addAddress() {
     this.addresses.push(this.fb.group({
@@ -69,4 +70,7 @@ export class ClientCredcoopCreateComponent {
       });
     }
   }
+
+
+
 }

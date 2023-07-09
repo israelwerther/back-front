@@ -15,4 +15,9 @@ export class ClientCredcoopService {
     const clientUrl = this.apiUrl;
     return this.http.post(clientUrl, clientData, { headers })
   }
+
+  getCredcoopClients(token: string): Observable<any[]> {
+    const headers = new HttpHeaders().set('Authorization', token);
+    return this.http.get<any[]>(this.apiUrl, { headers });
+  }
 }

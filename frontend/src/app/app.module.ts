@@ -21,6 +21,7 @@ import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
 import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
 import { ClientEsctopComponent } from './views/client-esctop/client-esctop.component';
 import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
+import { ClientCredcoopListComponent } from './views/client-credcoop/client-credcoop-list/client-credcoop-list.component';
 
 
 
@@ -42,6 +43,7 @@ import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-cr
     ClientCredcoopComponent,
     ClientEsctopComponent,
     ClientCredcoopCreateComponent,
+    ClientCredcoopListComponent,
   ],
 
   imports: [

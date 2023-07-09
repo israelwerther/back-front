@@ -1,0 +1,31 @@
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Credcoop</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a [routerLink]="['/credcoop']" class="active">Dashboard</a>
+                </li>
+                <li><i class="bx bx-chevron-right"></i></li>
+                <li>
+                    <a>Todos os clientes Credcoop</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td>{{ client.clientName }}</td>
+                <td>{{ client.cpf }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</main>
