@@ -4,21 +4,31 @@ import { UpdateClientCredcoopDto } from './dto/update-client-credcoop.dto';
 import { ClientCredcoopEntity } from './entities/client-credcoop.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { paginate, Pagination, IPaginationOptions, } from 'nestjs-typeorm-paginate';
+import { ReturnClientCredcoopDto } from './dto/return-client-credcoop.dto';
 
 @Injectable()
 export class ClientCredcoopService {
   constructor(
     @InjectRepository(ClientCredcoopEntity)
-    private readonly createClientCredcoopDto: Repository<ClientCredcoopEntity>
+    private readonly createClientCredcoopDto: Repository<ClientCredcoopEntity>,
   ) { }
 
   async createClientCredcoop(createClientCredcoopDto: CreateClientCredcoopDto): Promise<ClientCredcoopEntity> {
     return await this.createClientCredcoopDto.save(createClientCredcoopDto);
   }
 
-  async getAllClientCredcoop(): Promise<ClientCredcoopEntity[]> {
-    return await this.createClientCredcoopDto.find();
+  async getAllClientCredcoop(options: IPaginationOptions): Promise<Pagination<ReturnClientCredcoopDto>> {
+    const queryBuilder = this.createClientCredcoopDto.createQueryBuilder('c');
+    queryBuilder
+      .select(['c.clientName', 'c.cpf'])
+      .orderBy('c.id', 'ASC');
+    return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
   }
+
+  // async getAllClientCredcoop(): Promise<ClientCredcoopEntity[]> {
+  //   return await this.createClientCredcoopDto.find();
+  // }
 
   async findClientCredcoopById(ClientCredcoopId: number): Promise<ClientCredcoopEntity> {
     const user = await this.createClientCredcoopDto.findOne({

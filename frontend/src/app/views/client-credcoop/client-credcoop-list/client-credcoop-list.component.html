@@ -13,6 +13,7 @@
             </ul>
         </div>
     </div>
+
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -27,5 +28,32 @@
             </tr>
         </tbody>
     </table>
+    <p>Total de itens cadastrados: {{ totalItems }}</p>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" aria-label="Previous" (click)="changePage(clientCredcoopService.currentPage - 1)"
+                    [class.disabled]="clientCredcoopService.currentPage === 1">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <ng-container *ngFor="let page of clientCredcoopService.pages">
+                <li class="page-item" [class.active]="clientCredcoopService.currentPage === page">
+                    <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+                </li>
+            </ng-container>
+            <li class="page-item">
+                <a class="page-link" aria-label="Next" (click)="changePage(clientCredcoopService.currentPage + 1)"
+                    [class.disabled]="clientCredcoopService.currentPage === clientCredcoopService.totalPages">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+
+
 
 </main>

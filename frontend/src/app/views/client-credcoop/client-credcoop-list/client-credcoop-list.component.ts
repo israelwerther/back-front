@@ -8,20 +8,43 @@ import { ClientCredcoopService } from '../client-credcoop.service';
 })
 export class ClientCredcoopListComponent {
   clients?: any[];
-  constructor(private clientCredcoopService: ClientCredcoopService) { }
+  totalItems = 0;
+
+  constructor(public clientCredcoopService: ClientCredcoopService) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token_storage');
 
     if (token) {
       this.clientCredcoopService.getCredcoopClients(token).subscribe({
-        next: (data) => {
-          this.clients = data;
+        next: (response) => {
+          this.clients = response.items;
+          this.totalItems = response.meta.totalItems;
+          this.clientCredcoopService.updateTotalPages(this.totalItems);
         },
         error: (error) => {
-          console.error('Erro ao cadastrar o cliente e endereço:', error);
+          console.error('Erro ao obter os clientes:', error);
         }
       });
     }
   }
+
+  changePage(page: number) {
+    if (page >= 1 && page <= this.clientCredcoopService.totalPages) {
+      this.clientCredcoopService.currentPage = page;
+      const token = localStorage.getItem('token_storage');
+
+      if (token) {
+        this.clientCredcoopService.getCredcoopClients(token).subscribe(
+          response => {
+            this.clients = response.items;
+          },
+          error => {
+            console.error('Erro ao obter os clientes:', error);
+          }
+        );
+      }
+    }
+  }
+
 }
