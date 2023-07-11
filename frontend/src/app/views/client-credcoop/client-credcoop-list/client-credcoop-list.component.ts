@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientCredcoopService } from '../client-credcoop.service';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-client-credcoop-list',
@@ -7,8 +8,15 @@ import { ClientCredcoopService } from '../client-credcoop.service';
   styleUrls: ['./client-credcoop-list.component.css']
 })
 export class ClientCredcoopListComponent {
-  clients?: any[];
-  totalItems = 0;
+  clients: any[] = [];
+  pages: number[] = [];
+  totalPages: number = 0;
+  totalItems = 0
+
+  config: PaginationInstance = {
+    itemsPerPage: 10,
+    currentPage: 1,
+  };
 
   constructor(public clientCredcoopService: ClientCredcoopService) { }
 
@@ -20,7 +28,8 @@ export class ClientCredcoopListComponent {
         next: (response) => {
           this.clients = response.items;
           this.totalItems = response.meta.totalItems;
-          this.clientCredcoopService.updateTotalPages(this.totalItems);
+          this.totalItems = this.totalItems;
+          this.updateTotalPages(this.totalItems);
         },
         error: (error) => {
           console.error('Erro ao obter os clientes:', error);
@@ -30,11 +39,12 @@ export class ClientCredcoopListComponent {
   }
 
   changePage(page: number) {
-    if (page >= 1 && page <= this.clientCredcoopService.totalPages) {
-      this.clientCredcoopService.currentPage = page;
+    if (page >= 1 && page <= this.totalPages) {
+      this.config.currentPage = page;
       const token = localStorage.getItem('token_storage');
 
       if (token) {
+        this.clientCredcoopService.currentPage = page;
         this.clientCredcoopService.getCredcoopClients(token).subscribe(
           response => {
             this.clients = response.items;
@@ -46,5 +56,17 @@ export class ClientCredcoopListComponent {
       }
     }
   }
+
+  updatePages() {
+    console.log('::: ', this.pages);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  // Quantidade de itens toais
+  updateTotalPages(totalItems: number) {
+    this.totalPages = Math.ceil(totalItems / this.config.itemsPerPage);
+    this.updatePages();
+  }
+
 
 }

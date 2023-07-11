@@ -22,7 +22,7 @@ export class ClientCredcoopService {
     const queryBuilder = this.createClientCredcoopDto.createQueryBuilder('c');
     queryBuilder
       .select(['c.clientName', 'c.cpf'])
-      .orderBy('c.id', 'ASC');
+      .orderBy('c.clientName', 'ASC');
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
   }
 
