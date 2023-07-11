@@ -26,10 +26,6 @@ export class ClientCredcoopService {
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
   }
 
-  // async getAllClientCredcoop(): Promise<ClientCredcoopEntity[]> {
-  //   return await this.createClientCredcoopDto.find();
-  // }
-
   async findClientCredcoopById(ClientCredcoopId: number): Promise<ClientCredcoopEntity> {
     const user = await this.createClientCredcoopDto.findOne({
       where: { id: ClientCredcoopId },

@@ -19,15 +19,8 @@ export class ClientCredcoopController {
     return await this.clientCredcoopService.createClientCredcoop(createClientCredcoop);
   }
 
-  // @Get()
-  // async getAllClientCredcoop(): Promise<ReturnClientCredcoopDto[]> {
-  //   return (await this.clientCredcoopService.getAllClientCredcoop()).map(
-  //     (clientCredcoopEntity) => new ReturnClientCredcoopDto(clientCredcoopEntity),
-  //   );
-  // }
-
-  @Get('')
-  async index(
+  @Get()
+  async getAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
   ): Promise<Pagination<ReturnClientCredcoopDto>> {
