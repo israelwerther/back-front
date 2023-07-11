@@ -21,7 +21,7 @@ export class ClientCredcoopService {
   async getAllClientCredcoop(options: IPaginationOptions): Promise<Pagination<ReturnClientCredcoopDto>> {
     const queryBuilder = this.createClientCredcoopDto.createQueryBuilder('c');
     queryBuilder
-      .select(['c.clientName', 'c.cpf'])
+      .select(['c.id', 'c.clientName', 'c.cpf'])
       .orderBy('c.clientName', 'ASC');
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
   }
@@ -49,7 +49,13 @@ export class ClientCredcoopService {
     return `This action updates a #${id} clientCredcoop`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} clientCredcoop`;
+  async deleteClientCredcoop(ClientCredcoopId: number): Promise<void> {
+    const clientCredcoop = await this.createClientCredcoopDto.findOne({
+      where: { id: ClientCredcoopId },
+    });
+    if (!clientCredcoop) {
+      throw new NotFoundException(`ClientCredcoop ${ClientCredcoopId} not found`);
+    }
+    await this.createClientCredcoopDto.remove(clientCredcoop);
   }
 }

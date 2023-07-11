@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, DefaultValuePipe, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { ClientCredcoopService } from './client-credcoop.service';
 import { CreateClientCredcoopDto } from './dto/create-client-credcoop.dto';
 import { UpdateClientCredcoopDto } from './dto/update-client-credcoop.dto';
@@ -47,7 +47,15 @@ export class ClientCredcoopController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clientCredcoopService.remove(+id);
+  async deleteClientCredcoop(@Param('id') id: number): Promise<void> {
+    try {
+      await this.clientCredcoopService.deleteClientCredcoop(id);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new NotFoundException(error.message);
+      }
+      throw error;
+    }
   }
+
 }
