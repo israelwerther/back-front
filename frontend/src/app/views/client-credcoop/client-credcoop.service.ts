@@ -19,8 +19,15 @@ export class ClientCredcoopService {
   }
 
   getCredcoopClients(token: string): Observable<any> {
+    console.log('itemsPerPage::: ', this.itemsPerPage);
     const headers = new HttpHeaders().set('Authorization', token);
     return this.http.get<any>(`${this.apiUrl}?page=${this.currentPage}&limit=${this.itemsPerPage}`, { headers });
+  }
+
+  deleteClientCredcoop(id: number, token: string): Observable<void> {
+    const headers = new HttpHeaders().set('Authorization', token);
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url, { headers });
   }
 
 

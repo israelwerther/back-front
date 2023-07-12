@@ -20,6 +20,7 @@
                     <th>id</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,7 @@
                     <td>{{ client.id }}</td>
                     <td>{{ client.clientName }}</td>
                     <td>{{ client.cpf }}</td>
+                    <td (click)="deleteClient(client.id)"><i class="text-danger fa-solid fa-trash"></i></td>
                 </tr>
             </tbody>
         </table>

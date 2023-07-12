@@ -68,5 +68,23 @@ export class ClientCredcoopListComponent {
     this.updatePages();
   }
 
+  deleteClient(id: number): void {
+    const token = localStorage.getItem('token_storage');
+    if (token) {
+      this.clientCredcoopService.deleteClientCredcoop(id, token).subscribe({
+        next: () => {
+          console.log('Cliente excluído com sucesso');
+          this.clientCredcoopService.getCredcoopClients(token).subscribe({
+            next: (response) => {
+              this.clients = response.items;
+            }
+          });
+        },
+        error: (error) => {
+          console.error('Erro ao excluir o cliente:', error);
+        }
+      });
+    }
+  }
 
 }
