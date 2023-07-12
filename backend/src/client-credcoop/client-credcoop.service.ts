@@ -18,11 +18,16 @@ export class ClientCredcoopService {
     return await this.createClientCredcoopDto.save(createClientCredcoopDto);
   }
 
-  async getAllClientCredcoop(options: IPaginationOptions): Promise<Pagination<ReturnClientCredcoopDto>> {
+  async getAllClientCredcoop(
+    options: IPaginationOptions & { name?: string }
+  ): Promise<Pagination<ReturnClientCredcoopDto>> {
     const queryBuilder = this.createClientCredcoopDto.createQueryBuilder('c');
-    queryBuilder
-      .select(['c.id', 'c.clientName', 'c.cpf'])
-      .orderBy('c.clientName', 'ASC');
+    queryBuilder.select(['c.id', 'c.clientName', 'c.cpf']).orderBy('c.clientName', 'ASC');
+
+    if (options.name) {
+      queryBuilder.where('c.clientName LIKE :name', { name: `%${options.name}%` });
+    }
+
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
   }
 
