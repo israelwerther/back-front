@@ -11,7 +11,8 @@ export class ClientCredcoopListComponent {
   clients: any[] = [];
   pages: number[] = [];
   totalPages: number = 0;
-  totalItems = 0
+  totalItems = 0;
+  searchName: string = '';
 
   config: PaginationInstance = {
     itemsPerPage: 10,
@@ -82,6 +83,25 @@ export class ClientCredcoopListComponent {
         },
         error: (error) => {
           console.error('Erro ao excluir o cliente:', error);
+        }
+      });
+    }
+  }
+
+  searchClients() {
+    const token = localStorage.getItem('token_storage');
+
+    console.log('searchClients::: ');
+    if (token) {
+      this.clientCredcoopService.getCredcoopClients(token, this.searchName).subscribe({
+        next: (response) => {
+          this.clients = response.items;
+          this.totalItems = response.meta.totalItems;
+          this.totalItems = this.totalItems;
+          this.updateTotalPages(this.totalItems);
+        },
+        error: (error) => {
+          console.error('Erro ao obter os clientes:', error);
         }
       });
     }

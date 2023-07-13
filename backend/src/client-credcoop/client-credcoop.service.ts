@@ -19,13 +19,13 @@ export class ClientCredcoopService {
   }
 
   async getAllClientCredcoop(
-    options: IPaginationOptions & { name?: string }
+    options: IPaginationOptions & { clientName?: string }
   ): Promise<Pagination<ReturnClientCredcoopDto>> {
     const queryBuilder = this.createClientCredcoopDto.createQueryBuilder('c');
     queryBuilder.select(['c.id', 'c.clientName', 'c.cpf']).orderBy('c.clientName', 'ASC');
 
-    if (options.name) {
-      queryBuilder.where('c.clientName LIKE :name', { name: `%${options.name}%` });
+    if (options.clientName) {
+      queryBuilder.where('c.clientName LIKE :clientName', { clientName: `%${options.clientName}%` });
     }
 
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);

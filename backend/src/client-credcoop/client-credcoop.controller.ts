@@ -23,10 +23,10 @@ export class ClientCredcoopController {
   async getAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
-    @Query('name') name?: string
+    @Query('clientName') clientName?: string
   ): Promise<Pagination<ReturnClientCredcoopDto>> {
     limit = limit > 100 ? 100 : limit;
-    return this.clientCredcoopService.getAllClientCredcoop({ page, limit, name });
+    return this.clientCredcoopService.getAllClientCredcoop({ page, limit, clientName });
   }
 
   @Get()
