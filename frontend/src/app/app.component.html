@@ -1,97 +1,75 @@
 <!-- SIDEBAR -->
-<div *ngIf="isLoggedIn">
-  <section id="sidebar" [ngClass]="status ? 'hide' : ''">
+<div *ngIf="isLoggedIn; else elseBlock">
+  <div id="wrapper">
 
-    <a href="#" class="brand">
-      <i class='bx bxs-smile'></i>
-      <span class="text">Esctop</span>
-    </a>
+    <!-- Sidebar -->
+    <app-sidenav></app-sidenav>
+    <!-- End of Sidebar -->
 
-    <ul class="side-menu top">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['home']">
-          <i class='bx bxs-dashboard'></i>
-          <span class="text">Dashboard</span>
-        </a>
-      </li>
+      <!-- Main Content -->
+      <div id="content">
 
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['credcoop']">
-          <i class='bx bxs-dashboard'></i>
-          <span class="text">Credcoop</span>
-        </a>
-      </li>
+        <!-- Topbar -->
+        <app-header></app-header>
+        <!-- End of Topbar -->
 
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['emprestimo-dashboard']">
-          <i class='bx bxs-dashboard'></i>
-          <span class="text">Empréstimo</span>
-        </a>
-      </li>
-
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['address']">
-          <i class='bx bxs-shopping-bag-alt'></i>
-          <span class="text">Endereços</span>
-        </a>
-      </li>
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['esctop']">
-          <i class='bx bxs-shopping-bag-alt'></i>
-          <span class="text">Esctop</span>
-        </a>
-      </li>
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['states']">
-          <i class='bx bxs-shopping-bag-alt'></i>
-          <span class="text">Estados</span>
-        </a>
-      </li>
-    </ul>
-
-    <ul class="side-menu">
-      <li [routerLinkActive]="'active'">
-        <a [routerLink]="['address-list']">
-          <i class='bx bxs-cog'></i>
-          <span class="text">Usuário</span>
-        </a>
-      </li>
-      <li>
-        <a [routerLink]="['login']" class="logout" (click)="logout()">
-          <i class='bx bxs-log-out-circle'></i>
-          <span class="text">Logout</span>
-        </a>
-      </li>
-    </ul>
-
-  </section>
-  <!-- SIDEBAR -->
-  <!-- CONTENT -->
-  <section id="content">
-    <!-- NAVBAR -->
-    <nav>
-      <i (click)="addToggle()" class='bx bx-menu'></i>
-      <a href="#" class="nav-link">Categories</a>
-      <form action="#">
-        <div class="form-input">
-          <input type="search" placeholder="Search...">
-          <button type="button" class="search-btn"><i class='bx bx-search'></i></button>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          <router-outlet></router-outlet>
         </div>
-      </form>
-      <a href="#" class="notification">
-        <i class='bx bxs-bell'></i>
-        <span class="num">8</span>
-      </a>
-      <a href="#" class="profile">
-        <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-      </a>
-    </nav>
-    <!-- NAVBAR -->
-    <!-- MAIN -->
-    <router-outlet></router-outlet>
-    <!-- MAIN -->
-  </section>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2021</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<ng-template #elseBlock>
+  <app-auth></app-auth>
+</ng-template>
+
+<!-- Page Wrapper -->
 <!-- CONTENT -->
-<app-auth *ngIf="!isLoggedIn"></app-auth>
