@@ -35,16 +35,6 @@ export class AppComponent {
     });
   }
 
-  //Sidebar toggle show hide function
-  status = false;
-  addToggle() {
-    this.status = !this.status;
-  }
-
-  navigateToAddressList() {
-    this.router.navigate(['address-list']);
-  }
-
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
