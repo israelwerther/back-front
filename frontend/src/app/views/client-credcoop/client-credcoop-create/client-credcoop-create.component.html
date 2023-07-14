@@ -1,83 +1,91 @@
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Credcoop</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a [routerLink]="['/credcoop']" class="active">Dashboard</a>
-                </li>
-                <li><i class="bx bx-chevron-right"></i></li>
-                <li>
-                    <a>Cadastrar Credcoop</a>
-                </li>
-            </ul>
+<!-- Page Heading -->
+<div class="row">
+    <div class="col">
+        <h1 class="h3 mb-2 text-gray-800">Credcoop</h1>
+        <p class="mb-4">
+            Cadastre um cliente Credcoop
+        </p>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <h2>Dados pessoais</h2>
+                        <div class="col-sm-4">
+                            <label for="clientName" class="form-label">Nome completo</label>
+                            <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
+                            <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched"
+                            class="text-danger">
+                            O nome completo é obrigatório.
+                        </small> -->
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="cpf" class="form-label">CPF</label>
+                            <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
+                        </div>
+                    </div>
+                    <div formArrayName="addresses">
+                        <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
+                            <h2>Endereço {{ i + 1 }}</h2>
+                            <div class="col-sm-4">
+                                <label for="zipCode" class="form-label">CEP</label>
+                                <input formControlName="zipCode" class="form-control form-control-sm" id="zipCode" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="street" class="form-label">Rua</label>
+                                <input formControlName="street" class="form-control form-control-sm" id="street" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="neighborhood" class="form-label">Bairro</label>
+                                <input formControlName="neighborhood" class="form-control form-control-sm"
+                                    id="neighborhood" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="referencePoint" class="form-label">Ponto de referência</label>
+                                <input formControlName="referencePoint" class="form-control form-control-sm"
+                                    id="referencePoint" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="complement" class="form-label">Complemento</label>
+                                <input formControlName="complement" class="form-control form-control-sm"
+                                    id="complement" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="state" class="form-label">Estado</label>
+                                <input formControlName="state" class="form-control form-control-sm" id="state" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="city" class="form-label">Cidade</label>
+                                <input formControlName="city" class="form-control form-control-sm" id="city" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="buildingNumber" class="form-label">Número do prédio</label>
+                                <input formControlName="buildingNumber" class="form-control form-control-sm"
+                                    id="buildingNumber" />
+                            </div>
+                            <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem !important;">
+                                <button *ngIf="i === addresses.length - 1" type="button" class="btn btn-primary btn-sm"
+                                    (click)="addAddress()"> <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div *ngIf="i !== 0 || (addresses.length === 1 && i > 0)" type="button"
+                                    class="float-right btn-sm mx-1" (click)="deleteAddress(i)">
+                                    <i class="text-danger fa-solid fa-trash"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+
+            </div>
+
         </div>
     </div>
-
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="card card-body">
-        <div class="row">
-            <h2>Dados pessoais</h2>
-            <div class="col-sm-4">
-                <label for="clientName" class="form-label">Nome completo</label>
-                <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
-                <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched"
-                    class="text-danger">
-                    O nome completo é obrigatório.
-                </small> -->
-            </div>
-            <div class="col-sm-4">
-                <label for="cpf" class="form-label">CPF</label>
-                <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
-            </div>
-        </div>
-        <div formArrayName="addresses">
-            <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
-                <h2>Endereço {{ i + 1 }}</h2>
-                <div class="col-sm-4">
-                    <label for="zipCode" class="form-label">CEP</label>
-                    <input formControlName="zipCode" class="form-control form-control-sm" id="zipCode" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="street" class="form-label">Rua</label>
-                    <input formControlName="street" class="form-control form-control-sm" id="street" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="neighborhood" class="form-label">Bairro</label>
-                    <input formControlName="neighborhood" class="form-control form-control-sm" id="neighborhood" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="referencePoint" class="form-label">Ponto de referência</label>
-                    <input formControlName="referencePoint" class="form-control form-control-sm" id="referencePoint" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="complement" class="form-label">Complemento</label>
-                    <input formControlName="complement" class="form-control form-control-sm" id="complement" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="state" class="form-label">Estado</label>
-                    <input formControlName="state" class="form-control form-control-sm" id="state" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="city" class="form-label">Cidade</label>
-                    <input formControlName="city" class="form-control form-control-sm" id="city" />
-                </div>
-                <div class="col-sm-4">
-                    <label for="buildingNumber" class="form-label">Número do prédio</label>
-                    <input formControlName="buildingNumber" class="form-control form-control-sm" id="buildingNumber" />
-                </div>
-                <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem !important;">
-                    <button *ngIf="i === addresses.length - 1" type="button" class="btn btn-primary btn-sm"
-                        (click)="addAddress()"> <i class="fa-solid fa-plus"></i>
-                    </button>
-                    <div *ngIf="i !== 0 || (addresses.length === 1 && i > 0)" type="button"
-                        class="float-right btn-sm mx-1" (click)="deleteAddress(i)">
-                        <i class="text-danger fa-solid fa-trash"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-    </form>
-</main>
+</div>
