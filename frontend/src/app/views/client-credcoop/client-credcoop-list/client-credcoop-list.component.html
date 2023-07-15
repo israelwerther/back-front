@@ -50,9 +50,9 @@
                         <td>{{ client.clientName }}</td>
                         <td>{{ client.cpf }}</td>
                         <td (click)="deleteClient(client.id)">
-                            <a class="btn btn-danger btn-circle btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <div type="button" class="btn-sm mx-1">
+                                <i class="text-danger fas fa-trash"></i>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
