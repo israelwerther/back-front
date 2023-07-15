@@ -2,9 +2,7 @@
 <div class="row">
     <div class="col">
         <h1 class="h3 mb-2 text-gray-800">Credcoop</h1>
-        <p class="mb-4">
-            Cadastre um cliente Credcoop
-        </p>
+        <p class="mb-4">Cadastre um cliente Credcoop</p>
     </div>
 </div>
 
@@ -35,39 +33,44 @@
                             </div>
                             <div class="col-sm-4">
                                 <label for="zipCode" class="form-label">CEP</label>
-                                <input formControlName="zipCode" class="form-control" id="zipCode" />
+                                <input formControlName="zipCode" class="form-control form-control-sm" id="zipCode" />
                             </div>
                             <div class="col-sm-4">
                                 <label for="street" class="form-label">Rua</label>
-                                <input formControlName="street" class="form-control" id="street" />
+                                <input formControlName="street" class="form-control form-control-sm" id="street" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="buildingNumber" class="form-label">Nº</label>
+                                <input formControlName="buildingNumber" class="form-control form-control-sm"
+                                    id="buildingNumber" />
                             </div>
                             <div class="col-sm-4">
                                 <label for="neighborhood" class="form-label">Bairro</label>
-                                <input formControlName="neighborhood" class="form-control" id="neighborhood" />
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="referencePoint" class="form-label">Ponto de referência</label>
-                                <input formControlName="referencePoint" class="form-control" id="referencePoint" />
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="complement" class="form-label">Complemento</label>
-                                <input formControlName="complement" class="form-control" id="complement" />
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="state" class="form-label">Estado</label>
-                                <input formControlName="state" class="form-control" id="state" />
+                                <input formControlName="neighborhood" class="form-control form-control-sm"
+                                    id="neighborhood" />
                             </div>
                             <div class="col-sm-4">
                                 <label for="city" class="form-label">Cidade</label>
-                                <input formControlName="city" class="form-control" id="city" />
+                                <input formControlName="city" class="form-control form-control-sm" id="city" />
                             </div>
                             <div class="col-sm-4">
-                                <label for="buildingNumber" class="form-label">Número do prédio</label>
-                                <input formControlName="buildingNumber" class="form-control" id="buildingNumber" />
+                                <label for="state" class="form-label">Estado</label>
+                                <input formControlName="state" class="form-control form-control-sm" id="state" />
                             </div>
-                            <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem;">
+                            <div class="col-sm-4">
+                                <label for="complement" class="form-label">Complemento</label>
+                                <input formControlName="complement" class="form-control form-control-sm"
+                                    id="complement" />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="referencePoint" class="form-label">Ponto de referência</label>
+                                <input formControlName="referencePoint" class="form-control form-control-sm"
+                                    id="referencePoint" />
+                            </div>
+
+                            <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
                                 <a *ngIf="i === addresses.length - 1" type="button" (click)="addAddress()"
-                                    class=" btn-sm">
+                                    class="btn-sm">
                                     <i class="text-primary fas fa-plus"></i>
                                 </a>
                                 <div *ngIf="i !== 0 || (addresses.length === 1 && i > 0)" type="button"
@@ -75,6 +78,7 @@
                                     <i class="text-danger fas fa-trash"></i>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -85,9 +89,7 @@
                         </div>
                     </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
