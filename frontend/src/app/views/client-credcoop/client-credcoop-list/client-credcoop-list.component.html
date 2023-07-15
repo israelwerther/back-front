@@ -16,8 +16,9 @@
         <div class="table-responsive">
             <div class="d-none d-sm-inline-block form-inline float-right pb-2">
                 <div class="input-group">
-                    <input name="search" type="input" [(ngModel)]="searchName" class="form-control small"
-                        placeholder="Pesquisar..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <input [(ngModel)]="searchName" (keyup.enter)="searchClients()" name="search" type="input"
+                        class="form-control small" placeholder="Pesquisar..." aria-label="Search"
+                        aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button (click)="searchClients()" class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -43,7 +44,7 @@
                         <th></th>
                     </tr>
                 </tfoot>
-                <tbody>
+                <tbody class="text-uppercase">
                     <tr
                         *ngFor="let client of clients| paginate: {itemsPerPage: config.itemsPerPage,currentPage: config.currentPage,totalItems: totalItems}">
                         <td>{{ client.id }}</td>
