@@ -25,7 +25,7 @@ export class ClientCredcoopService {
     queryBuilder.select(['c.id', 'c.clientName', 'c.cpf']).orderBy('c.clientName', 'ASC');
 
     if (options.clientName) {
-      queryBuilder.where('c.clientName LIKE :clientName', { clientName: `%${options.clientName}%` });
+      queryBuilder.where('c.clientName ILIKE :clientName', { clientName: `%${options.clientName}%` });
     }
 
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
