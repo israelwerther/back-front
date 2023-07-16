@@ -46,8 +46,8 @@ export class ClientCredcoopController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientCredcoopDto: CreateClientCredcoopDto) {
-    return this.clientCredcoopService.editClient(+id, updateClientCredcoopDto);
+  update(@Param('id') id: string, @Body() returnClientCredcoopDto: ReturnClientCredcoopDto) {
+    return this.clientCredcoopService.editClient(+id, returnClientCredcoopDto);
   }
 
   @Delete(':id')
