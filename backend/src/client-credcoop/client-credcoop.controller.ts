@@ -35,8 +35,14 @@ export class ClientCredcoopController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientCredcoopService.findOne(+id);
+  async findOne(@Param('id') id: number): Promise<ClientCredcoopEntity> {
+    const client = await this.clientCredcoopService.findOne(id);
+
+    if (!client) {
+      throw new NotFoundException('ClientCredcoop not found.');
+    }
+
+    return client;
   }
 
   @Patch(':id')

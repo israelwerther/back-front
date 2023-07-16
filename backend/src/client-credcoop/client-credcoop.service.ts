@@ -46,8 +46,12 @@ export class ClientCredcoopService {
     return `This action returns all clientCredcoop`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} clientCredcoop`;
+  async findOne(id: number): Promise<ClientCredcoopEntity> {
+    return await this.createClientRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
   }
 
   update(id: number, updateClientCredcoopDto: UpdateClientCredcoopDto) {
