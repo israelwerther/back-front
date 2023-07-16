@@ -55,7 +55,7 @@ export class ClientCredcoopService {
     });
   }
 
-  async editClient(id: number, updatedData: Partial<ClientCredcoopEntity>): Promise<ClientCredcoopEntity> {
+  async editClient(id: number, updatedData: CreateClientCredcoopDto): Promise<ClientCredcoopEntity> {
     const existingClient = await this.createClientRepository.findOne({
       where: {
         id: id,
@@ -67,7 +67,7 @@ export class ClientCredcoopService {
       throw new NotFoundException('Cliente não encontrado.');
     }
 
-    // Atualize os campos da entidade com os novos dados
+
     Object.assign(existingClient, updatedData);
 
     return this.createClientRepository.save(existingClient);
