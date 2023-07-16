@@ -23,6 +23,7 @@ import { ClientEsctopComponent } from './views/client-esctop/client-esctop.compo
 import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
 import { ClientCredcoopListComponent } from './views/client-credcoop/client-credcoop-list/client-credcoop-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ClientCredcoopUpdateComponent } from './views/client-credcoop/client-credcoop-update/client-credcoop-update.component';
 
 
 
@@ -45,6 +46,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ClientEsctopComponent,
     ClientCredcoopCreateComponent,
     ClientCredcoopListComponent,
+    ClientCredcoopUpdateComponent,
   ],
 
   imports: [
