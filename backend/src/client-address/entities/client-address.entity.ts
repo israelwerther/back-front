@@ -36,7 +36,9 @@ export class ClientAddressEntity {
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 
+    @Column({ name: 'client_credcoop_id', nullable: true })
+    clientCredcoopId: number;
     @ManyToOne(() => ClientCredcoopEntity, (clientCredcoop) => clientCredcoop.clientAddresses, { onDelete: 'CASCADE', nullable: true })
-    @JoinColumn({ name: 'client_credcoop_id' })
+    @JoinColumn({ name: 'client_credcoop_id', referencedColumnName: 'id' })
     clientCredcoop?: ClientCredcoopEntity;
 }

@@ -51,6 +51,7 @@ export class ClientCredcoopService {
       where: {
         id: id,
       },
+      relations: ['clientAddresses']
     });
   }
 
