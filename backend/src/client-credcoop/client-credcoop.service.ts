@@ -55,8 +55,22 @@ export class ClientCredcoopService {
     });
   }
 
-  update(id: number, updateClientCredcoopDto: UpdateClientCredcoopDto) {
-    return `This action updates a #${id} clientCredcoop`;
+  async editClient(id: number, updatedData: Partial<ClientCredcoopEntity>): Promise<ClientCredcoopEntity> {
+    const existingClient = await this.createClientRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: ['clientAddresses']
+    });
+
+    if (!existingClient) {
+      throw new NotFoundException('Cliente não encontrado.');
+    }
+
+    // Atualize os campos da entidade com os novos dados
+    Object.assign(existingClient, updatedData);
+
+    return this.createClientRepository.save(existingClient);
   }
 
   async deleteClientCredcoop(ClientCredcoopId: number): Promise<void> {
