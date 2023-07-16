@@ -67,9 +67,7 @@ export class ClientCredcoopService {
       throw new NotFoundException('Cliente não encontrado.');
     }
 
-
-    Object.assign(existingClient, updatedData);
-
+    Object.assign(existingClient, updatedData); CreateClientCredcoopDto
     return this.createClientRepository.save(existingClient);
   }
 
