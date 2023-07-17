@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ClientCredcoopService } from '../client-credcoop.service';
 import { PaginationInstance } from 'ngx-pagination';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-credcoop-list',
@@ -19,7 +20,10 @@ export class ClientCredcoopListComponent {
     currentPage: 1,
   };
 
-  constructor(public clientCredcoopService: ClientCredcoopService) { }
+  constructor(
+    public clientCredcoopService: ClientCredcoopService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token_storage');
@@ -105,6 +109,10 @@ export class ClientCredcoopListComponent {
         }
       });
     }
+  }
+
+  editClient(id: string) {
+    this.router.navigate([`/credcoop-atualiza/${id}`]);
   }
 
 }

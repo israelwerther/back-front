@@ -42,14 +42,19 @@
                         <th>Nome</th>
                         <th>Email</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </tfoot>
                 <tbody class="text-uppercase">
-                    <tr
-                        *ngFor="let client of clients| paginate: {itemsPerPage: config.itemsPerPage,currentPage: config.currentPage,totalItems: totalItems}">
+                    <tr *ngFor="let client of clients| paginate: {itemsPerPage: config.itemsPerPage,currentPage: config.currentPage,totalItems: totalItems}">
                         <td>{{ client.id }}</td>
                         <td>{{ client.clientName }}</td>
                         <td>{{ client.cpf }}</td>
+                        <td (click)="editClient(client.id)">
+                            <div type="button" class="btn-sm mx-1">
+                                <i class="text-primary fas fa-plus"></i>
+                            </div>
+                        </td>
                         <td (click)="deleteClient(client.id)">
                             <div type="button" class="btn-sm mx-1">
                                 <i class="text-danger fas fa-trash"></i>
