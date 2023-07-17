@@ -1,1 +1,45 @@
-<p>client-credcoop-update works!</p>
+<div class="container">
+    <h2>Editar Cliente</h2>
+  
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <!-- Campos do cliente: nome e cpf -->
+      <div>
+        <label for="clientName">Nome:</label>
+        <input type="text" id="clientName" formControlName="clientName" required>
+      </div>
+  
+      <div>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" formControlName="cpf">
+      </div>
+  
+      <!-- Endereços (FormArray) -->
+      <div formArrayName="addresses">
+        <!-- Loop para exibir cada grupo de endereço -->
+        <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+          <!-- Campos do endereço -->
+          <div>
+            <label for="zipCode">CEP:</label>
+            <input type="text" id="zipCode" formControlName="zipCode">
+          </div>
+  
+          <div>
+            <label for="street">Rua:</label>
+            <input type="text" id="street" formControlName="street">
+          </div>
+  
+          <!-- ... Outros campos do endereço ... -->
+  
+          <!-- Botão para remover o endereço -->
+          <button type="button" (click)="deleteAddress(i)">Remover Endereço</button>
+        </div>
+      </div>
+  
+      <!-- Botão para adicionar novo endereço -->
+      <button type="button" (click)="addAddress()">Adicionar Endereço</button>
+  
+      <!-- Botão para salvar as alterações -->
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+  

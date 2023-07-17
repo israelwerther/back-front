@@ -37,5 +37,16 @@ export class ClientCredcoopService {
     return this.http.delete<void>(url, { headers });
   }
 
+  updateCredcoopClient(clientId: string, clientData: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', token);
+    const clientUrl = this.apiUrl;
+    return this.http.patch(clientUrl, clientData, { headers })
+  }
+
+  getClientById(clientId: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', token);
+    const clientUrl = `${this.apiUrl}/${clientId}`;
+    return this.http.get(clientUrl, { headers });
+  }
 
 }
