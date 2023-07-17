@@ -39,7 +39,7 @@ export class ClientCredcoopService {
 
   updateCredcoopClient(clientId: string, clientData: any, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
-    const clientUrl = this.apiUrl;
+    const clientUrl = `${this.apiUrl}/${clientId}`;
     return this.http.patch(clientUrl, clientData, { headers })
   }
 
