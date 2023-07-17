@@ -16,10 +16,9 @@
                         <div class="col-sm-4">
                             <label for="clientName" class="form-label">Nome completo</label>
                             <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
-                            <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched"
-                            class="text-danger">
-                            O nome completo é obrigatório.
-                        </small> -->
+                            <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched" class="text-danger">
+                                O nome completo é obrigatório.
+                            </small> -->
                         </div>
                         <div class="col-sm-4">
                             <label for="cpf" class="form-label">CPF</label>
@@ -41,13 +40,11 @@
                             </div>
                             <div class="col-sm-4">
                                 <label for="buildingNumber" class="form-label">Nº</label>
-                                <input formControlName="buildingNumber" class="form-control form-control-sm"
-                                    id="buildingNumber" />
+                                <input formControlName="buildingNumber" class="form-control form-control-sm" id="buildingNumber" />
                             </div>
                             <div class="col-sm-4">
                                 <label for="neighborhood" class="form-label">Bairro</label>
-                                <input formControlName="neighborhood" class="form-control form-control-sm"
-                                    id="neighborhood" />
+                                <input formControlName="neighborhood" class="form-control form-control-sm" id="neighborhood" />
                             </div>
                             <div class="col-sm-4">
                                 <label for="city" class="form-label">Cidade</label>
@@ -59,13 +56,11 @@
                             </div>
                             <div class="col-sm-4">
                                 <label for="complement" class="form-label">Complemento</label>
-                                <input formControlName="complement" class="form-control form-control-sm"
-                                    id="complement" />
+                                <input formControlName="complement" class="form-control form-control-sm" id="complement" />
                             </div>
                             <div class="col-sm-4">
                                 <label for="referencePoint" class="form-label">Ponto de referência</label>
-                                <input formControlName="referencePoint" class="form-control form-control-sm"
-                                    id="referencePoint" />
+                                <input formControlName="referencePoint" class="form-control form-control-sm" id="referencePoint" />
                             </div>
 
                             <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
@@ -85,7 +80,7 @@
                     <div class="row">
                         <div class="col-12 pt-4">
                             <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
-                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
                         </div>
                     </div>
                 </form>

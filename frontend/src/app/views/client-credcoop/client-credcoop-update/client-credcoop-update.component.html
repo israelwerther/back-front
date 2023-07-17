@@ -1,45 +1,89 @@
-<div class="container">
-    <h2>Editar Cliente</h2>
-  
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <!-- Campos do cliente: nome e cpf -->
-      <div>
-        <label for="clientName">Nome:</label>
-        <input type="text" id="clientName" formControlName="clientName" required>
-      </div>
-  
-      <div>
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" formControlName="cpf">
-      </div>
-  
-      <!-- Endereços (FormArray) -->
-      <div formArrayName="addresses">
-        <!-- Loop para exibir cada grupo de endereço -->
-        <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
-          <!-- Campos do endereço -->
-          <div>
-            <label for="zipCode">CEP:</label>
-            <input type="text" id="zipCode" formControlName="zipCode">
-          </div>
-  
-          <div>
-            <label for="street">Rua:</label>
-            <input type="text" id="street" formControlName="street">
-          </div>
-  
-          <!-- ... Outros campos do endereço ... -->
-  
-          <!-- Botão para remover o endereço -->
-          <button type="button" (click)="deleteAddress(i)">Remover Endereço</button>
+<!-- Page Heading -->
+<div class="row">
+    <div class="col">
+        <h1 class="h3 mb-2 text-gray-800">Credcoop</h1>
+        <p class="mb-4">Atualize as informações do cliente </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">      
+                    <h2>Dados pessoais</h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="clientName" class="form-label">Nome completo</label>
+                            <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
+                        </div>                
+                        <div class="col-sm-4">
+                            <label for="cpf" class="form-label">CPF:</label>
+                            <input formControlName="cpf" class="form-control form-control-sm" type="text" id="cpf" >
+                        </div>
+                    </div>
+            
+                <!-- Endereços (FormArray) -->
+                <div formArrayName="addresses">
+                    <!-- Loop para exibir cada grupo de endereço -->
+                    <div class="row" *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+                        <div class="col-sm-12 pt-4">
+                            <h2>Endereço {{ i + 1 }}</h2>
+                        </div>
+                        <!-- Campos do endereço -->
+                        <div class="col-sm-4">
+                            <label for="zipCode">CEP:</label>
+                            <input formControlName="zipCode" class="form-control form-control-sm" type="text" id="zipCode">
+                        </div>      
+                        <div class="col-sm-4">
+                            <label for="street">Rua:</label>
+                            <input formControlName="street" class="form-control form-control-sm" type="text" id="street">
+                        </div>    
+                        <div class="col-sm-4">
+                            <label for="buildingNumber" class="form-label">Nº</label>
+                            <input formControlName="buildingNumber" class="form-control form-control-sm" type="text" id="buildingNumber" />
+                        </div>  
+                        <div class="col-sm-4">
+                            <label for="neighborhood" class="form-label">Bairro</label>
+                            <input formControlName="neighborhood" class="form-control form-control-sm" id="neighborhood" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="city" class="form-label">Cidade</label>
+                            <input formControlName="city" class="form-control form-control-sm" id="city" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="state" class="form-label">Estado</label>
+                            <input formControlName="state" class="form-control form-control-sm" id="state" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="complement" class="form-label">Complemento</label>
+                            <input formControlName="complement" class="form-control form-control-sm" id="complement" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="referencePoint" class="form-label">Ponto de referência</label>
+                            <input formControlName="referencePoint" class="form-control form-control-sm" id="referencePoint" />
+                        </div>    
+                        <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
+                            <a *ngIf="i == addresses.length-1" type="button" (click)="addAddress()" class="btn-sm">
+                                <i class="text-primary fas fa-plus"></i>
+                            </a>
+                            <div type="button" class="float-right btn-sm mx-1" (click)="deleteAddress(i)">
+                                <i class="text-danger fas fa-trash"></i>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>        
+                
+                <div class="row">
+                    <div class="col-12 pt-4">
+                        <button type="submit" class="btn btn-primary float-right">Salvar Alterações</button>   
+                    </div>
+                </div>
+                
+                     
+                
+                </form>
+            </div>
         </div>
-      </div>
-  
-      <!-- Botão para adicionar novo endereço -->
-      <button type="button" (click)="addAddress()">Adicionar Endereço</button>
-  
-      <!-- Botão para salvar as alterações -->
-      <button type="submit">Salvar Alterações</button>
-    </form>
-  </div>
+    </div>
+</div>
   

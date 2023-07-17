@@ -32,7 +32,7 @@
                     <tr>
                         <th>id</th>
                         <th>Nome</th>
-                        <th>Email</th>
+                        <th>CPF</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -40,7 +40,7 @@
                     <tr>
                         <th>id</th>
                         <th>Nome</th>
-                        <th>Email</th>
+                        <th>CPF</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -52,7 +52,7 @@
                         <td>{{ client.cpf }}</td>
                         <td (click)="editClient(client.id)">
                             <div type="button" class="btn-sm mx-1">
-                                <i class="text-primary fas fa-plus"></i>
+                                <i class="text-success fas fa-pencil-alt"></i>
                             </div>
                         </td>
                         <td (click)="deleteClient(client.id)">
