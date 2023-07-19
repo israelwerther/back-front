@@ -8,82 +8,142 @@
 <div class="row">
     <div class="col">
         <div class="card shadow mb-4">
-            <div class="card-body">
-                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">      
-                    <h2>Dados pessoais</h2>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="clientName" class="form-label">Nome completo</label>
-                            <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
-                        </div>                
-                        <div class="col-sm-4">
-                            <label for="cpf" class="form-label">CPF:</label>
-                            <input formControlName="cpf" class="form-control form-control-sm" type="text" id="cpf" >
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Dados pessoais
+                                </button>
+                            </h2>
                         </div>
-                    </div>
-            
-                <!-- Endereços (FormArray) -->
-                <div formArrayName="addresses">
-                    <!-- Loop para exibir cada grupo de endereço -->
-                    <div class="row" *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
-                        <div class="col-sm-12 pt-4">
-                            <h2>Endereço {{ i + 1 }}</h2>
-                        </div>
-                        <!-- Campos do endereço -->
-                        <div class="col-sm-4">
-                            <label for="zipCode">CEP:</label>
-                            <input formControlName="zipCode" class="form-control form-control-sm" type="text" id="zipCode">
-                        </div>      
-                        <div class="col-sm-4">
-                            <label for="street">Rua:</label>
-                            <input formControlName="street" class="form-control form-control-sm" type="text" id="street">
-                        </div>    
-                        <div class="col-sm-4">
-                            <label for="buildingNumber" class="form-label">Nº</label>
-                            <input formControlName="buildingNumber" class="form-control form-control-sm" type="text" id="buildingNumber" />
-                        </div>  
-                        <div class="col-sm-4">
-                            <label for="neighborhood" class="form-label">Bairro</label>
-                            <input formControlName="neighborhood" class="form-control form-control-sm" id="neighborhood" />
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="city" class="form-label">Cidade</label>
-                            <input formControlName="city" class="form-control form-control-sm" id="city" />
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="state" class="form-label">Estado</label>
-                            <input formControlName="state" class="form-control form-control-sm" id="state" />
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="complement" class="form-label">Complemento</label>
-                            <input formControlName="complement" class="form-control form-control-sm" id="complement" />
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="referencePoint" class="form-label">Ponto de referência</label>
-                            <input formControlName="referencePoint" class="form-control form-control-sm" id="referencePoint" />
-                        </div>    
-                        <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
-                            <a *ngIf="i == addresses.length-1" type="button" (click)="addAddress()" class="btn-sm">
-                                <i class="text-primary fas fa-plus"></i>
-                            </a>
-                            <div type="button" class="float-right btn-sm mx-1" (click)="deleteAddress(i)">
-                                <i class="text-danger fas fa-trash"></i>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="clientName" class="form-label">Nome completo</label>
+                                        <input formControlName="clientName" class="form-control form-control-sm"
+                                            id="clientName" />
+                                        <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched" class="text-danger">
+                            O nome completo é obrigatório.
+                          </small> -->
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="cpf" class="form-label">CPF</label>
+                                        <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 pt-4">
+                                        <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
+                                        <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>                    
+                        </div>
                     </div>
-                </div>        
-                
-                <div class="row">
-                    <div class="col-12 pt-4">
-                        <button type="submit" class="btn btn-primary float-right">Salvar Alterações</button>   
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    Informações de Endereço
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div formArrayName="addresses">
+                                    <div class="row" *ngFor="let address of addresses.controls; index as i"
+                                        [formGroupName]="i">
+                                        <div class="col-sm-12 pt-4">
+                                            <h2>Endereço {{ i + 1 }}</h2>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="zipCode" class="form-label">CEP</label>
+                                            <input formControlName="zipCode" class="form-control form-control-sm"
+                                                id="zipCode" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="street" class="form-label">Rua</label>
+                                            <input formControlName="street" class="form-control form-control-sm"
+                                                id="street" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="buildingNumber" class="form-label">Nº</label>
+                                            <input formControlName="buildingNumber" class="form-control form-control-sm"
+                                                id="buildingNumber" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="neighborhood" class="form-label">Bairro</label>
+                                            <input formControlName="neighborhood" class="form-control form-control-sm"
+                                                id="neighborhood" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="city" class="form-label">Cidade</label>
+                                            <input formControlName="city" class="form-control form-control-sm"
+                                                id="city" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="state" class="form-label">Estado</label>
+                                            <input formControlName="state" class="form-control form-control-sm"
+                                                id="state" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="complement" class="form-label">Complemento</label>
+                                            <input formControlName="complement" class="form-control form-control-sm"
+                                                id="complement" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="referencePoint" class="form-label">Ponto de referência</label>
+                                            <input formControlName="referencePoint" class="form-control form-control-sm"
+                                                id="referencePoint" />
+                                        </div>
+
+                                        <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
+                                            <a *ngIf="i == addresses.length-1" type="button" (click)="addAddress()"
+                                                class="btn-sm">
+                                                <i class="text-primary fas fa-plus"></i>
+                                            </a>
+                                            <div type="button" class="float-right btn-sm mx-1"
+                                                (click)="deleteAddress(i)">
+                                                <i class="text-danger fas fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    Collapsible Group Item #3
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                And lastly, the placeholder content for the third and final accordion panel. This panel
+                                is hidden by
+                                default.
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                     
-                
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-  
