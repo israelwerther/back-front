@@ -32,7 +32,6 @@ export class ClientCredcoopCreateComponent {
     return this.profileForm.get('addresses') as FormArray;
   }
 
-
   addAddress() {
     this.addresses.push(this.fb.group({
       zipCode: [''],

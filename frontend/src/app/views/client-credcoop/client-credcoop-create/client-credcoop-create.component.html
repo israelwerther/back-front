@@ -6,136 +6,171 @@
   </div>
 </div>
 
-
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col-sm-12 col-md-9">
-      <div class="card shadow mb-4">
-        <div class="accordion" id="accordionExample">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Dados pessoais
-                </button>
-              </h2>
-            </div>
-
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <label for="clientName" class="form-label">Nome completo</label>
-                    <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
-                    <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched" class="text-danger">
-                      O nome completo é obrigatório.
-                    </small> -->
-                  </div>
-                  <div class="col-sm-4">
-                    <label for="cpf" class="form-label">CPF</label>
-                    <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
-                  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-9">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div class="row">
+                <div class="col-sm-12 pt-4">
+                  <h2>Informações Pessoais</h2>
                 </div>
-
+                <div class="col-sm-4">
+                  <label for="clientName" class="form-label">Nome completo</label>
+                  <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
+                  <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched" class="text-danger">
+                  O nome completo é obrigatório.
+                </small> -->
+                </div>
+                <div class="col-sm-4">
+                  <label for="cpf" class="form-label">CPF</label>
+                  <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Informações de Endereço
-                </button>
-              </h2>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-              <div class="card-body">
-                <div formArrayName="addresses">
-                  <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
-                    <div class="col-sm-12 pt-4">
-                      <h2>Endereço {{ i + 1 }}</h2>
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="zipCode" class="form-label">CEP</label>
-                      <input formControlName="zipCode" class="form-control form-control-sm" id="zipCode" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="street" class="form-label">Rua</label>
-                      <input formControlName="street" class="form-control form-control-sm" id="street" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="buildingNumber" class="form-label">Nº</label>
-                      <input formControlName="buildingNumber" class="form-control form-control-sm"
-                        id="buildingNumber" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="neighborhood" class="form-label">Bairro</label>
-                      <input formControlName="neighborhood" class="form-control form-control-sm" id="neighborhood" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="city" class="form-label">Cidade</label>
-                      <input formControlName="city" class="form-control form-control-sm" id="city" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="state" class="form-label">Estado</label>
-                      <input formControlName="state" class="form-control form-control-sm" id="state" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="complement" class="form-label">Complemento</label>
-                      <input formControlName="complement" class="form-control form-control-sm" id="complement" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="referencePoint" class="form-label">Ponto de referência</label>
-                      <input formControlName="referencePoint" class="form-control form-control-sm"
-                        id="referencePoint" />
-                    </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+              <div formArrayName="addresses">
+                <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
+                  <div class="col-sm-12 pt-4">
+                    <h2>Endereço {{ i + 1 }}</h2>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="zipCode" class="form-label">CEP</label>
+                    <input formControlName="zipCode" class="form-control form-control-sm" id="zipCode" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="street" class="form-label">Rua</label>
+                    <input formControlName="street" class="form-control form-control-sm" id="street" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="buildingNumber" class="form-label">Nº</label>
+                    <input formControlName="buildingNumber" class="form-control form-control-sm" id="buildingNumber" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="neighborhood" class="form-label">Bairro</label>
+                    <input formControlName="neighborhood" class="form-control form-control-sm" id="neighborhood" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="city" class="form-label">Cidade</label>
+                    <input formControlName="city" class="form-control form-control-sm" id="city" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="state" class="form-label">Estado</label>
+                    <input formControlName="state" class="form-control form-control-sm" id="state" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="complement" class="form-label">Complemento</label>
+                    <input formControlName="complement" class="form-control form-control-sm" id="complement" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="referencePoint" class="form-label">Ponto de referência</label>
+                    <input formControlName="referencePoint" class="form-control form-control-sm" id="referencePoint" />
+                  </div>
 
-                    <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
-                      <a *ngIf="i === addresses.length - 1" type="button" (click)="addAddress()" class="btn-sm">
-                        <i class="text-primary fas fa-plus"></i>
-                      </a>
-                      <div *ngIf="i !== 0 || (addresses.length === 1 && i > 0)" type="button"
-                        class="float-right btn-sm mx-1" (click)="deleteAddress(i)">
-                        <i class="text-danger fas fa-trash"></i>
-                      </div>
+                  <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
+                    <a *ngIf="i === addresses.length - 1" type="button" (click)="addAddress()" class="btn-sm">
+                      <i class="text-primary fas fa-plus"></i>
+                    </a>
+                    <div *ngIf="i !== 0 || (addresses.length === 1 && i > 0)" type="button"
+                      class="float-right btn-sm mx-1" (click)="deleteAddress(i)">
+                      <i class="text-danger fas fa-trash"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left collapsed" type="button">
-                  Collapsible Group Item #3
-                </button>
-              </h2>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...
             </div>
-            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
-              data-parent="#accordionExample">
-              <div class="card-body">
-                And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by
-                default.
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-12">
+                <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
+                <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-home-tab" data-toggle="pill" data-target="#v-pills-home"
+              type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dados pessoais</button>
 
-    <div class="col-sm-12 col-md-3">
-      <div class="card shadow mb-4">
-        <div class="card-body">
-          <div class="col-12 pt-4">
-            <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button class="nav-link" id="v-pills-profile-tab" data-toggle="pill" data-target="#v-pills-profile"
+              type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Endereço</button>
+
+            <button class="nav-link" id="v-pills-messages-tab" data-toggle="pill" data-target="#v-pills-messages"
+              type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
+
+            <button class="nav-link" id="v-pills-settings-tab" data-toggle="pill" data-target="#v-pills-settings"
+              type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </form>
+
+
+
+<!-- <div class="row">
+  <div class="col-sm-12 col-md-9">
+    <div class="card shadow mb-4">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Dados pessoais
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Informações de Endereço
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button">
+                Collapsible Group Item #3
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by
+              default.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div> -->
