@@ -10,9 +10,10 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-9">
+        <div class="col-12 col-md-9 border-right-md">
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
               <div class="row">
                 <div class="col-sm-12 pt-4">
                   <h2>Informações Pessoais</h2>
@@ -29,8 +30,19 @@
                   <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
                 </div>
               </div>
+
+              <div class="my-2"></div>
+              <a (click)="activeButtonTwo()" class="btn btn-primary btn-icon-split float-right">
+
+                <span class="icon text-white-50">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+              </a>
+              <div class="my-2"></div>
+
             </div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
               <div formArrayName="addresses">
                 <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
                   <div class="col-sm-12 pt-4">
@@ -79,33 +91,80 @@
                     </div>
                   </div>
                 </div>
+                <div class="row my-4">
+                  <div class="col">
+                    <a (click)="activeButtonOne()" class="btn btn-primary btn-icon-split">
+                      <span class="icon text-white-50">
+                        <i class="fas fa-arrow-left"></i>
+                      </span>
+
+                    </a>
+                    <a (click)="activeButtonThree()" class="btn btn-primary btn-icon-split float-right">
+
+                      <span class="icon text-white-50">
+                        <i class="fas fa-arrow-right"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...
-            </div>
-            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
-            </div>
-            <div class="row mt-3">
-              <div class="col-sm-12">
-                <!-- <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Cadastrar</button> -->
-                <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+
+            <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+              <div class="row">
+                <div class="col">
+                  <h1>Sem conteudo ainda</h1>
+                </div>
+              </div>
+              <div class="row my-4">
+                <div class="col">
+                  <a (click)="activeButtonTwo()" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-arrow-left"></i>
+                    </span>
+
+                  </a>
+                  <a (click)="activeButtonFour()" class="btn btn-primary btn-icon-split float-right">
+
+                    <span class="icon text-white-50">
+                      <i class="fas fa-arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
+
+            <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+              <div class="row">
+                <div class="col">
+                  <h1>Sem conteudo ainda</h1>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-sm-12">
+                  <a class="btn btn-success" (click)="activeButtonThree()">Voltar</a>
+                  <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-md-3">
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active" id="v-pills-home-tab" data-toggle="pill" data-target="#v-pills-home"
-              type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dados pessoais</button>
 
-            <button class="nav-link" id="v-pills-profile-tab" data-toggle="pill" data-target="#v-pills-profile"
-              type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Endereço</button>
+            <button class="nav-link active" id="v-pills-1-tab" data-toggle="pill" data-target="#v-pills-1" type="button"
+              role="tab" aria-controls="v-pills-1" aria-selected="true">Dados pessoais</button>
 
-            <button class="nav-link" id="v-pills-messages-tab" data-toggle="pill" data-target="#v-pills-messages"
-              type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
+            <button class="nav-link" id="v-pills-2-tab" data-toggle="pill" data-target="#v-pills-2" type="button"
+              role="tab" aria-controls="v-pills-2" aria-selected="false">Endereço</button>
 
-            <button class="nav-link" id="v-pills-settings-tab" data-toggle="pill" data-target="#v-pills-settings"
-              type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+            <button class="nav-link" id="v-pills-3-tab" data-toggle="pill" data-target="#v-pills-3" type="button"
+              role="tab" aria-controls="v-pills-3" aria-selected="false">Contato</button>
+
+            <button class="nav-link" id="v-pills-4-tab" data-toggle="pill" data-target="#v-pills-4" type="button"
+              role="tab" aria-controls="v-pills-4" aria-selected="false">Dados Bancários</button>
+
           </div>
         </div>
       </div>

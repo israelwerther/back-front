@@ -23,7 +23,7 @@ export class ClientCredcoopListComponent {
   constructor(
     public clientCredcoopService: ClientCredcoopService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token_storage');

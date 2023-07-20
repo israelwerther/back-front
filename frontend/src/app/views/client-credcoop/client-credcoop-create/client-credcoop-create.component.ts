@@ -70,6 +70,24 @@ export class ClientCredcoopCreateComponent {
     }
   }
 
+  activeButtonOne() {
+    const tabButtonOne = document.getElementById('v-pills-1-tab') as HTMLButtonElement;
+    tabButtonOne.click();
+  }
 
+  activeButtonTwo() {
+    const tabButtonTwo = document.getElementById('v-pills-2-tab') as HTMLButtonElement;
+    tabButtonTwo.click();
+  }
+
+  activeButtonThree() {
+    const tabButtonThree = document.getElementById('v-pills-3-tab') as HTMLButtonElement;
+    tabButtonThree.click();
+  }
+
+  activeButtonFour() {
+    const tabButtonFour = document.getElementById('v-pills-4-tab') as HTMLButtonElement;
+    tabButtonFour.click();
+  }
 
 }

@@ -1,3 +1,27 @@
 label {
     padding-top: 20px;
 }
+
+/* Estilo para a borda direita em telas maiores que 768 pixels */
+.col-12.col-md-9.border-right-md {
+    border-right: 1px solid #ccc;
+}
+
+/* Estilo para remover a borda direita em telas menores que 768 pixels */
+@media (max-width: 767.98px) {
+    .col-12.col-md-9.border-right-md {
+        border-right: none;
+    }
+}
+
+/* .nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #4e73df !important;
+    background-color: #ffffff;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0;
+    color: #5d5d5d;
+    background-color: rgb(236, 236, 236);
+} */
