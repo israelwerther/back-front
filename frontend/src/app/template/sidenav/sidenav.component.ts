@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,8 +8,14 @@ import { Component, Input } from '@angular/core';
 })
 export class SidenavComponent {
   isSidebarOpen: boolean = true;
+  constructor(private authService: AuthService) { }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
+
+  logout() {
+    this.authService.logout()
+  }
+
 }

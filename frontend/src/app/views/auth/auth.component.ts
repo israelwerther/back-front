@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -37,6 +36,12 @@ export class AuthComponent {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+
+    if (this.isLoggedIn) {
+      this.router.navigate(['/home']);
+    }
+
+    console.log("Addddddddddddd")
   }
 
 }

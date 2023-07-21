@@ -1,12 +1,10 @@
 <!-- SIDEBAR -->
-<div *ngIf="isLoggedIn; else elseBlock">
-
+<div *ngIf="isLoggedIn">
   <app-sidenav></app-sidenav>
-
 </div>
 
-<ng-template #elseBlock>
+<div *ngIf="!isLoggedIn">
   <app-auth></app-auth>
-</ng-template>
+</div>
 <!-- Page Wrapper -->
 <!-- CONTENT -->
