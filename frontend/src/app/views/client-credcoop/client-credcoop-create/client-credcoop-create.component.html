@@ -33,13 +33,12 @@
 
               <div class="my-2"></div>
               <a (click)="activeButtonTwo()" class="btn btn-primary btn-icon-split float-right">
-
+                <span class="text">Próximo</span>
                 <span class="icon text-white-50">
                   <i class="fas fa-arrow-right"></i>
                 </span>
               </a>
               <div class="my-2"></div>
-
             </div>
 
             <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
@@ -97,10 +96,10 @@
                       <span class="icon text-white-50">
                         <i class="fas fa-arrow-left"></i>
                       </span>
-
+                      <span class="text">Voltar</span>
                     </a>
                     <a (click)="activeButtonThree()" class="btn btn-primary btn-icon-split float-right">
-
+                      <span class="text">Próximo</span>
                       <span class="icon text-white-50">
                         <i class="fas fa-arrow-right"></i>
                       </span>
@@ -122,10 +121,10 @@
                     <span class="icon text-white-50">
                       <i class="fas fa-arrow-left"></i>
                     </span>
-
+                    <span class="text">Voltar</span>
                   </a>
                   <a (click)="activeButtonFour()" class="btn btn-primary btn-icon-split float-right">
-
+                    <span class="text">Próximo</span>
                     <span class="icon text-white-50">
                       <i class="fas fa-arrow-right"></i>
                     </span>
@@ -142,8 +141,13 @@
               </div>
               <div class="row mt-3">
                 <div class="col-sm-12">
-                  <a class="btn btn-success" (click)="activeButtonThree()">Voltar</a>
-                  <button type="submit" class="btn btn-primary float-right">Cadastrar</button>
+                  <a (click)="activeButtonThree()" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span class="text">Voltar</span>
+                  </a>
+                  <button type="submit" class="btn btn-success float-right">Cadastrar</button>
                 </div>
               </div>
             </div>
