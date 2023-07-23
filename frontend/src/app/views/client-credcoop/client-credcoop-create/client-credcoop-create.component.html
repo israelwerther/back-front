@@ -12,44 +12,44 @@
       <div class="row">
         <div class="col-12 col-md-9 border-right-md">
           <div class="tab-content" id="v-pills-tabContent">
-
-            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+            <!--  -->
+            <div
+              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-1'), 'active': isActiveTab('v-pills-1') }"
+              id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
               <div class="row">
                 <div class="col-sm-12 pt-4">
                   <h2>Informações Pessoais</h2>
                 </div>
                 <div class="col-sm-4">
-                  <label for="clientName" class="form-label">Nome completo</label>
+                  <label for="clientName" class="form-label">{{fieldLabels['clientName']}}</label>
                   <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
-                  <!-- <small *ngIf="clientForm.get('clientName')?.invalid && clientForm.get('clientName')?.touched" class="text-danger">
-                  O nome completo é obrigatório.
-                </small> -->
+                  <small *ngIf="profileForm.get('clientName')?.invalid && profileForm.get('clientName')?.touched"
+                    class="text-danger" aria-required="true">
+                    O {{ fieldLabels['clientName'] }} é obrigatório.
+                  </small>
                 </div>
                 <div class="col-sm-4">
-                  <label for="cpf" class="form-label">CPF</label>
+                  <label for="cpf" class="form-label">{{ fieldLabels['cpf'] }}</label>
                   <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
+                  <small *ngIf="profileForm.get('cpf')?.invalid && profileForm.get('cpf')?.touched" class="text-danger"
+                    aria-required="true">
+                    O {{ fieldLabels['cpf'] }} é obrigatório.
+                  </small>
                 </div>
               </div>
 
-              <div class="my-2"></div>
-              <a (click)="activeButtonTwo()" class="btn btn-primary btn-icon-split float-right">
-                <span class="text">Próximo</span>
-                <span class="icon text-white-50">
-                  <i class="fas fa-arrow-right"></i>
-                </span>
-              </a>
-              <div class="my-2"></div>
-            </div>
-
-            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
               <div formArrayName="addresses">
                 <div class="row" *ngFor="let address of addresses.controls; index as i" [formGroupName]="i">
                   <div class="col-sm-12 pt-4">
                     <h2>Endereço {{ i + 1 }}</h2>
                   </div>
                   <div class="col-sm-4">
-                    <label for="zipCode" class="form-label">CEP</label>
-                    <input formControlName="zipCode" class="form-control form-control-sm" id="zipCode" />
+                    <label for="zipCode-{{i}}" class="form-label">{{ fieldLabels['zipCode'] }}</label>
+                    <input formControlName="zipCode" id="zipCode-{{i}}" class="form-control form-control-sm" />
+                    <small *ngIf="address.get('zipCode')?.invalid && address.get('zipCode')?.touched"
+                      class="text-danger">
+                      O campo {{ fieldLabels['zipCode'] }} é obrigatório.
+                    </small>
                   </div>
                   <div class="col-sm-4">
                     <label for="street" class="form-label">Rua</label>
@@ -90,26 +90,43 @@
                     </div>
                   </div>
                 </div>
-                <div class="row my-4">
-                  <div class="col">
-                    <a (click)="activeButtonOne()" class="btn btn-primary btn-icon-split">
-                      <span class="icon text-white-50">
-                        <i class="fas fa-arrow-left"></i>
-                      </span>
-                      <span class="text">Voltar</span>
-                    </a>
-                    <a (click)="activeButtonThree()" class="btn btn-primary btn-icon-split float-right">
-                      <span class="text">Próximo</span>
-                      <span class="icon text-white-50">
-                        <i class="fas fa-arrow-right"></i>
-                      </span>
-                    </a>
-                  </div>
-                </div>
               </div>
+
+              <div class="my-2"></div>
+              <a (click)="activateTab('v-pills-2')" class="btn btn-primary btn-icon-split float-right">
+                <span class="text">Próximo</span>
+                <span class="icon text-white-50">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+              </a>
+              <div class="my-2"></div>
             </div>
 
-            <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+            <div
+              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-2'), 'active': isActiveTab('v-pills-2') }"
+              id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+              <div class="row my-4">
+                <div class="col">
+                  <a (click)="activateTab('v-pills-1')" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span class="text">Voltar</span>
+                  </a>
+                  <a (click)="activateTab('v-pills-3')" class="btn btn-primary btn-icon-split float-right">
+                    <span class="text">Próximo</span>
+                    <span class="icon text-white-50">
+                      <i class="fas fa-arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <div
+              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-3'), 'active': isActiveTab('v-pills-3') }"
+              id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
               <div class="row">
                 <div class="col">
                   <h1>Sem conteudo ainda</h1>
@@ -117,13 +134,13 @@
               </div>
               <div class="row my-4">
                 <div class="col">
-                  <a (click)="activeButtonTwo()" class="btn btn-primary btn-icon-split">
+                  <a (click)="activateTab('v-pills-2')" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-arrow-left"></i>
                     </span>
                     <span class="text">Voltar</span>
                   </a>
-                  <a (click)="activeButtonFour()" class="btn btn-primary btn-icon-split float-right">
+                  <a (click)="activateTab('v-pills-4')" class="btn btn-primary btn-icon-split float-right">
                     <span class="text">Próximo</span>
                     <span class="icon text-white-50">
                       <i class="fas fa-arrow-right"></i>
@@ -133,7 +150,9 @@
               </div>
             </div>
 
-            <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+            <div
+              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-4'), 'active': isActiveTab('v-pills-4') }"
+              id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
               <div class="row">
                 <div class="col">
                   <h1>Sem conteudo ainda</h1>
@@ -141,7 +160,7 @@
               </div>
               <div class="row mt-3">
                 <div class="col-sm-12">
-                  <a (click)="activeButtonThree()" class="btn btn-primary btn-icon-split">
+                  <a (click)="activateTab('v-pills-3')" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-arrow-left"></i>
                     </span>
@@ -155,19 +174,25 @@
           </div>
         </div>
         <div class="col-12 col-md-3">
+          <!-- Navegação das tabs -->
+
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-            <button class="nav-link active" id="v-pills-1-tab" data-toggle="pill" data-target="#v-pills-1" type="button"
-              role="tab" aria-controls="v-pills-1" aria-selected="true">Dados pessoais</button>
+            <button class="nav-link" [class.active]="isActiveTab('v-pills-1')" (click)="activateTab('v-pills-1')"
+              type="button" role="tab" [attr.aria-controls]="'v-pills-1'"
+              [attr.aria-selected]="isActiveTab('v-pills-1')">Dados pessoais</button>
 
-            <button class="nav-link" id="v-pills-2-tab" data-toggle="pill" data-target="#v-pills-2" type="button"
-              role="tab" aria-controls="v-pills-2" aria-selected="false">Endereço</button>
+            <button class="nav-link" [class.active]="isActiveTab('v-pills-2')" (click)="activateTab('v-pills-2')"
+              type="button" role="tab" [attr.aria-controls]="'v-pills-2'"
+              [attr.aria-selected]="isActiveTab('v-pills-2')">Endereço</button>
 
-            <button class="nav-link" id="v-pills-3-tab" data-toggle="pill" data-target="#v-pills-3" type="button"
-              role="tab" aria-controls="v-pills-3" aria-selected="false">Contato</button>
+            <button class="nav-link" [class.active]="isActiveTab('v-pills-3')" (click)="activateTab('v-pills-3')"
+              type="button" role="tab" [attr.aria-controls]="'v-pills-3'"
+              [attr.aria-selected]="isActiveTab('v-pills-3')">Contato</button>
 
-            <button class="nav-link" id="v-pills-4-tab" data-toggle="pill" data-target="#v-pills-4" type="button"
-              role="tab" aria-controls="v-pills-4" aria-selected="false">Dados Bancários</button>
+            <button class="nav-link" [class.active]="isActiveTab('v-pills-4')" (click)="activateTab('v-pills-4')"
+              type="button" role="tab" [attr.aria-controls]="'v-pills-4'"
+              [attr.aria-selected]="isActiveTab('v-pills-4')">Dados Bancários</button>
 
           </div>
         </div>
@@ -175,65 +200,5 @@
 
     </div>
   </div>
+
 </form>
-
-
-
-<!-- <div class="row">
-  <div class="col-sm-12 col-md-9">
-    <div class="card shadow mb-4">
-      <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Dados pessoais
-              </button>
-            </h2>
-          </div>
-
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-
-
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Informações de Endereço
-              </button>
-            </h2>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left collapsed" type="button">
-                Collapsible Group Item #3
-              </button>
-            </h2>
-          </div>
-          <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-              And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by
-              default.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-</div> -->
