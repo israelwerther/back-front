@@ -101,7 +101,6 @@ export class ClientCredcoopListComponent {
         next: (response) => {
           this.clients = response.items;
           this.totalItems = response.meta.totalItems;
-          this.totalItems = this.totalItems;
           this.updateTotalPages(this.totalItems);
         },
         error: (error) => {
