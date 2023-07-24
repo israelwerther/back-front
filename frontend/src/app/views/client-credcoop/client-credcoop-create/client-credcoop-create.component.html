@@ -13,27 +13,35 @@
         <div class="col-12 col-md-9 border-right-md">
           <div class="tab-content" id="v-pills-tabContent">
             <!--  -->
-            <div
-              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-1'), 'active': isActiveTab('v-pills-1') }"
-              id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+            <div [ngClass]="{
+                'tab-pane': true,
+                fade: true,
+                show: isActiveTab('v-pills-1'),
+                active: isActiveTab('v-pills-1')
+              }" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
               <div class="row">
                 <div class="col-sm-12 pt-4">
                   <h2>Informações Pessoais</h2>
                 </div>
                 <div class="col-sm-4">
-                  <label for="clientName" class="form-label">{{fieldLabels['clientName']}}</label>
+                  <label for="clientName" class="form-label">{{
+                    fieldLabels["clientName"]
+                    }}</label>
                   <input formControlName="clientName" class="form-control form-control-sm" id="clientName" />
-                  <small *ngIf="profileForm.get('clientName')?.invalid && profileForm.get('clientName')?.touched"
-                    class="text-danger" aria-required="true">
-                    O {{ fieldLabels['clientName'] }} é obrigatório.
+                  <small *ngIf=" profileForm.get('clientName')?.invalid && profileForm.get('clientName')?.touched " class="text-danger">
+                    O {{ fieldLabels["clientName"] }} é obrigatório.
                   </small>
                 </div>
                 <div class="col-sm-4">
-                  <label for="cpf" class="form-label">{{ fieldLabels['cpf'] }}</label>
+                  <label for="cpf" class="form-label">{{
+                    fieldLabels["cpf"]
+                    }}</label>
                   <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
-                  <small *ngIf="profileForm.get('cpf')?.invalid && profileForm.get('cpf')?.touched" class="text-danger"
-                    aria-required="true">
-                    O {{ fieldLabels['cpf'] }} é obrigatório.
+                  <small *ngIf="
+                      profileForm.get('cpf')?.invalid &&
+                      profileForm.get('cpf')?.touched
+                    " class="text-danger">
+                    O {{ fieldLabels["cpf"] }} é obrigatório.
                   </small>
                 </div>
               </div>
@@ -44,43 +52,47 @@
                     <h2>Endereço {{ i + 1 }}</h2>
                   </div>
                   <div class="col-sm-4">
-                    <label for="zipCode-{{i}}" class="form-label">{{ fieldLabels['zipCode'] }}</label>
-                    <input formControlName="zipCode" id="zipCode-{{i}}" class="form-control form-control-sm" />
-                    <small *ngIf="address.get('zipCode')?.invalid && address.get('zipCode')?.touched"
-                      class="text-danger">
-                      O campo {{ fieldLabels['zipCode'] }} é obrigatório.
+                    <label for="zipCode-{{ i }}" class="form-label">{{
+                      fieldLabels["zipCode"]
+                      }}</label>
+                    <input formControlName="zipCode" id="zipCode-{{ i }}" class="form-control form-control-sm" />
+                    <small *ngIf="
+                        address.get('zipCode')?.invalid &&
+                        address.get('zipCode')?.touched
+                      " class="text-danger">
+                      O campo {{ fieldLabels["zipCode"] }} é obrigatório.
                     </small>
                   </div>
                   <div class="col-sm-4">
-                    <label for="street-{{i}}" class="form-label">Rua</label>
-                    <input formControlName="street" class="form-control form-control-sm" id="street-{{i}}" />
+                    <label for="street-{{ i }}" class="form-label">Rua</label>
+                    <input formControlName="street" class="form-control form-control-sm" id="street-{{ i }}" />
                   </div>
                   <div class="col-sm-4">
-                    <label for="buildingNumber-{{i}}" class="form-label">Nº</label>
+                    <label for="buildingNumber-{{ i }}" class="form-label">Nº</label>
                     <input formControlName="buildingNumber" class="form-control form-control-sm"
-                      id="buildingNumber-{{i}}" />
+                      id="buildingNumber-{{ i }}" />
                   </div>
                   <div class="col-sm-4">
-                    <label for="neighborhood-{{i}}" class="form-label">Bairro</label>
+                    <label for="neighborhood-{{ i }}" class="form-label">Bairro</label>
                     <input formControlName="neighborhood" class="form-control form-control-sm"
-                      id="neighborhood-{{i}}" />
+                      id="neighborhood-{{ i }}" />
                   </div>
                   <div class="col-sm-4">
-                    <label for="city-{{i}}" class="form-label">Cidade</label>
-                    <input formControlName="city" class="form-control form-control-sm" id="city-{{i}}" />
+                    <label for="city-{{ i }}" class="form-label">Cidade</label>
+                    <input formControlName="city" class="form-control form-control-sm" id="city-{{ i }}" />
                   </div>
                   <div class="col-sm-4">
-                    <label for="state-{{i}}" class="form-label">Estado</label>
-                    <input formControlName="state" class="form-control form-control-sm" id="state-{{i}}" />
+                    <label for="state-{{ i }}" class="form-label">Estado</label>
+                    <input formControlName="state" class="form-control form-control-sm" id="state-{{ i }}" />
                   </div>
                   <div class="col-sm-4">
-                    <label for="complement-{{i}}" class="form-label">Complemento</label>
-                    <input formControlName="complement" class="form-control form-control-sm" id="complement-{{i}}" />
+                    <label for="complement-{{ i }}" class="form-label">Complemento</label>
+                    <input formControlName="complement" class="form-control form-control-sm" id="complement-{{ i }}" />
                   </div>
                   <div class="col-sm-4">
-                    <label for="referencePoint-{{i}}" class="form-label">Ponto de referência</label>
+                    <label for="referencePoint-{{ i }}" class="form-label">Ponto de referência</label>
                     <input formControlName="referencePoint" class="form-control form-control-sm"
-                      id="referencePoint-{{i}}" />
+                      id="referencePoint-{{ i }}" />
                   </div>
 
                   <div class="col-sm-3 d-flex align-items-end mx-1" style="margin-bottom: 0.3rem">
@@ -105,9 +117,12 @@
               <div class="my-2"></div>
             </div>
 
-            <div
-              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-2'), 'active': isActiveTab('v-pills-2') }"
-              id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+            <div [ngClass]="{
+                'tab-pane': true,
+                fade: true,
+                show: isActiveTab('v-pills-2'),
+                active: isActiveTab('v-pills-2')
+              }" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
               <div class="row my-4">
                 <div class="col">
                   <a (click)="activateTab('v-pills-1')" class="btn btn-primary btn-icon-split">
@@ -124,12 +139,14 @@
                   </a>
                 </div>
               </div>
-
             </div>
 
-            <div
-              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-3'), 'active': isActiveTab('v-pills-3') }"
-              id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+            <div [ngClass]="{
+                'tab-pane': true,
+                fade: true,
+                show: isActiveTab('v-pills-3'),
+                active: isActiveTab('v-pills-3')
+              }" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
               <div class="row">
                 <div class="col">
                   <h1>Sem conteudo ainda</h1>
@@ -153,9 +170,12 @@
               </div>
             </div>
 
-            <div
-              [ngClass]="{ 'tab-pane': true, 'fade': true, 'show': isActiveTab('v-pills-4'), 'active': isActiveTab('v-pills-4') }"
-              id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+            <div [ngClass]="{
+                'tab-pane': true,
+                fade: true,
+                show: isActiveTab('v-pills-4'),
+                active: isActiveTab('v-pills-4')
+              }" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
               <div class="row">
                 <div class="col">
                   <h1>Sem conteudo ainda</h1>
@@ -169,39 +189,44 @@
                     </span>
                     <span class="text">Voltar</span>
                   </a>
-                  <button type="submit" class="btn btn-success float-right">Cadastrar</button>
+                  <button type="submit" class="btn btn-success float-right">
+                    Cadastrar
+                  </button>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         <div class="col-12 col-md-3">
           <!-- Navegação das tabs -->
 
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-
             <button class="nav-link" [class.active]="isActiveTab('v-pills-1')" (click)="activateTab('v-pills-1')"
               type="button" role="tab" [attr.aria-controls]="'v-pills-1'"
-              [attr.aria-selected]="isActiveTab('v-pills-1')">Dados pessoais</button>
+              [attr.aria-selected]="isActiveTab('v-pills-1')">
+              Dados pessoais
+            </button>
 
             <button class="nav-link" [class.active]="isActiveTab('v-pills-2')" (click)="activateTab('v-pills-2')"
               type="button" role="tab" [attr.aria-controls]="'v-pills-2'"
-              [attr.aria-selected]="isActiveTab('v-pills-2')">Endereço</button>
+              [attr.aria-selected]="isActiveTab('v-pills-2')">
+              Endereço
+            </button>
 
             <button class="nav-link" [class.active]="isActiveTab('v-pills-3')" (click)="activateTab('v-pills-3')"
               type="button" role="tab" [attr.aria-controls]="'v-pills-3'"
-              [attr.aria-selected]="isActiveTab('v-pills-3')">Contato</button>
+              [attr.aria-selected]="isActiveTab('v-pills-3')">
+              Contato
+            </button>
 
             <button class="nav-link" [class.active]="isActiveTab('v-pills-4')" (click)="activateTab('v-pills-4')"
               type="button" role="tab" [attr.aria-controls]="'v-pills-4'"
-              [attr.aria-selected]="isActiveTab('v-pills-4')">Dados Bancários</button>
-
+              [attr.aria-selected]="isActiveTab('v-pills-4')">
+              Dados Bancários
+            </button>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </form>
