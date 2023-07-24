@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
+import { ClientCredcoopService } from '../client-credcoop/client-credcoop.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,15 @@ import { PublicService } from 'src/app/services/public.service';
 })
 export class HomeComponent {
   userList: any[] = [];
+  totalClients!: number;
 
-  constructor(private publicService: PublicService) { }
+  constructor(private clientCredcoopService: ClientCredcoopService) { }
 
   ngOnInit(): void {
-
+    
   }
+
+  
 
 
 }

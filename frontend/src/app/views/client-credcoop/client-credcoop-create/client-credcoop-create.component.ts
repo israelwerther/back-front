@@ -84,9 +84,7 @@ export class ClientCredcoopCreateComponent {
       const token = localStorage.getItem('token_storage');
 
       if (token) {
-        this.clientCredcoopService
-          .createCredcoopClient(clientData, token)
-          .subscribe({
+        this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe({
             next: () => {
               this.router.navigate(['credcoop-lista']);
             },
@@ -96,20 +94,11 @@ export class ClientCredcoopCreateComponent {
           });
       }
     } else {
-      this.markFormGroupTouched(this.profileForm);
+      this.clientCredcoopService.markFormGroupTouched(this.profileForm);
       this.missingFields();
     }
   }
-
-  markFormGroupTouched(formGroup: FormGroup | FormArray) {
-    Object.values(formGroup.controls).forEach((control) => {
-      control.markAsTouched();
-
-      if (control instanceof FormGroup || control instanceof FormArray) {
-        this.markFormGroupTouched(control);
-      }
-    });
-  }
+ 
 
   missingFields() {
     const missingFields: string[] = [];
@@ -120,9 +109,7 @@ export class ClientCredcoopCreateComponent {
       }
     });
 
-    const message = `Os seguintes campos são obrigatórios:\n\n${missingFields.join(
-      '\n'
-    )}`;
+    const message = `Os seguintes campos são obrigatórios:\n\n${missingFields.join( '\n' )}`;
     alert(message);
   }
 

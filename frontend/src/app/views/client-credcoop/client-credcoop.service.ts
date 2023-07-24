@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,7 +22,6 @@ export class ClientCredcoopService {
   getCredcoopClients(token: string, clientName?: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
     console.log('headers::: ', headers);
-
 
     let apiUrl = `${this.apiUrl}?page=${this.currentPage}&limit=${this.itemsPerPage}`;
     if (clientName) {
@@ -47,6 +47,16 @@ export class ClientCredcoopService {
     const headers = new HttpHeaders().set('Authorization', token);
     const clientUrl = `${this.apiUrl}/${clientId}`;
     return this.http.get(clientUrl, { headers });
+  }
+
+  markFormGroupTouched(formGroup: FormGroup | FormArray) {
+    Object.values(formGroup.controls).forEach((control) => {
+      control.markAsTouched();
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 
 }
