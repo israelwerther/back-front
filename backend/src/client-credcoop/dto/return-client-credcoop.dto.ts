@@ -6,6 +6,7 @@ export class ReturnClientCredcoopDto {
     id: number;
     clientName: string;
     cpf: string;
+    idCard: string;
     clientAddresses?: ReturnClientCredcoopAddressDto[];
 
     constructor(clientCredcoopEntity: ClientCredcoopEntity) {

@@ -6,11 +6,14 @@ export class ClientCredcoopEntity {
     @PrimaryGeneratedColumn('rowid')
     id: number;
 
-    @Column({ name: 'client_name', nullable: false })
+    @Column({ name: 'client_name', nullable: true })
     clientName: string
 
     @Column({ name: 'cpf', nullable: true })
     cpf: string
+
+    @Column({ name: 'id_card', nullable: true })
+    idCard: string
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

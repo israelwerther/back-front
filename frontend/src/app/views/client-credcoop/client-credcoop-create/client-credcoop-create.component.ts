@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClientCredcoopService } from '../client-credcoop.service';
 import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
@@ -10,29 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-credcoop-create.component.css']
 })
 export class ClientCredcoopCreateComponent implements OnInit {
+  
+  ngOnInit(): void { }
+
   constructor(
     private clientCredcoopService: ClientCredcoopService,
     private fb: FormBuilder,
-    private router: Router,) { }
-  @ViewChild('campo') campo!: ElementRef;
-  ngOnInit(): void { }
-
-  fieldLabels: { [key: string]: string } = {
-    clientName: 'Nome completo',
-    cpf: 'CPF',
-    zipCode: 'CEP',
-    street: 'Rua',
-    neighborhood: 'Bairro',
-    state: 'Estado',
-    city: 'Cidade',
-    buildingNumber: 'Nº',
-    referencePoint: 'Ponto de referência',
-    complement: 'Complemento'
-  };
+    private router: Router,) { }  
 
   profileForm = this.fb.group({
     clientName: ['', Validators.required],
     cpf: ['', Validators.required],
+    idCard: ['', Validators.required],
     addresses: this.fb.array([
       this.fb.group({
         zipCode: ['', Validators.required],
@@ -46,6 +35,22 @@ export class ClientCredcoopCreateComponent implements OnInit {
       })
     ])
   });
+
+
+  fieldLabels: { [key: string]: string } = {
+    clientName: 'Nome completo',
+    cpf: 'CPF',
+    idCard: 'RG',
+    zipCode: 'CEP',
+    street: 'Rua',
+    neighborhood: 'Bairro',
+    state: 'Estado',
+    city: 'Cidade',
+    buildingNumber: 'Nº',
+    referencePoint: 'Ponto de referência',
+    complement: 'Complemento'
+  };
+
 
   get addresses() {
     return this.profileForm.get('addresses') as FormArray;
@@ -77,6 +82,7 @@ export class ClientCredcoopCreateComponent implements OnInit {
       const clientData: ClientCredcoop = {
         clientName: this.profileForm.value.clientName,
         cpf: this.profileForm.value.cpf,
+        idCard: this.profileForm.value.idCard,
         clientAddresses: this.profileForm.value.addresses || []
       };
 

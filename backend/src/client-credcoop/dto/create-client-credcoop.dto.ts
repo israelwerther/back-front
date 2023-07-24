@@ -6,4 +6,7 @@ export class CreateClientCredcoopDto {
 
     @IsString()
     cpf: string;
+
+    @IsString()
+    idCard: string;
 }

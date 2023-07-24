@@ -37,11 +37,17 @@
                     fieldLabels["cpf"]
                     }}</label>
                   <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
-                  <small *ngIf="
-                      profileForm.get('cpf')?.invalid &&
-                      profileForm.get('cpf')?.touched
-                    " class="text-danger">
+                  <small *ngIf=" profileForm.get('cpf')?.invalid && profileForm.get('cpf')?.touched " class="text-danger">
                     O {{ fieldLabels["cpf"] }} é obrigatório.
+                  </small>
+                </div>
+                <div class="col-sm-4">
+                  <label for="idCard" class="form-label">{{
+                    fieldLabels["idCard"]
+                    }}</label>
+                  <input formControlName="idCard" class="form-control form-control-sm" id="idCard" />
+                  <small *ngIf=" profileForm.get('idCard')?.invalid && profileForm.get('idCard')?.touched " class="text-danger">
+                    O {{ fieldLabels["idCard"] }} é obrigatório.
                   </small>
                 </div>
               </div>
