@@ -22,7 +22,6 @@ export class CityService {
 
   createAddress(addressData: any, id_storage: number, token_storage: string): Observable<any> {
     const token = localStorage.getItem('token_storage');
-    console.log('token::: ', token);
     const url = `${this.baseUrl}/address/${id_storage}`;
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.post(url, addressData, { headers });

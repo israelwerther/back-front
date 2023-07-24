@@ -63,7 +63,6 @@ export class ClientCredcoopListComponent {
   }
 
   updatePages() {
-    console.log('::: ', this.pages);
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
@@ -95,7 +94,6 @@ export class ClientCredcoopListComponent {
   searchClients() {
     const token = localStorage.getItem('token_storage');
 
-    console.log('searchClients::: ');
     if (token) {
       this.clientCredcoopService.getCredcoopClients(token, this.searchName).subscribe({
         next: (response) => {

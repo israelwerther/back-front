@@ -21,7 +21,6 @@ export class ClientCredcoopService {
 
   getCredcoopClients(token: string, clientName?: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('headers::: ', headers);
 
     let apiUrl = `${this.apiUrl}?page=${this.currentPage}&limit=${this.itemsPerPage}`;
     if (clientName) {

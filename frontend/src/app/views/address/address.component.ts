@@ -61,8 +61,7 @@ export class AddressComponent implements OnInit {
     };
 
     const userId = Number(localStorage.getItem('id_storage'));
-    const token = localStorage.getItem('token_storage');
-    console.log('token::: ', token);
+    const token = localStorage.getItem('token_storage');    
 
     if (token) {
       this.cityService.createAddress(formData, userId, token).subscribe(

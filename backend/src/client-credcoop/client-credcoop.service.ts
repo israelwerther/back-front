@@ -11,17 +11,17 @@ import { ReturnClientCredcoopDto } from './dto/return-client-credcoop.dto';
 export class ClientCredcoopService {
   constructor(
     @InjectRepository(ClientCredcoopEntity)
-    private readonly createClientRepository: Repository<ClientCredcoopEntity>,
+    private readonly clientCredcoopRepository: Repository<ClientCredcoopEntity>,
   ) { }
 
   async createClientCredcoop(createClientCredcoopDto: CreateClientCredcoopDto): Promise<ClientCredcoopEntity> {
-    return await this.createClientRepository.save(createClientCredcoopDto);
+    return await this.clientCredcoopRepository.save(createClientCredcoopDto);
   }
 
   async getAllClientCredcoop(
     options: IPaginationOptions & { clientName?: string }
   ): Promise<Pagination<ReturnClientCredcoopDto>> {
-    const queryBuilder = this.createClientRepository.createQueryBuilder('c');
+    const queryBuilder = this.clientCredcoopRepository.createQueryBuilder('c');
     queryBuilder.select(['c.id', 'c.clientName', 'c.cpf']).orderBy('c.clientName', 'ASC');
 
     if (options.clientName) {
@@ -32,7 +32,7 @@ export class ClientCredcoopService {
   }
 
   async findClientCredcoopById(ClientCredcoopId: number): Promise<ClientCredcoopEntity> {
-    const user = await this.createClientRepository.findOne({
+    const user = await this.clientCredcoopRepository.findOne({
       where: { id: ClientCredcoopId },
     });
 
@@ -47,7 +47,7 @@ export class ClientCredcoopService {
   }
 
   async findOne(id: number): Promise<ClientCredcoopEntity> {
-    return await this.createClientRepository.findOne({
+    return await this.clientCredcoopRepository.findOne({
       where: {
         id: id,
       },
@@ -56,7 +56,7 @@ export class ClientCredcoopService {
   }
 
   async editClient(id: number, updatedData: ReturnClientCredcoopDto): Promise<ClientCredcoopEntity> {
-    const existingClient = await this.createClientRepository.findOne({
+    const existingClient = await this.clientCredcoopRepository.findOne({
       where: {
         id: id,
       },
@@ -68,16 +68,16 @@ export class ClientCredcoopService {
     }
 
     Object.assign(existingClient, updatedData); ReturnClientCredcoopDto
-    return this.createClientRepository.save(existingClient);
+    return this.clientCredcoopRepository.save(existingClient);
   }
 
   async deleteClientCredcoop(ClientCredcoopId: number): Promise<void> {
-    const clientCredcoop = await this.createClientRepository.findOne({
+    const clientCredcoop = await this.clientCredcoopRepository.findOne({
       where: { id: ClientCredcoopId },
     });
     if (!clientCredcoop) {
       throw new NotFoundException(`ClientCredcoop ${ClientCredcoopId} not found`);
     }
-    await this.createClientRepository.remove(clientCredcoop);
+    await this.clientCredcoopRepository.remove(clientCredcoop);
   }
 }

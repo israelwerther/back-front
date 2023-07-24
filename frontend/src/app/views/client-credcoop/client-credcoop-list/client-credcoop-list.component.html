@@ -44,7 +44,7 @@
                     </tr>
                 </tfoot>
                 <tbody class="text-uppercase">
-                    <tr *ngFor="let client of clients| paginate: {itemsPerPage: config.itemsPerPage,currentPage: config.currentPage,totalItems: totalItems}">
+                    <tr *ngFor="let client of clients| paginate: {itemsPerPage: config.itemsPerPage, currentPage: config.currentPage, totalItems: totalItems}">
                         <td>{{ client.id }}</td>
                         <td>{{ client.clientName }}</td>
                         <td>{{ client.cpf }}</td>
