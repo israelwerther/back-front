@@ -80,4 +80,8 @@ export class ClientCredcoopService {
     }
     await this.clientCredcoopRepository.remove(clientCredcoop);
   }
+
+  async getTotalItemsInDatabase(): Promise<number> {
+    return this.clientCredcoopRepository.count();
+  }
 }

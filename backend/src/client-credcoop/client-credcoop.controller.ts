@@ -26,7 +26,19 @@ export class ClientCredcoopController {
     @Query('clientName') clientName?: string
   ): Promise<Pagination<ReturnClientCredcoopDto>> {
     limit = limit > 100 ? 100 : limit;
-    return this.clientCredcoopService.getAllClientCredcoop({ page, limit, clientName });
+    const options = { page, limit, clientName };
+
+    const data = await this.clientCredcoopService.getAllClientCredcoop(options);
+
+    const totalItemsInDatabase = await this.clientCredcoopService.getTotalItemsInDatabase();
+    
+    return {
+      items: data.items,
+      meta: {
+        ...data.meta,
+        totalItemsInDatabase,
+      },
+    };
   }
 
   @Get()

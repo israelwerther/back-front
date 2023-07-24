@@ -13,6 +13,7 @@ export class ClientCredcoopListComponent {
   pages: number[] = [];
   totalPages: number = 0;
   totalItems = 0;
+  totalItemsInDatabase = 0;
   searchName: string = '';
 
   config: PaginationInstance = {
@@ -33,7 +34,7 @@ export class ClientCredcoopListComponent {
         next: (response) => {
           this.clients = response.items;
           this.totalItems = response.meta.totalItems;
-          this.totalItems = this.totalItems;
+          this.totalItemsInDatabase = response.meta.totalItemsInDatabase;
           this.updateTotalPages(this.totalItems);
         },
         error: (error) => {
