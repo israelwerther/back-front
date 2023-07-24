@@ -7,16 +7,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-client-credcoop-create',
   templateUrl: './client-credcoop-create.component.html',
-  styleUrls: ['./client-credcoop-create.component.css']
+  styleUrls: ['./client-credcoop-create.component.css'],
 })
-export class ClientCredcoopCreateComponent implements OnInit {
-  
-  ngOnInit(): void { }
-
+export class ClientCredcoopCreateComponent {
   constructor(
     private clientCredcoopService: ClientCredcoopService,
     private fb: FormBuilder,
-    private router: Router,) { }  
+    private router: Router
+  ) {}
 
   profileForm = this.fb.group({
     clientName: ['', Validators.required],
@@ -31,11 +29,10 @@ export class ClientCredcoopCreateComponent implements OnInit {
         city: [''],
         buildingNumber: [''],
         referencePoint: [''],
-        complement: ['']
-      })
-    ])
+        complement: [''],
+      }),
+    ]),
   });
-
 
   fieldLabels: { [key: string]: string } = {
     clientName: 'Nome completo',
@@ -48,9 +45,8 @@ export class ClientCredcoopCreateComponent implements OnInit {
     city: 'Cidade',
     buildingNumber: 'Nº',
     referencePoint: 'Ponto de referência',
-    complement: 'Complemento'
+    complement: 'Complemento',
   };
-
 
   get addresses() {
     return this.profileForm.get('addresses') as FormArray;
@@ -68,7 +64,7 @@ export class ClientCredcoopCreateComponent implements OnInit {
       referencePoint: [''],
     });
 
-    this.addresses.push(addressForm)
+    this.addresses.push(addressForm);
   }
 
   deleteAddress(index: number) {
@@ -76,55 +72,57 @@ export class ClientCredcoopCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
     if (this.profileForm.valid) {
-      console.log("O fomulário foi valido")
+      console.log('O fomulário foi valido');
       const clientData: ClientCredcoop = {
         clientName: this.profileForm.value.clientName,
         cpf: this.profileForm.value.cpf,
         idCard: this.profileForm.value.idCard,
-        clientAddresses: this.profileForm.value.addresses || []
+        clientAddresses: this.profileForm.value.addresses || [],
       };
 
       const token = localStorage.getItem('token_storage');
 
       if (token) {
-        this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe({
-          next: () => {
-            this.router.navigate(['credcoop-lista'])
-          },
-          error: (error) => {
-            console.error('Erro ao cadastrar o cliente e endereço:', error);
-          }
-        });
+        this.clientCredcoopService
+          .createCredcoopClient(clientData, token)
+          .subscribe({
+            next: () => {
+              this.router.navigate(['credcoop-lista']);
+            },
+            error: (error) => {
+              console.error('Erro ao cadastrar o cliente e endereço:', error);
+            },
+          });
       }
     } else {
       this.markFormGroupTouched(this.profileForm);
-      this.missingFields()
+      this.missingFields();
     }
   }
 
   markFormGroupTouched(formGroup: FormGroup | FormArray) {
-    Object.values(formGroup.controls).forEach(control => {
+    Object.values(formGroup.controls).forEach((control) => {
       control.markAsTouched();
 
       if (control instanceof FormGroup || control instanceof FormArray) {
         this.markFormGroupTouched(control);
       }
-
     });
   }
 
   missingFields() {
     const missingFields: string[] = [];
-    Object.keys(this.profileForm.controls).forEach(controlName => {
+    Object.keys(this.profileForm.controls).forEach((controlName) => {
       const control = this.profileForm.get(controlName);
       if (control?.invalid) {
         missingFields.push(this.fieldLabels[controlName]);
       }
     });
 
-    const message = `Os seguintes campos são obrigatórios:\n\n${missingFields.join('\n')}`;
+    const message = `Os seguintes campos são obrigatórios:\n\n${missingFields.join(
+      '\n'
+    )}`;
     alert(message);
   }
 
@@ -139,5 +137,4 @@ export class ClientCredcoopCreateComponent implements OnInit {
   isActiveTab(tabId: string): boolean {
     return this.activeTab === tabId;
   }
-
 }
