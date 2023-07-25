@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClientCredcoopService } from '../client-credcoop.service';
+import { ClientCredcoopService } from '../credcoop.service';
 import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
 

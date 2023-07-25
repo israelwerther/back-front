@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
-import { ClientCredcoopService } from '../client-credcoop.service';
+import { ClientCredcoopService } from '../credcoop.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-client-credcoop',
-  templateUrl: './client-credcoop.component.html',
-  styleUrls: ['./client-credcoop.component.css']
+  templateUrl: './credcoop.component.html',
+  styleUrls: ['./credcoop.component.css']
 })
 export class ClientCredcoopComponent {
 
