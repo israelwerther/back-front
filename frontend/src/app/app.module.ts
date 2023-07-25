@@ -18,12 +18,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoanDashboardComponent } from './views/loan/loan-dashboard/loan-dashboard.component';
 import { LoanCreateComponent } from './views/loan/loan-create/loan-create.component';
 import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
-import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
+import { ClientCredcoopComponent } from './views/credcoop-client/client-credcoop.component';
 import { ClientEsctopComponent } from './views/client-esctop/client-esctop.component';
-import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
-import { ClientCredcoopListComponent } from './views/client-credcoop/client-credcoop-list/client-credcoop-list.component';
+import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
+import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ClientCredcoopUpdateComponent } from './views/client-credcoop/client-credcoop-update/client-credcoop-update.component';
+import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
+import { CredcoopLoansComponent } from './views/credcoop-loans/credcoop-loans.component';
 
 
 
@@ -46,7 +47,8 @@ import { ClientCredcoopUpdateComponent } from './views/client-credcoop/client-cr
     ClientEsctopComponent,
     ClientCredcoopCreateComponent,
     ClientCredcoopListComponent,
-    ClientCredcoopUpdateComponent,
+    ClientCredcoopUpdateComponent,   
+    CredcoopLoansComponent,
   ],
 
   imports: [

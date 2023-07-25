@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-credcoop-create',
-  templateUrl: './client-credcoop-create.component.html',
-  styleUrls: ['./client-credcoop-create.component.css'],
+  templateUrl: './credcoop-create.component.html',
+  styleUrls: ['./credcoop-create.component.css'],
 })
 export class ClientCredcoopCreateComponent {
   constructor(

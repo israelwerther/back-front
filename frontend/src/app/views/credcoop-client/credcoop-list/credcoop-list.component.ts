@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-credcoop-list',
-  templateUrl: './client-credcoop-list.component.html',
-  styleUrls: ['./client-credcoop-list.component.css']
+  templateUrl: './credcoop-list.component.html',
+  styleUrls: ['./credcoop-list.component.css']
 })
 export class ClientCredcoopListComponent {
   clients: any[] = [];

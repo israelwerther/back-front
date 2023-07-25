@@ -8,8 +8,8 @@ import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 
 @Component({
   selector: 'app-client-credcoop-update',
-  templateUrl: './client-credcoop-update.component.html',
-  styleUrls: ['./client-credcoop-update.component.css']
+  templateUrl: './credcoop-update.component.html',
+  styleUrls: ['./credcoop-update.component.css']
 })
 export class ClientCredcoopUpdateComponent implements OnInit {
   clientId: string="";

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { ClientCredcoopService } from '../client-credcoop/client-credcoop.service';
+import { ClientCredcoopService } from '../credcoop-client/client-credcoop.service';
 
 @Component({
   selector: 'app-home',

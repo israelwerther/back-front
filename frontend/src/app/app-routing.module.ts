@@ -10,10 +10,10 @@ import { AddressListComponent } from './views/address-list/address-list.componen
 import { LoanDashboardComponent } from './views/loan/loan-dashboard/loan-dashboard.component';
 import { LoanCreateComponent } from './views/loan/loan-create/loan-create.component';
 import { LoanListComponent } from './views/loan/loan-list/loan-list.component';
-import { ClientCredcoopComponent } from './views/client-credcoop/client-credcoop.component';
-import { ClientCredcoopCreateComponent } from './views/client-credcoop/client-credcoop-create/client-credcoop-create.component';
-import { ClientCredcoopListComponent } from './views/client-credcoop/client-credcoop-list/client-credcoop-list.component';
-import { ClientCredcoopUpdateComponent } from './views/client-credcoop/client-credcoop-update/client-credcoop-update.component';
+import { ClientCredcoopComponent } from './views/credcoop-client/client-credcoop.component';
+import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
+import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
+import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 
 
 const routes: Routes = [
