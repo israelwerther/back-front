@@ -9,7 +9,7 @@ export class LoanController {
 
   @Post()
   create(@Body() createLoanDto: CreateLoanDto) {
-    return this.loanService.create(createLoanDto);
+    return this.loanService.createClientCredcoop(createLoanDto);
   }
 
   @Get()

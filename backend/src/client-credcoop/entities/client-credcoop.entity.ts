@@ -1,4 +1,5 @@
 import { ClientAddressEntity } from "src/client-address/entities/client-address.entity";
+import { LoanEntity } from "src/loan/entities/loan.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: "client_credcoop" })
@@ -24,4 +25,8 @@ export class ClientCredcoopEntity {
     @OneToMany(() => ClientAddressEntity, (clientAddress) => clientAddress.clientCredcoop, { cascade: true })
     @JoinColumn({ name: 'client_credcoop_id' })
     clientAddresses?: ClientAddressEntity[];
+
+    @OneToMany(() => LoanEntity, (loans) => loans.clientCredcoop, { cascade: true })
+    @JoinColumn({ name: 'client_credcoop_id' })
+    clientLoans?: LoanEntity[];
 }

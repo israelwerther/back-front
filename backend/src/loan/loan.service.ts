@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { LoanEntity } from './entities/loan.entity';
 
 @Injectable()
 export class LoanService {
-  create(createLoanDto: CreateLoanDto) {
-    return 'This action adds a new loan';
+  constructor(
+    @InjectRepository(LoanEntity)
+    private readonly LoanRepository: Repository<LoanEntity>,
+  ) { }
+
+  async createClientCredcoop(createClientCredcoopDto: CreateLoanDto): Promise<LoanEntity> {
+    return await this.LoanRepository.save(createClientCredcoopDto);
   }
 
   findAll() {

@@ -51,7 +51,7 @@ export class ClientCredcoopService {
       where: {
         id: id,
       },
-      relations: ['clientAddresses']
+      relations: ['clientAddresses', 'clientLoans']
     });
   }
 
@@ -60,7 +60,7 @@ export class ClientCredcoopService {
       where: {
         id: id,
       },
-      relations: ['clientAddresses']
+      relations: ['clientAddresses', 'clientLoans']
     });
 
     if (!existingClient) {
