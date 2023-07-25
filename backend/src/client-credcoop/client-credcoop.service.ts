@@ -84,4 +84,8 @@ export class ClientCredcoopService {
   async getTotalItemsInDatabase(): Promise<number> {
     return this.clientCredcoopRepository.count();
   }
+
+  async getTotalClientCredcoop(): Promise<number> {
+    return this.clientCredcoopRepository.count();
+  }
 }

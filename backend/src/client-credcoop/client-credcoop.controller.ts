@@ -41,6 +41,14 @@ export class ClientCredcoopController {
     };
   }
 
+  @Get(':total-client-credcoop')
+  async returnTotalClientCredcoop() {
+    const totalClientCredcoop = await this.clientCredcoopService.getTotalClientCredcoop();
+    return { 
+      totalClientCredcoop: totalClientCredcoop
+    };
+  }
+
   @Get()
   findAll() {
     return this.clientCredcoopService.findAll();
@@ -73,5 +81,7 @@ export class ClientCredcoopController {
       throw error;
     }
   }
+
+  
 
 }

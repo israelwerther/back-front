@@ -58,4 +58,10 @@ export class ClientCredcoopService {
     });
   }
 
+  getTotalClientCredcoop(token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', token);
+    let apiUrl =  `${this.apiUrl}/total-client-credcoop`;
+    return this.http.get<any>(apiUrl, { headers });
+  }
+
 }
