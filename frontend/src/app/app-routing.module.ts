@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
 import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
@@ -36,10 +35,6 @@ const routes: Routes = [
   {
     path: 'credcoop-atualiza/:id',
     component: ClientCredcoopUpdateComponent,
-  },
-  {
-    path: 'esctop',
-    component: EsctopCrudComponent,
   },
   {
     path: 'states',

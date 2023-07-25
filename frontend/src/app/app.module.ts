@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './template/header/header.component';
 import { SidenavComponent } from './template/sidenav/sidenav.component';
 import { HomeComponent } from './views/home/home.component';
-import { EsctopCrudComponent } from './views/esctop-crud/esctop-crud.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatesCitiesComponent } from './views/states-cities/states-cities.component';
@@ -34,7 +33,6 @@ import { CredcoopLoansComponent } from './views/credcoop-loans/credcoop-loans.co
     HeaderComponent,
     SidenavComponent,
     HomeComponent,
-    EsctopCrudComponent,
     StatesCitiesComponent,
     AddressComponent,
     UserComponent,
