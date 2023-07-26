@@ -5,19 +5,19 @@ export class LoanEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({default: ""})
+    @Column({ name: 'contract_number', nullable: true })
     contractNumber: string;
 
-    @Column()
-    amount: number;
+    @Column({ name: 'loan_amount', nullable: true })
+    loanAmount: number;
 
-    @Column()
+    @Column({ name: 'interest_rate', nullable: true })
     interestRate: number;
 
-    @Column()
+    @Column({ name: 'start_date', nullable: true })
     startDate: Date;
 
-    @Column()
+    @Column({ name: 'amount_of_installments', nullable: true })
     amountOfInstallments: number;
 
     @CreateDateColumn({ name: 'created_at' })

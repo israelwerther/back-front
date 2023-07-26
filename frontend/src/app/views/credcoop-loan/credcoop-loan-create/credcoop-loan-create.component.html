@@ -1,1 +1,51 @@
-<p>credcoop-loan-create works!</p>
+<!-- Page Heading -->
+<div class="row">
+    <div class="col">
+        <h1 class="h3 mb-2 text-gray-800">Empréstimo Credcoop</h1>
+        <p class="mb-4">Cadastre um Empréstimo Credcoop</p>
+    </div>
+</div>
+
+<form [formGroup]="loanForm" (ngSubmit)="onSubmitLoan()">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-9 border-right-md">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="row">
+                                <div class="col-sm-12 pt-4">
+                                    <h2>Empréstimo</h2>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="clientLoanId" class="form-label">Id</label>
+                                    <input type="number" formControlName="clientLoanId" class="form-control form-control-sm" id="clientLoanId" />
+                                    <!-- <small *ngIf=" profileForm.get('clientName')?.invalid && profileForm.get('clientName')?.touched " class="text-danger">
+                                        O  é obrigatório.
+                                    </small> -->
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="loanAmount" class="form-label">Valor</label>
+                                    <input type="number" formControlName="loanAmount" class="form-control form-control-sm" id="loanAmount" />
+                                </div> 
+                                <div class="col-sm-3">
+                                    <label for="startDate" class="form-label">Valor</label>
+                                    <input type="date" formControlName="startDate" class="form-control form-control-sm" id="startDate" />
+                                </div>  
+                                <div class="col-sm-3">
+                                    <label for="amountOfInstallments" class="form-label">Parcelas</label>
+                                    <input type="number" formControlName="amountOfInstallments" class="form-control form-control-sm" id="amountOfInstallments" />
+                                </div> 
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div  id="v-pills-tab"  aria-orientation="vertical">
+                        <button class="btn btn-primary btn-block" type="submit" >Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -3,7 +3,7 @@ import { LoanEntity } from "../entities/loan.entity";
 export class ReturnClientLoanDto {
     id: number;    
     contractNumber: string;    
-    amount: number;    
+    loanAmount: number;    
     interestRate: number;    
     startDate: Date;
     amountOfInstallments: number;
@@ -11,7 +11,7 @@ export class ReturnClientLoanDto {
     constructor(clientLoans: LoanEntity) {
         this.id = clientLoans.id;
         this.contractNumber = clientLoans.contractNumber;
-        this.amount = clientLoans.amount;
+        this.loanAmount = clientLoans.loanAmount;
         this.interestRate = clientLoans.interestRate;
         this.startDate = clientLoans.startDate;
         this.amountOfInstallments = clientLoans.amountOfInstallments;        
