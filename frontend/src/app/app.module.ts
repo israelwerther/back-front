@@ -19,6 +19,7 @@ import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-li
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
+import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
 
 
 
@@ -37,6 +38,7 @@ import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.compo
     ClientCredcoopListComponent,
     ClientCredcoopUpdateComponent,   
     CredcoopLoanComponent,
+    CredcoopLoanCreateComponent
   ],
 
   imports: [

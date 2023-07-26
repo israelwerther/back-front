@@ -11,6 +11,7 @@ import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-
 import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
+import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
 
 
 const routes: Routes = [
@@ -57,8 +58,8 @@ const routes: Routes = [
   },
   // Loans 
   {
-    path: 'emprestimo',
-    component: CredcoopLoanComponent,
+    path: 'realizar-emprestimo',
+    component: CredcoopLoanCreateComponent,
   },
 ];
 
