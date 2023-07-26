@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './credcoop-loan.component.html',
   styleUrls: ['./credcoop-loan.component.css']
 })
-export class CredcoopLoansComponent {
+export class CredcoopLoanComponent {
 
 }

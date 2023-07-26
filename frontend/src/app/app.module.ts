@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './template/header/header.component';
 import { SidenavComponent } from './template/sidenav/sidenav.component';
 import { HomeComponent } from './views/home/home.component';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -23,14 +22,13 @@ import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-
 import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
-import { CredcoopLoansComponent } from './views/credcoop-loan/credcoop-loan.component';
+import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     SidenavComponent,
     HomeComponent,
     StatesCitiesComponent,
@@ -46,7 +44,7 @@ import { CredcoopLoansComponent } from './views/credcoop-loan/credcoop-loan.comp
     ClientCredcoopCreateComponent,
     ClientCredcoopListComponent,
     ClientCredcoopUpdateComponent,   
-    CredcoopLoansComponent,
+    CredcoopLoanComponent,
   ],
 
   imports: [

@@ -13,6 +13,7 @@ import { ClientCredcoopComponent } from './views/credcoop-client/credcoop.compon
 import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
 import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
+import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  // Credcoop
   {
     path: 'credcoop',
     component: ClientCredcoopComponent,
@@ -67,6 +69,12 @@ const routes: Routes = [
   {
     path: 'emprestimo-dashboard',
     component: LoanDashboardComponent,
+  },
+
+  // Loans 
+  {
+    path: 'emprestimo',
+    component: CredcoopLoanComponent,
   },
 ];
 
