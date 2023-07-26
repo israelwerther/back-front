@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <label for="clientLoanId" class="form-label">Cliente</label>
-                                    <ng-select class="form-control form-control-sm" formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id" >
+                                    <ng-select formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id" >
                                     <ng-option [value]="-1" disabled selected>Selecione o seu estado</ng-option>
                                         <ng-option *ngFor="let client of clients" [value]="[client.id]">
                                             {{ client.clientName }}

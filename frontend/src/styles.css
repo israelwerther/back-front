@@ -1,6 +1,2 @@
-/* .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-    margin-left: -10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: rgb(255, 255, 255) !important;
-} */
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
