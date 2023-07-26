@@ -3,6 +3,7 @@ import { Loan } from 'src/app/interfaces/loan';
 import { CredcoopLoanService } from '../credcoop-loan.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { select2Client } from 'src/app/interfaces/select2Client';
 
 @Component({
   selector: 'app-credcoop-loan-create',
@@ -10,6 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./credcoop-loan-create.component.css']
 })
 export class CredcoopLoanCreateComponent {
+
+  ngOnInit() {
+    this.loadClients();
+  }
 
   constructor(
     private credcoopLoanService: CredcoopLoanService,
@@ -60,4 +65,18 @@ export class CredcoopLoanCreateComponent {
       //this.missingFields();
     }
   }
+
+  clients: select2Client[] = [];
+  loadClients() {
+    this.credcoopLoanService.select2Client().subscribe(
+      (data) => {
+        this.clients = data;
+        console.log('Lista de clientes:', this.clients);
+      },
+      (error) => {
+        console.error('Erro ao obter a lista de clientes:', error);
+      }
+    );
+  }
+
 }

@@ -31,6 +31,17 @@ export class ClientCredcoopService {
     return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
   }
 
+  async getClientsIdAndName(options: { clientName?: string }): Promise<ReturnClientCredcoopDto[]> {
+    const queryBuilder = this.clientCredcoopRepository.createQueryBuilder('c');
+    queryBuilder.select(['c.id', 'c.clientName']).orderBy('c.clientName', 'ASC');
+  
+    if (options.clientName) {
+      queryBuilder.where('c.clientName ILIKE :clientName', { clientName: `%${options.clientName}%` });
+    }
+  
+    return queryBuilder.getMany();
+  }
+
   async findClientCredcoopById(ClientCredcoopId: number): Promise<ClientCredcoopEntity> {
     const user = await this.clientCredcoopRepository.findOne({
       where: { id: ClientCredcoopId },

@@ -41,6 +41,11 @@ export class ClientCredcoopController {
     };
   }
 
+  @Get(':select-client')
+  async getClientsIdAndName(clientName?: string): Promise<ReturnClientCredcoopDto[]> {
+    return this.clientCredcoopService.getClientsIdAndName({ clientName });
+  }
+
   @Get(':total-client-credcoop')
   async returnTotalClientCredcoop() {
     const totalClientCredcoop = await this.clientCredcoopService.getTotalClientCredcoop();
