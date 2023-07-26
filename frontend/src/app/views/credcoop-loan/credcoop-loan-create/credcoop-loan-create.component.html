@@ -19,7 +19,10 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="clientLoanId" class="form-label">Id</label>
-                                    <input type="number" formControlName="clientLoanId" class="form-control form-control-sm" id="clientLoanId" />
+                                    <select class="form-control form-control-sm" formControlName="clientLoanId" id="clientLoanId">
+                                      <option value="" disabled selected>Selecione um cliente</option>
+                                      <option *ngFor="let client of clients" [value]="client.id">{{ client.clientName }}</option>
+                                    </select>
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="loanAmount" class="form-label">Valor</label>
