@@ -17,13 +17,15 @@
                                 <div class="col-sm-12 pt-4">
                                     <h2>Empréstimo</h2>
                                 </div>
-                                <div class="col-sm-3">
-                                    <label for="clientLoanId" class="form-label">Id</label>
-                                    <select class="form-control form-control-sm" formControlName="clientLoanId" id="clientLoanId">
-                                      <option value="" disabled selected>Selecione um cliente</option>
-                                      <option *ngFor="let client of clients" [value]="client.id">{{ client.clientName }}</option>
-                                    </select>
-                                </div>
+                                <div class="col-sm-12">
+                                    <label for="clientLoanId" class="form-label">Cliente</label>
+                                    <ng-select class="form-control form-control-sm" formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id" >
+                                    <ng-option [value]="-1" disabled selected>Selecione o seu estado</ng-option>
+                                        <ng-option *ngFor="let client of clients" [value]="[client.id]">
+                                            {{ client.clientName }}
+                                        </ng-option>
+                                    </ng-select>
+                                  </div>
                                 <div class="col-sm-3">
                                     <label for="loanAmount" class="form-label">Valor</label>
                                     <input type="number" formControlName="loanAmount" class="form-control form-control-sm" id="loanAmount" />
