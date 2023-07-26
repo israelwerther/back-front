@@ -11,8 +11,14 @@ export class CredcoopLoanService {
   constructor(private http: HttpClient) { }
 
   createCredcoopLoan(LoanData: any): Observable<any> {
-    // const headers = new HttpHeaders().set('Authorization', token);
+    
+    const token = localStorage.getItem('token_storage');
+    if (!token) {
+      throw new Error('Token not available');
+    }    
+    const headers = new HttpHeaders().set('Authorization', token);
+
     const url = this.apiUrl;
-    return this.http.post(url, LoanData)
+    return this.http.post(url, LoanData, { headers });
   }
 }

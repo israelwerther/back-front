@@ -17,50 +17,46 @@ export class CredcoopLoanCreateComponent {
     private router: Router
   ) {}
 
+  getTodayDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
   loanForm = this.fb.group({
-    clientLoanId:['', Validators.required],
-    loanAmount: ['', Validators.required],
-    startDate: ['', Validators.required],
-    amountOfInstallments: ['', Validators.required],
+    clientLoanId:[21, Validators.required],
+    loanAmount: [100, Validators.required],
+    startDate: [this.getTodayDate(), Validators.required],
+    amountOfInstallments: [1, Validators.required],
   });
 
   onSubmitLoan() {
     if (this.loanForm.valid) {
 
-      const clientLoanIdValue = this.loanForm.value.clientLoanId;
-      const parsedClientLoanId = clientLoanIdValue ? Number(clientLoanIdValue) : null;
-
-      const loanAmountValue = this.loanForm.value.loanAmount;
-      const parsedloanAmount = loanAmountValue ? Number(loanAmountValue) : null;
-
       const startDateValue = this.loanForm.value.startDate;
       const parsedStartDate = startDateValue ? new Date(startDateValue) : null;
 
-      const amountOfInstallmentsValue = this.loanForm.value.amountOfInstallments;
-      const parsedAmountOfInstallments = amountOfInstallmentsValue ? Number(amountOfInstallmentsValue) : null;
-
       const LoanData: Loan = {
-        clientLoanId: parsedClientLoanId,
-        loanAmount: parsedloanAmount,
+        clientLoanId: this.loanForm.value.clientLoanId,
+        loanAmount: this.loanForm.value.loanAmount,
         startDate: parsedStartDate,
-        amountOfInstallments: parsedAmountOfInstallments,
+        amountOfInstallments: this.loanForm.value.amountOfInstallments,
       };
-
-      // const token = localStorage.getItem('token_storage');
-
-      // if (token) {
-        this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
-            next: () => {
-              console.log("Empréstimo cadastrado com sucesso")
-              // this.router.navigate(['home']);
-            },
-            error: (error) => {
-              console.error('Erro ao cadastrar o cliente e endereço:', error);
-            },
-          });
+      
+      this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
+          next: () => {
+            console.log("Empréstimo cadastrado com sucesso")
+            this.router.navigate(['home']);
+          },
+          error: (error) => {
+            console.error('Erro ao cadastrar o cliente e endereço:', error);
+          },
+        });
       }
-     else {
-      console.log("Nada")
+      else {
+      console.log("invalid form")
       //this.missingFields();
     }
   }

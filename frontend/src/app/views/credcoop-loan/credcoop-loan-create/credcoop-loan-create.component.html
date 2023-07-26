@@ -17,12 +17,9 @@
                                 <div class="col-sm-12 pt-4">
                                     <h2>Empréstimo</h2>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label for="clientLoanId" class="form-label">Id</label>
                                     <input type="number" formControlName="clientLoanId" class="form-control form-control-sm" id="clientLoanId" />
-                                    <!-- <small *ngIf=" profileForm.get('clientName')?.invalid && profileForm.get('clientName')?.touched " class="text-danger">
-                                        O  é obrigatório.
-                                    </small> -->
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="loanAmount" class="form-label">Valor</label>
@@ -41,9 +38,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
-                    <div  id="v-pills-tab"  aria-orientation="vertical">
-                        <button class="btn btn-primary btn-block" type="submit" >Cadastrar</button>
-                    </div>
+                    <button class="btn btn-primary btn-block btn-sm" type="submit" >Cadastrar</button>
+                    <a class="btn btn-danger btn-block btn-sm" [routerLink]="['/home']">Descartar</a>
                 </div>
             </div>
         </div>
