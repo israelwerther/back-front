@@ -49,7 +49,7 @@ import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

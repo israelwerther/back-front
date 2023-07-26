@@ -10,8 +10,7 @@ export class CredcoopLoanService {
 
   constructor(private http: HttpClient) { }
 
-  createCredcoopLoan(LoanData: any): Observable<any> {
-    
+  createCredcoopLoan(LoanData: any): Observable<any> {    
     const token = localStorage.getItem('token_storage');
     if (!token) {
       throw new Error('Token not available');

@@ -12,7 +12,7 @@ export class LoanService {
     private readonly LoanRepository: Repository<LoanEntity>,
   ) { }
 
-  async createClientCredcoop(createClientCredcoopDto: CreateLoanDto): Promise<LoanEntity> {
+  async createLoan(createClientCredcoopDto: CreateLoanDto): Promise<LoanEntity> {
     return await this.LoanRepository.save(createClientCredcoopDto);
   }
 

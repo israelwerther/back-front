@@ -1,15 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 import { LoanService } from './loan.service';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
+import { Roles } from 'src/decorators/roles.decorators';
+import { UserType } from 'src/user/enum/user-type.enum';
 
+@UsePipes(ValidationPipe)
+@Roles(UserType.User)
 @Controller('loan')
 export class LoanController {
   constructor(private readonly loanService: LoanService) {}
 
   @Post()
   create(@Body() createLoanDto: CreateLoanDto) {
-    return this.loanService.createClientCredcoop(createLoanDto);
+    return this.loanService.createLoan(createLoanDto);
   }
 
   @Get()
