@@ -72,7 +72,7 @@ export class CredcoopLoanCreateComponent {
   // clients: select2Client[] = [];
   loadClients() {
     this.clientCredcoopService.getClientCredcoops().subscribe((result) => {
-      this.clients = result.data.allClientCredcoops;
+      this.clients = result.data.credcoopClients;
       console.log("Agata", this.clients)
     });
   }

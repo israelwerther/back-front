@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
           this.totalClientCredcoop = response.totalClientCredcoop;
         },
         error: (error) => {
-          console.error('Erro ao obter o total do client-credcoop:', error);
+          console.error('Erro ao obter o total de clientes:', error);
         }
       });
     }

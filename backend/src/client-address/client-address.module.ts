@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ClientAddressService } from './client-address.service';
 import { ClientAddressController } from './client-address.controller';
 import { ClientAddressEntity } from './entities/client-address.entity';
-import { ClientCredcoopModule } from 'src/client-credcoop/client-credcoop.module';
+import { ClientCredcoopModule } from 'src/credcoop-client/credcoop-client.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

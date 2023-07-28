@@ -7,7 +7,7 @@ import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 
 
 @Component({
-  selector: 'app-client-credcoop-update',
+  selector: 'app-credcoop-client-update',
   templateUrl: './credcoop-update.component.html',
   styleUrls: ['./credcoop-update.component.css']
 })

@@ -11,14 +11,14 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { LoanModule } from './loan/loan.module';
-import { ClientCredcoopModule } from './client-credcoop/client-credcoop.module';
+import { ClientCredcoopModule } from './credcoop-client/credcoop-client.module';
 import { ClientAddressModule } from './client-address/client-address.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserResolver } from './graphql/resolver/user.resolver';
-import { ClientCredcoopEntity } from './client-credcoop/entities/client-credcoop.entity';
-import { ClientCredcoopResolver } from './graphql/resolver/client-credcoop.resolver';
-import { ClientCredcoopService } from './client-credcoop/client-credcoop.service';
+import { CredcoopClientEntity } from './credcoop-client/entities/credcoop-client.entity';
+import { CredcoopClientResolver } from './graphql/resolver/credcoop-client.resolver';
+import { CredcoopClientService } from './credcoop-client/credcoop-client.service';
 
 @Module({
   imports: [
@@ -30,7 +30,7 @@ import { ClientCredcoopService } from './client-credcoop/client-credcoop.service
       playground: true,
       autoSchemaFile: true,
     }),
-    TypeOrmModule.forFeature([ClientCredcoopEntity]),
+    TypeOrmModule.forFeature([CredcoopClientEntity]),
     TypeOrmModule.forRoot({
       type: 'postgres',
       database: process.env.DB_DATABASE,
@@ -61,8 +61,8 @@ import { ClientCredcoopService } from './client-credcoop/client-credcoop.service
       useClass: RolesGuard,
     },
     UserResolver,
-    ClientCredcoopResolver, 
-    ClientCredcoopService,
+    CredcoopClientResolver, 
+    CredcoopClientService,
   ],
 })
 export class AppModule { }

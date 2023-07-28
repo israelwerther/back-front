@@ -4,7 +4,7 @@ import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-client-credcoop-list',
+  selector: 'app-credcoop-client-list',
   templateUrl: './credcoop-list.component.html',
   styleUrls: ['./credcoop-list.component.css']
 })

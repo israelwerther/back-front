@@ -1,4 +1,4 @@
-import { ClientCredcoopEntity } from "src/client-credcoop/entities/client-credcoop.entity";
+import { CredcoopClientEntity } from "src/credcoop-client/entities/credcoop-client.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 @Entity({ name: "loan" })
 export class LoanEntity {
@@ -28,7 +28,7 @@ export class LoanEntity {
 
     @Column({ name: 'client_loan_id', nullable: true })
     clientLoanId: number;
-    @ManyToOne(() => ClientCredcoopEntity, (clientCredcoop) => clientCredcoop.clientLoans, { onDelete: 'CASCADE', nullable: true })
+    @ManyToOne(() => CredcoopClientEntity, (credcoopClient) => credcoopClient.clientLoans, { onDelete: 'CASCADE', nullable: true })
     @JoinColumn({ name: 'client_loan_id', referencedColumnName: 'id' })
-    clientCredcoop?: ClientCredcoopEntity;
+    credcoopClient?: CredcoopClientEntity;
 }

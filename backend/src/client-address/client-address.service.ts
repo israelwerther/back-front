@@ -3,7 +3,7 @@ import { CreateClientAddressDto } from './dto/create-client-address.dto';
 import { UpdateClientAddressDto } from './dto/update-client-address.dto';
 import { ClientAddressEntity } from './entities/client-address.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ClientCredcoopService } from 'src/client-credcoop/client-credcoop.service';
+import { CredcoopClientService } from 'src/credcoop-client/credcoop-client.service';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -11,14 +11,14 @@ export class ClientAddressService {
   constructor(
     @InjectRepository(ClientAddressEntity)
     private readonly clientAddressRepository: Repository<ClientAddressEntity>,
-    private readonly clientCredcoopService: ClientCredcoopService,
+    private readonly credcoopClientService: CredcoopClientService,
   ) { }
 
   async createClientCredcoopAddress(
     createClientAddressDto: CreateClientAddressDto,
     clientCredcoopId: number
   ): Promise<ClientAddressEntity> {
-    await this.clientCredcoopService.findClientCredcoopById(clientCredcoopId);
+    await this.credcoopClientService.findClientCredcoopById(clientCredcoopId);
     return this.clientAddressRepository.save({
       ...createClientAddressDto,
       clientCredcoopId,

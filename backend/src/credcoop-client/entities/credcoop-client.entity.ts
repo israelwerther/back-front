@@ -3,9 +3,9 @@ import { LoanEntity } from "src/loan/entities/loan.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
-@Entity({ name: "client_credcoop" })
+@Entity({ name: "credcoop_client" })
 @ObjectType()
-export class ClientCredcoopEntity {
+export class CredcoopClientEntity {
     @PrimaryGeneratedColumn('rowid')
     @Field(() => Int)
     id: number;
@@ -26,11 +26,11 @@ export class ClientCredcoopEntity {
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 
-    @OneToMany(() => ClientAddressEntity, (clientAddress) => clientAddress.clientCredcoop, { cascade: true })
-    @JoinColumn({ name: 'client_credcoop_id' })
+    @OneToMany(() => ClientAddressEntity, (clientAddress) => clientAddress.credcoopClient, { cascade: true })
+    @JoinColumn({ name: 'credcoop_client_id' })
     clientAddresses?: ClientAddressEntity[];
 
-    @OneToMany(() => LoanEntity, (loans) => loans.clientCredcoop, { cascade: true })
-    @JoinColumn({ name: 'client_credcoop_id' })
+    @OneToMany(() => LoanEntity, (loans) => loans.credcoopClient, { cascade: true })
+    @JoinColumn({ name: 'credcoop_client_id' })
     clientLoans?: LoanEntity[];
 }

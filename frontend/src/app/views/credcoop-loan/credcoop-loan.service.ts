@@ -29,7 +29,7 @@ export class CredcoopLoanService {
       throw new Error('Token not available');
     }    
     const headers = new HttpHeaders().set('Authorization', token);
-    const url = 'http://localhost:8080/client-credcoop/select-client';
+    const url = 'http://localhost:8080/credcoop-client/select-client';
    
     return this.http.get<select2Client[]>(url, { headers });
   }

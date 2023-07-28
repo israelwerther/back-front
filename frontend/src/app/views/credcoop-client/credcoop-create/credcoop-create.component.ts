@@ -5,7 +5,7 @@ import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-client-credcoop-create',
+  selector: 'app-credcoop-client-create',
   templateUrl: './credcoop-create.component.html',
   styleUrls: ['./credcoop-create.component.css'],
 })

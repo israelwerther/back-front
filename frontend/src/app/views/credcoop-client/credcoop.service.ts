@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientCredcoopService {
-  private apiUrl = 'http://localhost:8080/client-credcoop';
+  private apiUrl = 'http://localhost:8080/credcoop-client';
   currentPage = 1;
   itemsPerPage = 10;
 
@@ -61,7 +61,7 @@ export class ClientCredcoopService {
 
   getTotalClientCredcoop(token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
-    let apiUrl =  `${this.apiUrl}/total-client-credcoop`;
+    let apiUrl =  `${this.apiUrl}/total-credcoop-client`;
     return this.http.get<any>(apiUrl, { headers });
   }
 
@@ -69,7 +69,7 @@ export class ClientCredcoopService {
     return this.apollo.watchQuery<any>({
       query: gql`
         query {
-          allClientCredcoops {
+          credcoopClients {
             id
             clientName
           }
