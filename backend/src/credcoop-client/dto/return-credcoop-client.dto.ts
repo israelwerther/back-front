@@ -1,4 +1,4 @@
-import { ReturnCredcoopClientAddressDto } from "src/client-address/dto/return-client-credcoop-address.dto";
+import { ReturnCredcoopClientAddressDto } from "src/client-address/dto/return-credcoop-client-address.dto";
 import { CredcoopClientEntity } from "../entities/credcoop-client.entity";
 import { ReturnClientLoanDto } from "src/loan/dto/return-client-loan.dto";
 
