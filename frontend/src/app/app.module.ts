@@ -13,9 +13,9 @@ import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { AddressListComponent } from './views/address-list/address-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClientCredcoopComponent } from './views/credcoop-client/credcoop.component';
-import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
-import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
+import { CredcoopClientComponent } from './views/credcoop-client/credcoop.component';
+import { CredcoopClientCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
+import { CredcoopClientListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CredcoopClientUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
@@ -33,9 +33,9 @@ import { GraphQLModule } from './graphql.module';
     UserComponent,
     AuthComponent,
     AddressListComponent,
-    ClientCredcoopComponent,
-    ClientCredcoopCreateComponent,
-    ClientCredcoopListComponent,
+    CredcoopClientComponent,
+    CredcoopClientCreateComponent,
+    CredcoopClientListComponent,
     CredcoopClientUpdateComponent,   
     CredcoopLoanComponent,
     CredcoopLoanCreateComponent

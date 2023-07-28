@@ -31,7 +31,7 @@ export class CredcoopClientService {
     return this.http.get<any>(apiUrl, { headers });
   }
 
-  deleteClientCredcoop(id: number, token: string): Observable<void> {
+  deleteCredcoopClient(id: number, token: string): Observable<void> {
     const headers = new HttpHeaders().set('Authorization', token);
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url, { headers });
@@ -59,13 +59,13 @@ export class CredcoopClientService {
     });
   }
 
-  getTotalClientCredcoop(token: string): Observable<any> {
+  getTotalCredcoopClient(token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
     let apiUrl =  `${this.apiUrl}/total-credcoop-client`;
     return this.http.get<any>(apiUrl, { headers });
   }
 
-  getClientCredcoops() {
+  getCredcoopClientsGraph() {
     return this.apollo.watchQuery<any>({
       query: gql`
         query {

@@ -6,9 +6,9 @@ import { AddressComponent } from './views/address/address.component';
 import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { AddressListComponent } from './views/address-list/address-list.component';
-import { ClientCredcoopComponent } from './views/credcoop-client/credcoop.component';
-import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
-import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
+import { CredcoopClientComponent } from './views/credcoop-client/credcoop.component';
+import { CredcoopClientCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
+import { CredcoopClientListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { CredcoopClientUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
@@ -22,15 +22,15 @@ const routes: Routes = [
   // Credcoop
   {
     path: 'credcoop',
-    component: ClientCredcoopComponent,
+    component: CredcoopClientComponent,
   },
   {
     path: 'cadastrar-cliente-credcoop',
-    component: ClientCredcoopCreateComponent,
+    component: CredcoopClientCreateComponent,
   },
   {
     path: 'credcoop-lista',
-    component: ClientCredcoopListComponent,
+    component: CredcoopClientListComponent,
   },
   {
     path: 'credcoop-atualiza/:id',

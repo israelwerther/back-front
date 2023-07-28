@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     
     const token = localStorage.getItem('token_storage');
     if (token) {
-      this.credcoopClientService.getTotalClientCredcoop(token).subscribe({
+      this.credcoopClientService.getTotalCredcoopClient(token).subscribe({
         next:(response) => {
           this.totalClientCredcoop = response.totalClientCredcoop;
         },

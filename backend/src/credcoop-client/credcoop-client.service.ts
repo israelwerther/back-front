@@ -14,8 +14,8 @@ export class CredcoopClientService {
     private readonly credcoopClientRepository: Repository<CredcoopClientEntity>,
   ) { }
 
-  async createCredcoopClient(createClientCredcoopDto: CreateCredcoopClientDto): Promise<CredcoopClientEntity> {
-    return await this.credcoopClientRepository.save(createClientCredcoopDto);
+  async createCredcoopClient(createCredcoopClientDto: CreateCredcoopClientDto): Promise<CredcoopClientEntity> {
+    return await this.credcoopClientRepository.save(createCredcoopClientDto);
   }
 
   async getAllCredcoopClient(

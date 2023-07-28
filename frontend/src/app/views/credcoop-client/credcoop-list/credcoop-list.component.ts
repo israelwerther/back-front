@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './credcoop-list.component.html',
   styleUrls: ['./credcoop-list.component.css']
 })
-export class ClientCredcoopListComponent {
+export class CredcoopClientListComponent {
   clients: any[] = [];
   pages: number[] = [];
   totalPages: number = 0;
@@ -76,7 +76,7 @@ export class ClientCredcoopListComponent {
   deleteClient(id: number): void {
     const token = localStorage.getItem('token_storage');
     if (token) {
-      this.credcoopClientService.deleteClientCredcoop(id, token).subscribe({
+      this.credcoopClientService.deleteCredcoopClient(id, token).subscribe({
         next: () => {
           console.log('Cliente excluído com sucesso');
           this.credcoopClientService.getCredcoopClients(token).subscribe({

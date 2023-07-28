@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './credcoop-create.component.html',
   styleUrls: ['./credcoop-create.component.css'],
 })
-export class ClientCredcoopCreateComponent {
+export class CredcoopClientCreateComponent {
   constructor(
     private credcoopClientService: CredcoopClientService,
     private fb: FormBuilder,
