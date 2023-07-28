@@ -53,8 +53,8 @@ export class ClientCredcoopService {
     return user;
   }
 
-  findAll() {
-    return `This action returns all clientCredcoop`;
+  async findAll(): Promise<ClientCredcoopEntity[]> {
+    return await this.clientCredcoopRepository.find();
   }
 
   async findOne(id: number): Promise<ClientCredcoopEntity> {

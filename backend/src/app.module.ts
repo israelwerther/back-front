@@ -16,17 +16,21 @@ import { ClientAddressModule } from './client-address/client-address.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserResolver } from './graphql/resolver/user.resolver';
+import { ClientCredcoopEntity } from './client-credcoop/entities/client-credcoop.entity';
+import { ClientCredcoopResolver } from './graphql/resolver/client-credcoop.resolver';
+import { ClientCredcoopService } from './client-credcoop/client-credcoop.service';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      // playground: false,
-      autoSchemaFile: true,
-    }),
     ConfigModule.forRoot({
       envFilePath: ['.env.development.local'],
     }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: true,
+      autoSchemaFile: true,
+    }),
+    TypeOrmModule.forFeature([ClientCredcoopEntity]),
     TypeOrmModule.forRoot({
       type: 'postgres',
       database: process.env.DB_DATABASE,
@@ -56,7 +60,9 @@ import { UserResolver } from './graphql/resolver/user.resolver';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    UserResolver
+    UserResolver,
+    ClientCredcoopResolver, 
+    ClientCredcoopService,
   ],
 })
 export class AppModule { }
