@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientCredcoopService } from '../credcoop.service';
-import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
+import { CredcoopClientService } from '../credcoop.service';
+import { CredcoopClient } from 'src/app/interfaces/CredcoopClient';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ClientCredcoopCreateComponent {
   constructor(
-    private clientCredcoopService: ClientCredcoopService,
+    private credcoopClientService: CredcoopClientService,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -74,7 +74,7 @@ export class ClientCredcoopCreateComponent {
   onSubmit() {
     if (this.profileForm.valid) {
       console.log('O fomulário foi valido');
-      const clientData: ClientCredcoop = {
+      const clientData: CredcoopClient = {
         clientName: this.profileForm.value.clientName,
         cpf: this.profileForm.value.cpf,
         idCard: this.profileForm.value.idCard,
@@ -84,7 +84,7 @@ export class ClientCredcoopCreateComponent {
       const token = localStorage.getItem('token_storage');
 
       if (token) {
-        this.clientCredcoopService.createCredcoopClient(clientData, token).subscribe({
+        this.credcoopClientService.createCredcoopClient(clientData, token).subscribe({
             next: () => {
               this.router.navigate(['credcoop-lista']);
             },
@@ -94,7 +94,7 @@ export class ClientCredcoopCreateComponent {
           });
       }
     } else {
-      this.clientCredcoopService.markFormGroupTouched(this.profileForm);
+      this.credcoopClientService.markFormGroupTouched(this.profileForm);
       this.missingFields();
     }
   }

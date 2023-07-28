@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientCredcoopService {
+export class CredcoopClientService {
   private apiUrl = 'http://localhost:8080/credcoop-client';
   currentPage = 1;
   itemsPerPage = 10;

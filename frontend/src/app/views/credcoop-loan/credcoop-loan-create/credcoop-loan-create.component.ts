@@ -3,7 +3,7 @@ import { Loan } from 'src/app/interfaces/loan';
 import { CredcoopLoanService } from '../credcoop-loan.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClientCredcoopService } from '../../credcoop-client/credcoop.service';
+import { CredcoopClientService } from '../../credcoop-client/credcoop.service';
 
 @Component({
   selector: 'app-credcoop-loan-create',
@@ -21,7 +21,7 @@ export class CredcoopLoanCreateComponent {
     private credcoopLoanService: CredcoopLoanService,
     private fb: FormBuilder,
     private router: Router,
-    private clientCredcoopService: ClientCredcoopService
+    private credcoopClientService: CredcoopClientService
   ) {}
 
   getTodayDate(): string {
@@ -71,7 +71,7 @@ export class CredcoopLoanCreateComponent {
 
   // clients: select2Client[] = [];
   loadClients() {
-    this.clientCredcoopService.getClientCredcoops().subscribe((result) => {
+    this.credcoopClientService.getClientCredcoops().subscribe((result) => {
       this.clients = result.data.credcoopClients;
       console.log("Agata", this.clients)
     });

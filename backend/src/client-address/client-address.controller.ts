@@ -11,12 +11,12 @@ import { UserType } from 'src/user/enum/user-type.enum';
 export class ClientAddressController {
   constructor(private readonly clientAddressService: ClientAddressService) { }
 
-  @Post('/:clientCredcoopId')
+  @Post('/:credcoopClientId')
   create(
     @Body() createClientAddressDto: CreateClientAddressDto,
-    @Param('clientCredcoopId') clientCredcoopId: number
+    @Param('credcoopClientId') credcoopClientId: number
   ): Promise<ClientAddressEntity> {
-    return this.clientAddressService.createClientCredcoopAddress(createClientAddressDto, clientCredcoopId);
+    return this.clientAddressService.createCredcoopClientAddress(createClientAddressDto, credcoopClientId);
   }
 
   @Get()

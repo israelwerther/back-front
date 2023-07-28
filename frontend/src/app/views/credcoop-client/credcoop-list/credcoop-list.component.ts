@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClientCredcoopService } from '../credcoop.service';
+import { CredcoopClientService } from '../credcoop.service';
 import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
 
@@ -22,7 +22,7 @@ export class ClientCredcoopListComponent {
   };
 
   constructor(
-    public clientCredcoopService: ClientCredcoopService,
+    public credcoopClientService: CredcoopClientService,
     private router: Router
   ) { }
 
@@ -30,7 +30,7 @@ export class ClientCredcoopListComponent {
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.clientCredcoopService.getCredcoopClients(token).subscribe({
+      this.credcoopClientService.getCredcoopClients(token).subscribe({
         next: (response) => {
           this.clients = response.items;
           this.totalItems = response.meta.totalItems;
@@ -50,8 +50,8 @@ export class ClientCredcoopListComponent {
       const token = localStorage.getItem('token_storage');
 
       if (token) {
-        this.clientCredcoopService.currentPage = page;
-        this.clientCredcoopService.getCredcoopClients(token).subscribe(
+        this.credcoopClientService.currentPage = page;
+        this.credcoopClientService.getCredcoopClients(token).subscribe(
           response => {
             this.clients = response.items;
           },
@@ -76,10 +76,10 @@ export class ClientCredcoopListComponent {
   deleteClient(id: number): void {
     const token = localStorage.getItem('token_storage');
     if (token) {
-      this.clientCredcoopService.deleteClientCredcoop(id, token).subscribe({
+      this.credcoopClientService.deleteClientCredcoop(id, token).subscribe({
         next: () => {
           console.log('Cliente excluído com sucesso');
-          this.clientCredcoopService.getCredcoopClients(token).subscribe({
+          this.credcoopClientService.getCredcoopClients(token).subscribe({
             next: (response) => {
               this.clients = response.items;
             }
@@ -96,7 +96,7 @@ export class ClientCredcoopListComponent {
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.clientCredcoopService.getCredcoopClients(token, this.searchName).subscribe({
+      this.credcoopClientService.getCredcoopClients(token, this.searchName).subscribe({
         next: (response) => {
           this.clients = response.items;
           this.totalItems = response.meta.totalItems;

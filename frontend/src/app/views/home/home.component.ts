@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { ClientCredcoopService } from '../credcoop-client/credcoop.service';
+import { CredcoopClientService } from '../credcoop-client/credcoop.service';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +12,13 @@ export class HomeComponent implements OnInit {
   totalClients!: number;
   totalClientCredcoop: number = 0;
 
-  constructor(private clientCredcoopService: ClientCredcoopService) { }
+  constructor(private credcoopClientService: CredcoopClientService) { }
 
   ngOnInit(): void {
     
     const token = localStorage.getItem('token_storage');
     if (token) {
-      this.clientCredcoopService.getTotalClientCredcoop(token).subscribe({
+      this.credcoopClientService.getTotalClientCredcoop(token).subscribe({
         next:(response) => {
           this.totalClientCredcoop = response.totalClientCredcoop;
         },
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
     // const token = localStorage.getItem('token_storage');
     // if (token) {
-    //   this.clientCredcoopService.getCredcoopClients(token).subscribe({
+    //   this.credcoopClientService.getCredcoopClients(token).subscribe({
     //     next: (response) => {
     //       this.totalItemsInDatabase = response.meta.totalItemsInDatabase;
     //     }

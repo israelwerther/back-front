@@ -9,7 +9,7 @@ import { AddressListComponent } from './views/address-list/address-list.componen
 import { ClientCredcoopComponent } from './views/credcoop-client/credcoop.component';
 import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
 import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
-import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
+import { CredcoopClientUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
 
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'credcoop-atualiza/:id',
-    component: ClientCredcoopUpdateComponent,
+    component: CredcoopClientUpdateComponent,
   },
   {
     path: 'states',

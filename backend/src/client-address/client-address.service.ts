@@ -14,14 +14,14 @@ export class ClientAddressService {
     private readonly credcoopClientService: CredcoopClientService,
   ) { }
 
-  async createClientCredcoopAddress(
+  async createCredcoopClientAddress(
     createClientAddressDto: CreateClientAddressDto,
-    clientCredcoopId: number
+    credcoopClientId: number
   ): Promise<ClientAddressEntity> {
-    await this.credcoopClientService.findClientCredcoopById(clientCredcoopId);
+    await this.credcoopClientService.findCredcoopClientId(credcoopClientId);
     return this.clientAddressRepository.save({
       ...createClientAddressDto,
-      clientCredcoopId,
+      credcoopClientId,
     });
   }
 

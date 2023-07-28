@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientCredcoop } from 'src/app/interfaces/ClientCredcoop';
-import { ClientCredcoopService } from '../credcoop.service';
+import { CredcoopClient } from 'src/app/interfaces/CredcoopClient';
+import { CredcoopClientService } from '../credcoop.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 
@@ -11,7 +11,7 @@ import { ClientAddress } from 'src/app/interfaces/ClientAddress';
   templateUrl: './credcoop-update.component.html',
   styleUrls: ['./credcoop-update.component.css']
 })
-export class ClientCredcoopUpdateComponent implements OnInit {
+export class CredcoopClientUpdateComponent implements OnInit {
   clientId: string="";
 
   profileForm = this.fb.group({
@@ -24,7 +24,7 @@ export class ClientCredcoopUpdateComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private clientCredcoopService: ClientCredcoopService,
+    private credcoopClientService: CredcoopClientService,
   ) {}
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ClientCredcoopUpdateComponent implements OnInit {
   getClientData(id: string) {
     const token = localStorage.getItem('token_storage');
     if (token) {
-      this.clientCredcoopService.getClientById(id, token).subscribe(
+      this.credcoopClientService.getClientById(id, token).subscribe(
         (clientData) => {          
           this.profileForm.patchValue({
             clientName: clientData.clientName,
@@ -97,7 +97,7 @@ export class ClientCredcoopUpdateComponent implements OnInit {
   }
 
   onSubmit() {
-    const clientData: ClientCredcoop = {
+    const clientData: CredcoopClient = {
       clientName: this.profileForm.value.clientName,
       cpf: this.profileForm.value.cpf,
       idCard: this.profileForm.value.idCard,
@@ -107,7 +107,7 @@ export class ClientCredcoopUpdateComponent implements OnInit {
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.clientCredcoopService.updateCredcoopClient(this.clientId, clientData, token).subscribe(
+      this.credcoopClientService.updateCredcoopClient(this.clientId, clientData, token).subscribe(
         () => {
           console.log('Cliente atualizado com sucesso');
         },

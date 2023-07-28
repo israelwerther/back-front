@@ -1,6 +1,6 @@
 import { ClientAddressEntity } from '../entities/client-address.entity';
 
-export class ReturnClientCredcoopAddressDto {
+export class ReturnCredcoopClientAddressDto {
     id: number;
     zipCode: string
     street: string

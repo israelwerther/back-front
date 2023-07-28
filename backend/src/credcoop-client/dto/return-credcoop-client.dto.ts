@@ -1,14 +1,14 @@
-import { ReturnClientCredcoopAddressDto } from "src/client-address/dto/return-client-credcoop-address.dto";
+import { ReturnCredcoopClientAddressDto } from "src/client-address/dto/return-client-credcoop-address.dto";
 import { CredcoopClientEntity } from "../entities/credcoop-client.entity";
 import { ReturnClientLoanDto } from "src/loan/dto/return-client-loan.dto";
 
 
-export class ReturnClientCredcoopDto {
+export class ReturnCredcoopClientDto {
     id: number;
     clientName: string;
     cpf: string;
     idCard: string;
-    clientAddresses?: ReturnClientCredcoopAddressDto[];
+    clientAddresses?: ReturnCredcoopClientAddressDto[];
     clientLoans?: ReturnClientLoanDto[];
 
     constructor(credcoopClientEntity: CredcoopClientEntity) {
@@ -17,7 +17,7 @@ export class ReturnClientCredcoopDto {
         this.cpf = credcoopClientEntity.cpf;
 
         this.clientAddresses = credcoopClientEntity.clientAddresses
-            ? credcoopClientEntity.clientAddresses.map((clientAddress) => new ReturnClientCredcoopAddressDto(clientAddress))
+            ? credcoopClientEntity.clientAddresses.map((clientAddress) => new ReturnCredcoopClientAddressDto(clientAddress))
             : undefined;
         
         this.clientLoans = credcoopClientEntity.clientLoans

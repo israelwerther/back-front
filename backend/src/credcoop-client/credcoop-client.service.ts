@@ -1,38 +1,38 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCredcoopClientDto } from './dto/create-credcoop-client.dto';
-import { UpdateClientCredcoopDto } from './dto/update-credcoop-client.dto';
+import { UpdateCredcoopClientDto } from './dto/update-credcoop-client.dto';
 import { CredcoopClientEntity } from './entities/credcoop-client.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { paginate, Pagination, IPaginationOptions, } from 'nestjs-typeorm-paginate';
-import { ReturnClientCredcoopDto } from './dto/return-credcoop-client.dto';
+import { ReturnCredcoopClientDto } from './dto/return-credcoop-client.dto';
 
 @Injectable()
 export class CredcoopClientService {
   constructor(
     @InjectRepository(CredcoopClientEntity)
-    private readonly clientCredcoopRepository: Repository<CredcoopClientEntity>,
+    private readonly credcoopClientRepository: Repository<CredcoopClientEntity>,
   ) { }
 
   async createCredcoopClient(createClientCredcoopDto: CreateCredcoopClientDto): Promise<CredcoopClientEntity> {
-    return await this.clientCredcoopRepository.save(createClientCredcoopDto);
+    return await this.credcoopClientRepository.save(createClientCredcoopDto);
   }
 
-  async getAllClientCredcoop(
+  async getAllCredcoopClient(
     options: IPaginationOptions & { clientName?: string }
-  ): Promise<Pagination<ReturnClientCredcoopDto>> {
-    const queryBuilder = this.clientCredcoopRepository.createQueryBuilder('c');
+  ): Promise<Pagination<ReturnCredcoopClientDto>> {
+    const queryBuilder = this.credcoopClientRepository.createQueryBuilder('c');
     queryBuilder.select(['c.id', 'c.clientName', 'c.cpf']).orderBy('c.clientName', 'ASC');
 
     if (options.clientName) {
       queryBuilder.where('c.clientName ILIKE :clientName', { clientName: `%${options.clientName}%` });
     }
 
-    return paginate<ReturnClientCredcoopDto>(queryBuilder, options);
+    return paginate<ReturnCredcoopClientDto>(queryBuilder, options);
   }
 
-  async getClientsIdAndName(options: { clientName?: string }): Promise<ReturnClientCredcoopDto[]> {
-    const queryBuilder = this.clientCredcoopRepository.createQueryBuilder('c');
+  async getClientsIdAndName(options: { clientName?: string }): Promise<ReturnCredcoopClientDto[]> {
+    const queryBuilder = this.credcoopClientRepository.createQueryBuilder('c');
     queryBuilder.select(['c.id', 'c.clientName']).orderBy('c.clientName', 'ASC');
   
     if (options.clientName) {
@@ -42,23 +42,23 @@ export class CredcoopClientService {
     return queryBuilder.getMany();
   }
 
-  async findClientCredcoopById(ClientCredcoopId: number): Promise<CredcoopClientEntity> {
-    const user = await this.clientCredcoopRepository.findOne({
-      where: { id: ClientCredcoopId },
+  async findCredcoopClientId(credcoopClientId: number): Promise<CredcoopClientEntity> {
+    const user = await this.credcoopClientRepository.findOne({
+      where: { id: credcoopClientId },
     });
 
     if (!user) {
-      throw new NotFoundException(`User ${ClientCredcoopId} not found`);
+      throw new NotFoundException(`User ${credcoopClientId} not found`);
     }
     return user;
   }
 
   async findAll(): Promise<CredcoopClientEntity[]> {
-    return await this.clientCredcoopRepository.find();
+    return await this.credcoopClientRepository.find();
   }
 
   async findOne(id: number): Promise<CredcoopClientEntity> {
-    return await this.clientCredcoopRepository.findOne({
+    return await this.credcoopClientRepository.findOne({
       where: {
         id: id,
       },
@@ -66,8 +66,8 @@ export class CredcoopClientService {
     });
   }
 
-  async editClient(id: number, updatedData: ReturnClientCredcoopDto): Promise<CredcoopClientEntity> {
-    const existingClient = await this.clientCredcoopRepository.findOne({
+  async editClient(id: number, updatedData: ReturnCredcoopClientDto): Promise<CredcoopClientEntity> {
+    const existingClient = await this.credcoopClientRepository.findOne({
       where: {
         id: id,
       },
@@ -78,25 +78,25 @@ export class CredcoopClientService {
       throw new NotFoundException('Cliente não encontrado.');
     }
 
-    Object.assign(existingClient, updatedData); ReturnClientCredcoopDto
-    return this.clientCredcoopRepository.save(existingClient);
+    Object.assign(existingClient, updatedData); ReturnCredcoopClientDto
+    return this.credcoopClientRepository.save(existingClient);
   }
 
-  async deleteClientCredcoop(ClientCredcoopId: number): Promise<void> {
-    const clientCredcoop = await this.clientCredcoopRepository.findOne({
-      where: { id: ClientCredcoopId },
+  async deleteCredcoopClient(credcoopClientId: number): Promise<void> {
+    const credcoopClient = await this.credcoopClientRepository.findOne({
+      where: { id: credcoopClientId },
     });
-    if (!clientCredcoop) {
-      throw new NotFoundException(`ClientCredcoop ${ClientCredcoopId} not found`);
+    if (!credcoopClient) {
+      throw new NotFoundException(`credcoopClient ${credcoopClientId} not found`);
     }
-    await this.clientCredcoopRepository.remove(clientCredcoop);
+    await this.credcoopClientRepository.remove(credcoopClient);
   }
 
   async getTotalItemsInDatabase(): Promise<number> {
-    return this.clientCredcoopRepository.count();
+    return this.credcoopClientRepository.count();
   }
 
-  async getTotalClientCredcoop(): Promise<number> {
-    return this.clientCredcoopRepository.count();
+  async getTotalCredcoopClient(): Promise<number> {
+    return this.credcoopClientRepository.count();
   }
 }

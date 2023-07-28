@@ -11,7 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { LoanModule } from './loan/loan.module';
-import { ClientCredcoopModule } from './credcoop-client/credcoop-client.module';
+import { CredcoopClientModule } from './credcoop-client/credcoop-client.module';
 import { ClientAddressModule } from './client-address/client-address.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -51,7 +51,7 @@ import { CredcoopClientService } from './credcoop-client/credcoop-client.service
     AuthModule,
     JwtModule,
     LoanModule,
-    ClientCredcoopModule,
+    CredcoopClientModule,
     ClientAddressModule,
   ],
   controllers: [],
@@ -61,7 +61,7 @@ import { CredcoopClientService } from './credcoop-client/credcoop-client.service
       useClass: RolesGuard,
     },
     UserResolver,
-    CredcoopClientResolver, 
+    CredcoopClientResolver,
     CredcoopClientService,
   ],
 })

@@ -17,7 +17,7 @@ import { ClientCredcoopComponent } from './views/credcoop-client/credcoop.compon
 import { ClientCredcoopCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
 import { ClientCredcoopListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ClientCredcoopUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
+import { CredcoopClientUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
 import { GraphQLModule } from './graphql.module';
@@ -36,7 +36,7 @@ import { GraphQLModule } from './graphql.module';
     ClientCredcoopComponent,
     ClientCredcoopCreateComponent,
     ClientCredcoopListComponent,
-    ClientCredcoopUpdateComponent,   
+    CredcoopClientUpdateComponent,   
     CredcoopLoanComponent,
     CredcoopLoanCreateComponent
   ],

@@ -1,16 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, DefaultValuePipe, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { CredcoopClientService } from './credcoop-client.service';
 import { CreateCredcoopClientDto } from './dto/create-credcoop-client.dto';
-import { UpdateClientCredcoopDto } from './dto/update-credcoop-client.dto';
 import { Roles } from 'src/decorators/roles.decorators';
 import { UserType } from 'src/user/enum/user-type.enum';
-import { ReturnClientCredcoopDto } from './dto/return-credcoop-client.dto';
+import { ReturnCredcoopClientDto } from './dto/return-credcoop-client.dto';
 import { CredcoopClientEntity } from './entities/credcoop-client.entity';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Roles(UserType.User)
 @Controller('credcoop-client')
-export class ClientCredcoopController {
+export class CredcoopClientController {
   constructor(private readonly credcoopClientService: CredcoopClientService) { }
 
   @UsePipes(ValidationPipe)
@@ -24,11 +23,11 @@ export class ClientCredcoopController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
     @Query('clientName') clientName?: string
-  ): Promise<Pagination<ReturnClientCredcoopDto>> {
+  ): Promise<Pagination<ReturnCredcoopClientDto>> {
     limit = limit > 100 ? 100 : limit;
     const options = { page, limit, clientName };
 
-    const data = await this.credcoopClientService.getAllClientCredcoop(options);
+    const data = await this.credcoopClientService.getAllCredcoopClient(options);
 
     const totalItemsInDatabase = await this.credcoopClientService.getTotalItemsInDatabase();
     
@@ -42,15 +41,15 @@ export class ClientCredcoopController {
   }
 
   @Get(':select-client')
-  async getClientsIdAndName(clientName?: string): Promise<ReturnClientCredcoopDto[]> {
+  async getClientsIdAndName(clientName?: string): Promise<ReturnCredcoopClientDto[]> {
     return this.credcoopClientService.getClientsIdAndName({ clientName });
   }
 
   @Get(':total-credcoop-client')
-  async returnTotalClientCredcoop() {
-    const totalClientCredcoop = await this.credcoopClientService.getTotalClientCredcoop();
+  async returnTotalCredcoopClient() {
+    const totalCredcoopClient = await this.credcoopClientService.getTotalCredcoopClient();
     return { 
-      totalClientCredcoop: totalClientCredcoop
+      totalCredcoopClient: totalCredcoopClient
     };
   }
 
@@ -64,21 +63,21 @@ export class ClientCredcoopController {
     const client = await this.credcoopClientService.findOne(id);
 
     if (!client) {
-      throw new NotFoundException('ClientCredcoop not found.');
+      throw new NotFoundException('Credcoop Client not found.');
     }
 
     return client;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() returnClientCredcoopDto: ReturnClientCredcoopDto) {
-    return this.credcoopClientService.editClient(+id, returnClientCredcoopDto);
+  update(@Param('id') id: string, @Body() returnCredcoopClientDto: ReturnCredcoopClientDto) {
+    return this.credcoopClientService.editClient(+id, returnCredcoopClientDto);
   }
 
   @Delete(':id')
-  async deleteClientCredcoop(@Param('id') id: number): Promise<void> {
+  async deleteCredcoopClient(@Param('id') id: number): Promise<void> {
     try {
-      await this.credcoopClientService.deleteClientCredcoop(id);
+      await this.credcoopClientService.deleteCredcoopClient(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw new NotFoundException(error.message);
