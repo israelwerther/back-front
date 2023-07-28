@@ -3,7 +3,7 @@ import { Loan } from 'src/app/interfaces/loan';
 import { CredcoopLoanService } from '../credcoop-loan.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select2Client } from 'src/app/interfaces/select2Client';
+import { ClientCredcoopService } from '../../credcoop-client/credcoop.service';
 
 @Component({
   selector: 'app-credcoop-loan-create',
@@ -11,6 +11,7 @@ import { select2Client } from 'src/app/interfaces/select2Client';
   styleUrls: ['./credcoop-loan-create.component.css']
 })
 export class CredcoopLoanCreateComponent {
+  clients: any[]=[];
 
   ngOnInit() {
     this.loadClients();
@@ -19,7 +20,8 @@ export class CredcoopLoanCreateComponent {
   constructor(
     private credcoopLoanService: CredcoopLoanService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private clientCredcoopService: ClientCredcoopService
   ) {}
 
   getTodayDate(): string {
@@ -31,7 +33,7 @@ export class CredcoopLoanCreateComponent {
   }
 
   loanForm = this.fb.group({
-    clientLoanId:[21, Validators.required],
+    clientLoanId:[null, Validators.required],
     loanAmount: [100, Validators.required],
     startDate: [this.getTodayDate(), Validators.required],
     amountOfInstallments: [1, Validators.required],
@@ -66,17 +68,13 @@ export class CredcoopLoanCreateComponent {
     }
   }
 
-  clients: select2Client[] = [];
+
+  // clients: select2Client[] = [];
   loadClients() {
-    this.credcoopLoanService.select2Client().subscribe(
-      (data) => {
-        this.clients = data;
-        console.log('Lista de clientes:', this.clients);
-      },
-      (error) => {
-        console.error('Erro ao obter a lista de clientes:', error);
-      }
-    );
+    this.clientCredcoopService.getClientCredcoops().subscribe((result) => {
+      this.clients = result.data.allClientCredcoops;
+      console.log("Agata", this.clients)
+    });
   }
 
 }

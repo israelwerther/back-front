@@ -19,9 +19,8 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="clientLoanId" class="form-label">Cliente</label>
-                                    <ng-select  formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id">
-                                    <ng-option [value]="-1" disabled selected>Selecione o seu estado</ng-option>
-                                        <ng-option *ngFor="let client of clients" [value]="[client.id]">
+                                    <ng-select formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id" placeholder="Selecione um Cliente Credcoop">
+                                        <ng-option *ngFor="let client of clients" [value]="client.id" class="text-uppercase">
                                             {{ client.clientName }}
                                         </ng-option>
                                     </ng-select>

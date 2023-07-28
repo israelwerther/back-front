@@ -4,10 +4,10 @@
 .ng-select .ng-select-container {    
     min-height: 1px !important;
     height: calc(1.5em + 0.5rem + 2px) !important;
-    padding: 0.25rem 0.5rem;
     font-size: .875rem;
     line-height: 1.5;
     border-radius: 0.2rem;
+    text-transform: uppercase;
 }
 
 .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container{

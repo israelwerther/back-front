@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
+import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class ClientCredcoopService {
   currentPage = 1;
   itemsPerPage = 10;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apollo: Apollo) { }
 
   createCredcoopClient(clientData: any, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
@@ -62,6 +63,19 @@ export class ClientCredcoopService {
     const headers = new HttpHeaders().set('Authorization', token);
     let apiUrl =  `${this.apiUrl}/total-client-credcoop`;
     return this.http.get<any>(apiUrl, { headers });
+  }
+
+  getClientCredcoops() {
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query {
+          allClientCredcoops {
+            id
+            clientName
+          }
+        }
+      `,
+    }).valueChanges;
   }
 
 }
