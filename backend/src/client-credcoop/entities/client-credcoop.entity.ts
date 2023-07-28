@@ -1,13 +1,17 @@
 import { ClientAddressEntity } from "src/client-address/entities/client-address.entity";
 import { LoanEntity } from "src/loan/entities/loan.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @Entity({ name: "client_credcoop" })
+@ObjectType()
 export class ClientCredcoopEntity {
     @PrimaryGeneratedColumn('rowid')
+    @Field(() => Int)
     id: number;
 
     @Column({ name: 'client_name', nullable: true })
+    @Field({ nullable: true })
     clientName: string
 
     @Column({ name: 'cpf', nullable: true })
