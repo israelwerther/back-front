@@ -13,9 +13,17 @@ import { JwtModule } from '@nestjs/jwt';
 import { LoanModule } from './loan/loan.module';
 import { ClientCredcoopModule } from './client-credcoop/client-credcoop.module';
 import { ClientAddressModule } from './client-address/client-address.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { UserResolver } from './graphql/resolver/user.resolver';
 
 @Module({
   imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      // playground: false,
+      autoSchemaFile: true,
+    }),
     ConfigModule.forRoot({
       envFilePath: ['.env.development.local'],
     }),
@@ -48,6 +56,7 @@ import { ClientAddressModule } from './client-address/client-address.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    UserResolver
   ],
 })
 export class AppModule { }
