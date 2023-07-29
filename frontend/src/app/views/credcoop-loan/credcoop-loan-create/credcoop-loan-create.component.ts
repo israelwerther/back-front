@@ -14,7 +14,7 @@ export class CredcoopLoanCreateComponent {
   clients: any[]=[];
 
   ngOnInit() {
-    this.loadClients();
+    this.loadCredcoopClientIdAndName();
   }
 
   constructor(
@@ -68,10 +68,8 @@ export class CredcoopLoanCreateComponent {
     }
   }
 
-
-  // clients: select2Client[] = [];
-  loadClients() {
-    this.credcoopClientService.getCredcoopClientsGraph().subscribe((result) => {
+  loadCredcoopClientIdAndName() {
+    this.credcoopClientService.getCredcoopClientIdAndName().subscribe((result) => {
       this.clients = result.data.credcoopClients;
       console.log("Agata", this.clients)
     });

@@ -27,29 +27,13 @@ export class CredcoopClientController {
     limit = limit > 100 ? 100 : limit;
     const options = { page, limit, clientName };
 
-    const data = await this.credcoopClientService.getAllCredcoopClient(options);
-
-    const totalItemsInDatabase = await this.credcoopClientService.getTotalItemsInDatabase();
+    const data = await this.credcoopClientService.getAllCredcoopClient(options);    
     
     return {
       items: data.items,
       meta: {
         ...data.meta,
-        totalItemsInDatabase,
       },
-    };
-  }
-
-  @Get(':select-client')
-  async getClientsIdAndName(clientName?: string): Promise<ReturnCredcoopClientDto[]> {
-    return this.credcoopClientService.getClientsIdAndName({ clientName });
-  }
-
-  @Get(':total-credcoop-client')
-  async returnTotalCredcoopClient() {
-    const totalCredcoopClient = await this.credcoopClientService.getTotalCredcoopClient();
-    return { 
-      totalCredcoopClient: totalCredcoopClient
     };
   }
 
