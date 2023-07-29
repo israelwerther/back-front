@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CredcoopClientService } from '../credcoop.service';
 import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-credcoop-client-list',
   templateUrl: './credcoop-list.component.html',
   styleUrls: ['./credcoop-list.component.css']
 })
-export class CredcoopClientListComponent {
+export class CredcoopClientListComponent implements OnInit {
   clients: any[] = [];
   pages: number[] = [];
   totalPages: number = 0;
   totalItems = 0;
-  totalItemsInDatabase = 0;
   searchName: string = '';
 
   config: PaginationInstance = {
@@ -27,14 +27,16 @@ export class CredcoopClientListComponent {
   ) { }
 
   ngOnInit() {
-    const token = localStorage.getItem('token_storage');
+    this.loadCredcoopClients()
+  }  
 
+  loadCredcoopClients() {
+    const token = localStorage.getItem('token_storage');
     if (token) {
       this.credcoopClientService.getCredcoopClients(token).subscribe({
         next: (response) => {
           this.clients = response.items;
           this.totalItems = response.meta.totalItems;
-          this.totalItemsInDatabase = response.meta.totalItemsInDatabase;
           this.updateTotalPages(this.totalItems);
         },
         error: (error) => {
@@ -42,7 +44,9 @@ export class CredcoopClientListComponent {
         }
       });
     }
+    
   }
+
 
   changePage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
@@ -84,6 +88,7 @@ export class CredcoopClientListComponent {
               this.clients = response.items;
             }
           });
+          this.loadCredcoopClients();
         },
         error: (error) => {
           console.error('Erro ao excluir o cliente:', error);

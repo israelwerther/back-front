@@ -1,3 +1,7 @@
+label {
+    padding-top: 20px;
+}
+
 .col-12.col-md-9.border-right-md {
     border-right: 1px solid #ccc;
 }
