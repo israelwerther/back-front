@@ -14,7 +14,7 @@ import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 export class CredcoopClientUpdateComponent implements OnInit {
   clientId: string="";
 
-  profileForm = this.fb.group({
+  profileEditForm = this.fb.group({
     clientName: ['', Validators.required],
     cpf: ['', Validators.required],
     idCard: ['', Validators.required],
@@ -39,7 +39,7 @@ export class CredcoopClientUpdateComponent implements OnInit {
     if (token) {
       this.credcoopClientService.getClientById(id, token).subscribe(
         (clientData) => {          
-          this.profileForm.patchValue({
+          this.profileEditForm.patchValue({
             clientName: clientData.clientName,
             cpf: clientData.cpf,
             idCard: clientData.idCard,
@@ -56,7 +56,7 @@ export class CredcoopClientUpdateComponent implements OnInit {
   
 
   setAddresses(addresses: ClientAddress[]) {
-    const addressArray = this.profileForm.get('addresses') as FormArray;
+    const addressArray = this.profileEditForm.get('addresses') as FormArray;
     addresses.forEach((address) => {
       addressArray.push(
         this.fb.group({
@@ -74,7 +74,7 @@ export class CredcoopClientUpdateComponent implements OnInit {
   }
 
   get addresses() {
-    return this.profileForm.get('addresses') as FormArray;
+    return this.profileEditForm.get('addresses') as FormArray;
   }
 
   addAddress() {
@@ -98,10 +98,10 @@ export class CredcoopClientUpdateComponent implements OnInit {
 
   onSubmit() {
     const clientData: CredcoopClient = {
-      clientName: this.profileForm.value.clientName,
-      cpf: this.profileForm.value.cpf,
-      idCard: this.profileForm.value.idCard,
-      clientAddresses: this.profileForm.value.addresses as ClientAddress[]
+      clientName: this.profileEditForm.value.clientName,
+      cpf: this.profileEditForm.value.cpf,
+      idCard: this.profileEditForm.value.idCard,
+      clientAddresses: this.profileEditForm.value.addresses as ClientAddress[]
     };
 
     const token = localStorage.getItem('token_storage');
