@@ -2,30 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CredcoopClient } from 'src/app/interfaces/CredcoopClient';
 import { CredcoopClientService } from '../credcoop.service';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientAddress } from 'src/app/interfaces/ClientAddress';
-
 
 @Component({
   selector: 'app-credcoop-client-update',
   templateUrl: './credcoop-update.component.html',
-  styleUrls: ['./credcoop-update.component.css']
+  styleUrls: ['./credcoop-update.component.css'],
 })
 export class CredcoopClientUpdateComponent implements OnInit {
-  clientId: string="";
-
-  profileEditForm = this.fb.group({
-    clientName: ['', Validators.required],
-    cpf: ['', Validators.required],
-    idCard: ['', Validators.required],
-    addresses: this.fb.array([])
-  });
+  clientId: string = '';
+  profileForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private credcoopClientService: CredcoopClientService,
-  ) {}
+    private credcoopClientService: CredcoopClientService
+  ) {
+    this.profileForm = this.createProfileEditForm();
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -34,17 +29,26 @@ export class CredcoopClientUpdateComponent implements OnInit {
     });
   }
 
+  createProfileEditForm() {
+    return this.fb.group({
+      clientName: ['', Validators.required],
+      cpf: ['', Validators.required],
+      idCard: ['', Validators.required],
+      addresses: this.fb.array([]),
+    });
+  }
+
   getClientData(id: string) {
     const token = localStorage.getItem('token_storage');
     if (token) {
       this.credcoopClientService.getClientById(id, token).subscribe(
-        (clientData) => {          
-          this.profileEditForm.patchValue({
+        (clientData) => {
+          this.createProfileEditForm().patchValue({
             clientName: clientData.clientName,
             cpf: clientData.cpf,
             idCard: clientData.idCard,
           });
-          
+
           this.setAddresses(clientData.clientAddresses);
         },
         (error) => {
@@ -53,10 +57,11 @@ export class CredcoopClientUpdateComponent implements OnInit {
       );
     }
   }
-  
 
   setAddresses(addresses: ClientAddress[]) {
-    const addressArray = this.profileEditForm.get('addresses') as FormArray;
+    const addressArray = this.createProfileEditForm().get(
+      'addresses'
+    ) as FormArray;
     addresses.forEach((address) => {
       addressArray.push(
         this.fb.group({
@@ -67,14 +72,14 @@ export class CredcoopClientUpdateComponent implements OnInit {
           city: [address.city],
           buildingNumber: [address.buildingNumber],
           referencePoint: [address.referencePoint],
-          complement: [address.complement]
+          complement: [address.complement],
         })
       );
     });
   }
 
   get addresses() {
-    return this.profileEditForm.get('addresses') as FormArray;
+    return this.createProfileEditForm().get('addresses') as FormArray;
   }
 
   addAddress() {
@@ -98,24 +103,26 @@ export class CredcoopClientUpdateComponent implements OnInit {
 
   onSubmit() {
     const clientData: CredcoopClient = {
-      clientName: this.profileEditForm.value.clientName,
-      cpf: this.profileEditForm.value.cpf,
-      idCard: this.profileEditForm.value.idCard,
-      clientAddresses: this.profileEditForm.value.addresses as ClientAddress[]
+      clientName: this.createProfileEditForm().value.clientName,
+      cpf: this.createProfileEditForm().value.cpf,
+      idCard: this.createProfileEditForm().value.idCard,
+      clientAddresses: this.createProfileEditForm().value
+        .addresses as ClientAddress[],
     };
 
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.credcoopClientService.updateCredcoopClient(this.clientId, clientData, token).subscribe(
-        () => {
-          console.log('Cliente atualizado com sucesso');
-        },
-        (error) => {
-          console.error('Erro ao atualizar o cliente:', error);
-        }
-      );
+      this.credcoopClientService
+        .updateCredcoopClient(this.clientId, clientData, token)
+        .subscribe(
+          () => {
+            console.log('Cliente atualizado com sucesso');
+          },
+          (error) => {
+            console.error('Erro ao atualizar o cliente:', error);
+          }
+        );
     }
   }
-
 }
