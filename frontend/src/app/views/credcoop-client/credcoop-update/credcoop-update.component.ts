@@ -5,21 +5,22 @@ import { CredcoopClientService } from '../credcoop.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientAddress } from 'src/app/interfaces/ClientAddress';
 
+
 @Component({
   selector: 'app-credcoop-client-update',
   templateUrl: './credcoop-update.component.html',
-  styleUrls: ['./credcoop-update.component.css'],
+  styleUrls: ['./credcoop-update.component.css']
 })
 export class CredcoopClientUpdateComponent implements OnInit {
-  clientId: string = '';
-  profileForm: FormGroup;
+  clientId: string="";
+  profileEditForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private credcoopClientService: CredcoopClientService
+    private credcoopClientService: CredcoopClientService,
   ) {
-    this.profileForm = this.createProfileEditForm();
+    this.profileEditForm = this.createProfileEditForm();
   }
 
   ngOnInit() {
@@ -28,27 +29,29 @@ export class CredcoopClientUpdateComponent implements OnInit {
       this.getClientData(this.clientId);
     });
   }
+  
 
   createProfileEditForm() {
     return this.fb.group({
       clientName: ['', Validators.required],
       cpf: ['', Validators.required],
       idCard: ['', Validators.required],
-      addresses: this.fb.array([]),
-    });
+      addresses: this.fb.array([])
+    });  
   }
+
 
   getClientData(id: string) {
     const token = localStorage.getItem('token_storage');
     if (token) {
       this.credcoopClientService.getClientById(id, token).subscribe(
-        (clientData) => {
-          this.createProfileEditForm().patchValue({
+        (clientData) => {          
+          this.profileEditForm.patchValue({
             clientName: clientData.clientName,
             cpf: clientData.cpf,
             idCard: clientData.idCard,
           });
-
+          
           this.setAddresses(clientData.clientAddresses);
         },
         (error) => {
@@ -58,10 +61,9 @@ export class CredcoopClientUpdateComponent implements OnInit {
     }
   }
 
+
   setAddresses(addresses: ClientAddress[]) {
-    const addressArray = this.createProfileEditForm().get(
-      'addresses'
-    ) as FormArray;
+    const addressArray = this.profileEditForm.get('addresses') as FormArray;
     addresses.forEach((address) => {
       addressArray.push(
         this.fb.group({
@@ -72,14 +74,14 @@ export class CredcoopClientUpdateComponent implements OnInit {
           city: [address.city],
           buildingNumber: [address.buildingNumber],
           referencePoint: [address.referencePoint],
-          complement: [address.complement],
+          complement: [address.complement]
         })
       );
     });
   }
 
   get addresses() {
-    return this.createProfileEditForm().get('addresses') as FormArray;
+    return this.profileEditForm.get('addresses') as FormArray;
   }
 
   addAddress() {
@@ -103,26 +105,24 @@ export class CredcoopClientUpdateComponent implements OnInit {
 
   onSubmit() {
     const clientData: CredcoopClient = {
-      clientName: this.createProfileEditForm().value.clientName,
-      cpf: this.createProfileEditForm().value.cpf,
-      idCard: this.createProfileEditForm().value.idCard,
-      clientAddresses: this.createProfileEditForm().value
-        .addresses as ClientAddress[],
+      clientName: this.profileEditForm.value.clientName,
+      cpf: this.profileEditForm.value.cpf,
+      idCard: this.profileEditForm.value.idCard,
+      clientAddresses: this.profileEditForm.value.addresses as ClientAddress[]
     };
 
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.credcoopClientService
-        .updateCredcoopClient(this.clientId, clientData, token)
-        .subscribe(
-          () => {
-            console.log('Cliente atualizado com sucesso');
-          },
-          (error) => {
-            console.error('Erro ao atualizar o cliente:', error);
-          }
-        );
+      this.credcoopClientService.updateCredcoopClient(this.clientId, clientData, token).subscribe(
+        () => {
+          console.log('Cliente atualizado com sucesso');
+        },
+        (error) => {
+          console.error('Erro ao atualizar o cliente:', error);
+        }
+      );
     }
   }
+
 }

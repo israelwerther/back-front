@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CredcoopClientService } from '../credcoop.service';
 import { PaginationInstance } from 'ngx-pagination';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { CredcoopClientUpdateComponent } from '../credcoop-update/credcoop-update.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-credcoop-client-list',
   templateUrl: './credcoop-list.component.html',
-  styleUrls: ['./credcoop-list.component.css']
+  styleUrls: ['./credcoop-list.component.css'],
+  providers: [CredcoopClientUpdateComponent]
 })
 export class CredcoopClientListComponent implements OnInit {
   clients: any[] = [];
@@ -16,6 +18,8 @@ export class CredcoopClientListComponent implements OnInit {
   totalItems = 0;
   searchName: string = '';
 
+  profileForm: FormGroup;
+
   config: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1,
@@ -23,12 +27,19 @@ export class CredcoopClientListComponent implements OnInit {
 
   constructor(
     public credcoopClientService: CredcoopClientService,
+    public credcoopClientUpdateComponent: CredcoopClientUpdateComponent,
     private router: Router
-  ) { }
+  ) {
+    this.profileForm = this.credcoopClientUpdateComponent.createProfileEditForm();
+  }
 
   ngOnInit() {
-    this.loadCredcoopClients()
-  }  
+    this.loadCredcoopClients();
+  }
+
+  getModalProfileEditForm() {
+
+  }
 
   loadCredcoopClients() {
     const token = localStorage.getItem('token_storage');
@@ -41,12 +52,10 @@ export class CredcoopClientListComponent implements OnInit {
         },
         error: (error) => {
           console.error('Erro ao obter os clientes:', error);
-        }
+        },
       });
     }
-    
   }
-
 
   changePage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
@@ -56,10 +65,10 @@ export class CredcoopClientListComponent implements OnInit {
       if (token) {
         this.credcoopClientService.currentPage = page;
         this.credcoopClientService.getCredcoopClients(token).subscribe(
-          response => {
+          (response) => {
             this.clients = response.items;
           },
-          error => {
+          (error) => {
             console.error('Erro ao obter os clientes:', error);
           }
         );
@@ -86,13 +95,13 @@ export class CredcoopClientListComponent implements OnInit {
           this.credcoopClientService.getCredcoopClients(token).subscribe({
             next: (response) => {
               this.clients = response.items;
-            }
+            },
           });
           this.loadCredcoopClients();
         },
         error: (error) => {
           console.error('Erro ao excluir o cliente:', error);
-        }
+        },
       });
     }
   }
@@ -101,21 +110,22 @@ export class CredcoopClientListComponent implements OnInit {
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.credcoopClientService.getCredcoopClients(token, this.searchName).subscribe({
-        next: (response) => {
-          this.clients = response.items;
-          this.totalItems = response.meta.totalItems;
-          this.updateTotalPages(this.totalItems);
-        },
-        error: (error) => {
-          console.error('Erro ao obter os clientes:', error);
-        }
-      });
+      this.credcoopClientService
+        .getCredcoopClients(token, this.searchName)
+        .subscribe({
+          next: (response) => {
+            this.clients = response.items;
+            this.totalItems = response.meta.totalItems;
+            this.updateTotalPages(this.totalItems);
+          },
+          error: (error) => {
+            console.error('Erro ao obter os clientes:', error);
+          },
+        });
     }
   }
 
   editClient(id: string) {
     this.router.navigate([`/credcoop-atualiza/${id}`]);
   }
-
 }
