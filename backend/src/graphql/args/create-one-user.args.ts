@@ -1,8 +1,8 @@
 import { ArgsType, Field } from "@nestjs/graphql";
-import { createOneUserInput } from "../input/create-one-user.unput";
+// import { createOneUserInput } from "../input/create-one-user.unput";
 
-@ArgsType()
-export class createOneUserArgs {
-    @Field()
-    data: createOneUserInput
-}
+// @ArgsType()
+// export class createOneUserArgs {
+//     @Field()
+//     data: createOneUserInput
+// }

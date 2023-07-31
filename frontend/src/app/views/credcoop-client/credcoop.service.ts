@@ -65,10 +65,11 @@ export class CredcoopClientService {
     return this.http.get<any>(apiUrl, { headers });
   }
 
-  getCredcoopClientIdAndName(): Observable<any> {
+  getQueryCredcoop(): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: gql`
         query {
+          credcoopClientsCount
           credcoopClients {
             id
             clientName

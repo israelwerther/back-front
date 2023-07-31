@@ -43,7 +43,9 @@ export class CredcoopClientService {
   }
 
   async findAll(): Promise<CredcoopClientEntity[]> {
-    return await this.credcoopClientRepository.find();
+    return await this.credcoopClientRepository.find({
+      order: { clientName: 'ASC' },
+    });
   }
 
   async findOne(id: number): Promise<CredcoopClientEntity> {
@@ -79,6 +81,10 @@ export class CredcoopClientService {
       throw new NotFoundException(`credcoopClient ${credcoopClientId} not found`);
     }
     await this.credcoopClientRepository.remove(credcoopClient);
+  }
+
+  async getTotalCredcoopClients(): Promise<number> {
+    return await this.credcoopClientRepository.count();
   }
 
 }
