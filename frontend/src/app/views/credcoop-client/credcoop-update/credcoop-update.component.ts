@@ -122,4 +122,16 @@ export class CredcoopClientUpdateComponent implements OnInit {
         );
     }
   }
+
+  // Acitive tabs
+  activeTab: string = 'v-pills-1';
+  activateTab(tabId: string) {
+    this.activeTab = tabId;
+    const tabButton = document.getElementById(tabId + '-tab') as HTMLElement;
+    tabButton.click();
+  }
+
+  isActiveTab(tabId: string): boolean {
+    return this.activeTab === tabId;
+  }
 }
