@@ -1,0 +1,7 @@
+/* @media print {
+    .col-9,
+    .col-12 {
+      float: none !important;
+      width: 100% !important;
+    }
+} */

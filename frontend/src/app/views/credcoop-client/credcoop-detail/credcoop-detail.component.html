@@ -1,0 +1,50 @@
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-2 text-gray-800">Detalhes do cliente Credcoop</h1>    
+</div>
+<div class="row">
+    <div [class.col-12]="isPrinting" [class.col-md-9]="!isPrinting" class="col-12 col-md-9">
+        <div *ngIf="clientData">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {{ clientData.clientName }}
+                    </h6>                    
+                    <a onclick="window.print()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm d-print-none">
+                        <i type="button" class="fas fa-download fa-sm text-white-50"></i>
+                        Imprimir
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2>Informações Pessoais</h2>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><strong>Nome:</strong> {{ clientData.clientName }}</p>
+                            <p><strong>CPF:</strong> {{ clientData.cpf }}</p>
+                            <p><strong>RG:</strong> {{ clientData.idCard }}</p>
+                        </div>
+                        <div class="col-6">
+                            ...
+                        </div>
+                    </div>
+                    <h2>Endereço(s) do Cliente</h2>
+                    <div class="row">
+                            <div *ngFor="let address of addresses" class="col-6">                            
+                                <p><strong>CEP:</strong> {{ address.zipCode }}</p>
+                                <p><strong>Endereço:</strong> {{ address.street }}</p>
+                                <p><strong>Número:</strong> {{ address.buildingNumber }}</p>
+                                <p><strong>Bairro:</strong> {{ address.neighborhood }}</p>
+                                <p><strong>Cidade:</strong> {{ address.city }}</p>
+                                <p><strong>Estado:</strong> {{ address.state }}</p>
+                                <p>
+                                    <strong>Ponto de referência:</strong> {{ address.referencePoint }}
+                                </p>
+                                <p><strong>Complemento:</strong> {{ address.complement }}</p>
+                                <hr />                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

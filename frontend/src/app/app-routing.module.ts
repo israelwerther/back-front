@@ -10,9 +10,8 @@ import { CredcoopClientComponent } from './views/credcoop-client/credcoop.compon
 import { CredcoopClientCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
 import { CredcoopClientListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { CredcoopClientUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
-import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
-
+import { CredcoopDetailComponent } from './views/credcoop-client/credcoop-detail/credcoop-detail.component';
 
 const routes: Routes = [
   {
@@ -37,6 +36,10 @@ const routes: Routes = [
     component: CredcoopClientUpdateComponent,
   },
   {
+    path: 'credcoop-detalhes/:id',
+    component: CredcoopDetailComponent,
+  },
+  {
     path: 'states',
     component: StatesCitiesComponent,
   },
@@ -56,7 +59,7 @@ const routes: Routes = [
     path: 'login',
     component: AuthComponent,
   },
-  // Loans 
+  // Loans
   {
     path: 'realizar-emprestimo',
     component: CredcoopLoanCreateComponent,
@@ -67,4 +70,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

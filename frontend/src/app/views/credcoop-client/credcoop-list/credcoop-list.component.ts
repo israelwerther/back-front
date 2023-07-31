@@ -30,8 +30,7 @@ export class CredcoopClientListComponent implements OnInit {
     public credcoopClientUpdateComponent: CredcoopClientUpdateComponent,
     private router: Router
   ) {
-    this.profileForm =
-      this.credcoopClientUpdateComponent.createProfileEditForm();
+    this.profileForm = this.credcoopClientUpdateComponent.createProfileEditForm();
   }
 
   ngOnInit() {
@@ -127,4 +126,8 @@ export class CredcoopClientListComponent implements OnInit {
   editClient(id: string) {
     this.router.navigate([`/credcoop-atualiza/${id}`]);
   }
+
+  detailClient(id: string) {
+    this.router.navigate([`/credcoop-detalhes/${id}`]);
+  }  
 }
