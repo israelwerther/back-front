@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
   selector: 'app-credcoop-client-list',
   templateUrl: './credcoop-list.component.html',
   styleUrls: ['./credcoop-list.component.css'],
-  providers: [CredcoopClientUpdateComponent]
+  providers: [CredcoopClientUpdateComponent],
 })
 export class CredcoopClientListComponent implements OnInit {
   clients: any[] = [];
@@ -30,16 +30,15 @@ export class CredcoopClientListComponent implements OnInit {
     public credcoopClientUpdateComponent: CredcoopClientUpdateComponent,
     private router: Router
   ) {
-    this.profileForm = this.credcoopClientUpdateComponent.createProfileEditForm();
+    this.profileForm =
+      this.credcoopClientUpdateComponent.createProfileEditForm();
   }
 
   ngOnInit() {
     this.loadCredcoopClients();
   }
 
-  getModalProfileEditForm() {
-
-  }
+  getModalProfileEditForm() {}
 
   loadCredcoopClients() {
     const token = localStorage.getItem('token_storage');
