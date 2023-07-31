@@ -25,12 +25,13 @@
                 </div>
             </div>
 
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
                     <tr>
                         <th>id</th>
                         <th>Nome</th>
                         <th>CPF</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -40,22 +41,35 @@
                         <th>Nome</th>
                         <th>CPF</th>
                         <th></th>
-                        <th></th>
+                        <th></th>                        
                     </tr>
                 </tfoot>
                 <tbody class="text-uppercase">
                     <tr *ngFor="let client of clients| paginate: {itemsPerPage: config.itemsPerPage, currentPage: config.currentPage, totalItems: totalItems}">
-                        <td>{{ client.id }}</td>
+                        <td style="margin-bottom: 0 !important;">{{ client.id }}</td>
                         <td>{{ client.clientName }}</td>
                         <td>{{ client.cpf }}</td>
-                        <td (click)="editClient(client.id)">
-                            <div type="button" class="btn-sm mx-1">
-                                <i class="text-success fas fa-pencil-alt"></i>
-                            </div>
-                        </td>
                         <td (click)="deleteClient(client.id)">
                             <div type="button" class="btn-sm mx-1">
                                 <i class="text-danger fas fa-trash"></i>
+                            </div>
+                        </td>
+                        <td class="d-flex justify-content-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item" type="button">
+                                        <i class="fas fa-fw fa-file-invoice mx-1"></i>Detalhes
+                                    </button>
+                                    <button (click)="editClient(client.id)" class="dropdown-item" type="button">
+                                        <i class="fas fa-fw fa-pencil-alt mx-1"></i>Editar
+                                    </button>
+                                    <button class="dropdown-item" type="button">
+                                        <i class="fas fa-fw fa-pencil-alt mx-1"></i>Something else here
+                                    </button>
+                                </div>
                             </div>
                         </td>
                     </tr>
