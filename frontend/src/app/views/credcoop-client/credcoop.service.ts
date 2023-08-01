@@ -76,6 +76,7 @@ export class CredcoopClientService {
           }
         }
       `,
+      fetchPolicy: 'network-only',
     }).valueChanges;
   }
 
