@@ -71,7 +71,6 @@ export class CredcoopLoanCreateComponent {
   loadQueryCredcoop() {
     this.credcoopClientService.getQueryCredcoop().subscribe((result) => {
       this.clients = result.data.credcoopClients;
-      console.log("Agata", this.clients)
     });
   }
 
