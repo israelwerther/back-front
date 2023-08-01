@@ -28,19 +28,22 @@
         Interface
     </div> -->
 
-    <li class="nav-item active mb-0">
-      <a class="nav-link d-flex align-items-center justify-content-center">        
+    <!-- <li class="nav-item active mb-0">
+      <a class="nav-link d-flex align-items-center justify-content-center">
         <span>CREDCOOP</span></a>
-    </li>
+    </li> -->
+
+    <!-- Credcoop Heading -->
+    <div class="sidebar-heading">Credcoop</div>
 
     <!-- Nav Item - Credcoop Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#credcoopCollapseTwo"
-        aria-expanded="true" aria-controls="credcoopCollapseTwo">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#credcoopCollapse"
+        aria-expanded="true" aria-controls="credcoopCollapse">
         <i class="fas fa-fw fa-user"></i>
         <span>Clientes</span>
       </a>
-      <div id="credcoopCollapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="credcoopCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <a [routerLink]="['credcoop']" routerLinkActive="active" class="collapse-item">Dashboard Credcoop</a>
           <a [routerLink]="['cadastrar-cliente-credcoop']" routerLinkActive="active" class="collapse-item">
@@ -53,12 +56,12 @@
 
     <!-- Nav Item - Loans Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#loanCredcoopCollapse"
+        aria-expanded="true" aria-controls="loanCredcoopCollapse">
         <i class="fas fa-fw fa-dollar-sign"></i>
         <span>Empréstimos</span>
       </a>
-      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div id="loanCredcoopCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Custom Utilities:</h6>
           <a [routerLink]="['realizar-emprestimo']" routerLinkActive="active" class="collapse-item">Realizar Empréstimo</a>
@@ -72,52 +75,47 @@
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <!-- Heading -->
-    <div class="sidebar-heading">Addons</div>
+    <!-- Credcoop Heading -->
+    <div class="sidebar-heading">Esctop</div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Esctop Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-        aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#esctopCollapse"
+        aria-expanded="true" aria-controls="esctopCollapse">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Clientes</span>
       </a>
-      <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div id="esctopCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Login Screens:</h6>
-          <a class="collapse-item" href="login.html">Login</a>
-          <a class="collapse-item" href="register.html">Register</a>
-          <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-          <div class="collapse-divider"></div>
-          <h6 class="collapse-header">Other Pages:</h6>
-          <a class="collapse-item" href="404.html">404 Page</a>
-          <a class="collapse-item" href="blank.html">Blank Page</a>
+          <a [routerLink]="['esctop']" routerLinkActive="active" class="collapse-item">Dashboard esctop</a>
+          <a [routerLink]="['cadastrar-cliente-esctop']" routerLinkActive="active" class="collapse-item">
+            Cadastrar Clientes
+          </a>
+          <a [routerLink]="['esctop-lista']" routerLinkActive="active" class="collapse-item">Listar Clientes</a>          
         </div>
       </div>
     </li>
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Loans Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-      <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#loanEsctopCollapse"
+        aria-expanded="true" aria-controls="loanEsctopCollapse">
+        <i class="fas fa-fw fa-dollar-sign"></i>
+        <span>Empréstimos</span>
+      </a>
+      <div id="loanEsctopCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Custom Utilities:</h6>
+          <a [routerLink]="['realizar-emprestimo']" routerLinkActive="active" class="collapse-item">Realizar Empréstimo</a>
+          <a class="collapse-item" href="utilities-border.html">Borders</a>
+          <a class="collapse-item" href="utilities-animation.html">Animations</a>
+          <a class="collapse-item" href="utilities-other.html">Other</a>
+        </div>
+      </div>
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block" />
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <!-- <div class="text-center d-none d-md-inline">
-      <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div> -->
-
+    <hr class="sidebar-divider" />
    
   </ul>
   <!-- End of Sidebar -->

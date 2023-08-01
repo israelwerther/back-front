@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CredcoopClientService } from './credcoop.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-credcoop-client',
   templateUrl: './credcoop.component.html',
   styleUrls: ['./credcoop.component.css'],
 })
-export class CredcoopClientComponent{
-  clients: any[]=[];
+export class CredcoopClientComponent implements OnInit{
+  totalCredcoopClients: number = 0;
 
   ngOnInit() {
-    this.loadQueryCredcoop();
+    this.loadQueryCredcoopClientCount();
   }
-  
-  constructor(   
-    private credcoopClientService: CredcoopClientService
-  ) {}
 
+  constructor(private credcoopClientService: CredcoopClientService) {}
 
-  loadQueryCredcoop() {
+  loadQueryCredcoopClientCount() {
     this.credcoopClientService.getQueryCredcoop().subscribe((result) => {
-      this.clients = result.data.credcoopClientsCount;
-      console.log("Agata", this.clients)
+      this.totalCredcoopClients = result.data.credcoopClientsCount;
     });
   }
-
 }

@@ -73,7 +73,6 @@ export class CredcoopClientCreateComponent {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      console.log('O fomulário foi valido');
       const clientData: CredcoopClient = {
         clientName: this.profileForm.value.clientName,
         cpf: this.profileForm.value.cpf,

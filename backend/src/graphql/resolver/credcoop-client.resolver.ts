@@ -9,7 +9,7 @@ export class CredcoopClientResolver {
 
   @Query(() => [CredcoopClientEntity])
   async credcoopClients(): Promise<CredcoopClientEntity[]> {
-    return this.credcoopClientService.findAll();
+    return await this.credcoopClientService.findAll();
   }
 
   @Query(() => Int)
