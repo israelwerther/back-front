@@ -25,21 +25,16 @@
                   </small>
                 </div>
                 <div class="col-sm-4">
-                  <label for="cpf" class="form-label">{{
-                    fieldLabels["cpf"]
-                    }}</label>
+                  <label for="cpf" class="form-label">{{ fieldLabels["cpf"] }}</label>
                   <input formControlName="cpf" class="form-control form-control-sm" id="cpf" />
-                  <small *ngIf=" profileForm.get('cpf')?.invalid && profileForm.get('cpf')?.touched " class="text-danger">
+                  <small *ngIf="profileForm.get('cpf')?.invalid && profileForm.get('cpf')?.touched " class="text-danger">
                     O {{ fieldLabels["cpf"] }} é obrigatório.
                   </small>
                 </div>
                 <div class="col-sm-4">
                   <label for="idCard" class="form-label">{{ fieldLabels["idCard"] }}</label>
                   <input formControlName="idCard" class="form-control form-control-sm" id="idCard" />
-                  <small *ngIf="
-                      profileForm.get('idCard')?.invalid &&
-                      profileForm.get('idCard')?.touched
-                    " class="text-danger">
+                  <small *ngIf="profileForm.get('idCard')?.invalid && profileForm.get('idCard')?.touched " class="text-danger">
                     O {{ fieldLabels["idCard"] }} é obrigatório.
                   </small>
                 </div>
@@ -112,7 +107,12 @@
             </div>
 
             <div [ngClass]="{ 'tab-pane': true, fade: true, show: isActiveTab('v-pills-2'), active: isActiveTab('v-pills-2') }" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-              <div class="row my-4">
+              <div class="row">
+                <div class="col-sm-12 pt-4">
+                  <h1>Sem conteudo ainda</h1>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col">
                   <a (click)="activateTab('v-pills-1')" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
@@ -132,11 +132,11 @@
 
             <div [ngClass]="{ 'tab-pane': true, fade: true, show: isActiveTab('v-pills-3'), active: isActiveTab('v-pills-3') }" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
               <div class="row">
-                <div class="col">
+                <div class="col-sm-12 pt-4">
                   <h1>Sem conteudo ainda</h1>
                 </div>
               </div>
-              <div class="row my-4">
+              <div class="row">
                 <div class="col">
                   <a (click)="activateTab('v-pills-2')" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
@@ -156,11 +156,11 @@
 
             <div [ngClass]="{ 'tab-pane': true, fade: true, show: isActiveTab('v-pills-4'), active: isActiveTab('v-pills-4') }" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
               <div class="row">
-                <div class="col">
+                <div class="col-sm-12 pt-4">
                   <h1>Sem conteudo ainda</h1>
                 </div>
               </div>
-              <div class="row mt-3">
+              <div class="row">
                 <div class="col-sm-12">
                   <a (click)="activateTab('v-pills-3')" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
@@ -186,7 +186,7 @@
 
             <button class="nav-link" [class.active]="isActiveTab('v-pills-2')" (click)="activateTab('v-pills-2')"
               type="button" role="tab" [attr.aria-controls]="'v-pills-2'" [attr.aria-selected]="isActiveTab('v-pills-2')">
-              Endereço
+              Local de Trabalho
             </button>
 
             <button class="nav-link" [class.active]="isActiveTab('v-pills-3')" (click)="activateTab('v-pills-3')"
@@ -198,6 +198,7 @@
               type="button" role="tab" [attr.aria-controls]="'v-pills-4'" [attr.aria-selected]="isActiveTab('v-pills-4')">
               Dados Bancários
             </button>
+            
           </div>
         </div>
       </div>
