@@ -53,6 +53,7 @@ export class CredcoopClientController {
     return client;
   }
 
+  @UsePipes(ValidationPipe)
   @Patch(':id')
   update(@Param('id') id: string, @Body() returnCredcoopClientDto: ReturnCredcoopClientDto) {
     return this.credcoopClientService.editClient(+id, returnCredcoopClientDto);
