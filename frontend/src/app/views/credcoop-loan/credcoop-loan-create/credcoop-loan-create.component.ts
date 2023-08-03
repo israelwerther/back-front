@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Loan } from 'src/app/interfaces/loan';
 import { CredcoopLoanService } from '../credcoop-loan.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CredcoopClientService } from '../../credcoop-client/credcoop.service';
 
@@ -11,7 +11,7 @@ import { CredcoopClientService } from '../../credcoop-client/credcoop.service';
   styleUrls: ['./credcoop-loan-create.component.css']
 })
 export class CredcoopLoanCreateComponent {
-  clients: any[]=[];
+  clients: any[] = [];
 
   ngOnInit() {
     this.loadQueryCredcoop();
@@ -22,7 +22,7 @@ export class CredcoopLoanCreateComponent {
     private fb: FormBuilder,
     private router: Router,
     private credcoopClientService: CredcoopClientService
-  ) {}
+  ) { }
 
   getTodayDate(): string {
     const today = new Date();
@@ -33,11 +33,43 @@ export class CredcoopLoanCreateComponent {
   }
 
   loanForm = this.fb.group({
-    clientLoanId:[null, Validators.required],
+    clientLoanId: [null, Validators.required],
     loanAmount: [100, Validators.required],
     startDate: [this.getTodayDate(), Validators.required],
     amountOfInstallments: [1, Validators.required],
+    installments: this.fb.array([
+      this.fb.group({
+        amount: [1000],
+        dueDate: [new Date(2023, 8, 1)],
+      }),
+    ]),
   });
+
+  get installments() {
+    return this.loanForm.get('installments') as FormArray;
+  }
+
+  addInstallments() {
+    const amountOfInstallments = this.loanForm.get('amountOfInstallments')?.value || 0;
+    const installmentsArray = this.loanForm.get('installments') as FormArray;
+
+    if (amountOfInstallments > installmentsArray.length) {
+      for (let i = installmentsArray.length; i < amountOfInstallments; i++) {
+        installmentsArray.push(this.fb.group({
+          amount: [1000],
+          dueDate: [new Date(2023, 8, 1)],
+        }));
+      }
+    }
+
+    else if (amountOfInstallments < installmentsArray.length) {
+
+      for (let i = installmentsArray.length; i > amountOfInstallments; i--) {
+        installmentsArray.removeAt(i - 1);
+      }
+
+    }
+  }
 
   onSubmitLoan() {
     if (this.loanForm.valid) {
@@ -51,18 +83,18 @@ export class CredcoopLoanCreateComponent {
         startDate: parsedStartDate,
         amountOfInstallments: this.loanForm.value.amountOfInstallments,
       };
-      
+
       this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
-          next: () => {
-            console.log("Empréstimo cadastrado com sucesso")
-            // this.router.navigate(['home']);
-          },
-          error: (error) => {
-            console.error('Erro ao cadastrar o cliente e endereço:', error);
-          },
-        });
-      }
-      else {
+        next: () => {
+          console.log("Empréstimo cadastrado com sucesso")
+          this.router.navigate(['home']);
+        },
+        error: (error) => {
+          console.error('Erro ao cadastrar o cliente e endereço:', error);
+        },
+      });
+    }
+    else {
       console.log("invalid form")
       //this.missingFields();
     }
