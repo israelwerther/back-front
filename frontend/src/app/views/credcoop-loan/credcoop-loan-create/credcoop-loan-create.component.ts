@@ -39,37 +39,44 @@ export class CredcoopLoanCreateComponent {
     amountOfInstallments: [1, Validators.required],
     installments: this.fb.array([
       this.fb.group({
-        amount: [1000],
-        dueDate: [new Date(2023, 8, 1)],
+        amount: [100],
+        dueDate: [new Date(2023, 9, 1)],
       }),
     ]),
   });
 
   get installments() {
+    console.log('installments::: ', this.loanForm.get('installments'));
     return this.loanForm.get('installments') as FormArray;
   }
 
   addInstallments() {
     const amountOfInstallments = this.loanForm.get('amountOfInstallments')?.value || 0;
     const installmentsArray = this.loanForm.get('installments') as FormArray;
+    let startDate = this.loanForm.get('starDate')?.value;
+    const loanAmount = this.loanForm.get('loanAmount')?.value || 0;
 
+    let newAmount = loanAmount / amountOfInstallments;
+    newAmount = parseFloat(newAmount.toFixed(2))
+  
+    for (let i = 0; i < installmentsArray.length; i++) {
+      installmentsArray.at(i).get('amount')?.setValue(newAmount);
+    }
+  
     if (amountOfInstallments > installmentsArray.length) {
       for (let i = installmentsArray.length; i < amountOfInstallments; i++) {
         installmentsArray.push(this.fb.group({
-          amount: [1000],
-          dueDate: [new Date(2023, 8, 1)],
+          amount: newAmount,
+          dueDate: startDate
         }));
       }
-    }
-
-    else if (amountOfInstallments < installmentsArray.length) {
-
+    } else if (amountOfInstallments < installmentsArray.length) {
       for (let i = installmentsArray.length; i > amountOfInstallments; i--) {
         installmentsArray.removeAt(i - 1);
       }
-
     }
   }
+  
 
   onSubmitLoan() {
     if (this.loanForm.valid) {

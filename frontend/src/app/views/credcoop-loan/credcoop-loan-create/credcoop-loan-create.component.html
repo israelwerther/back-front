@@ -31,20 +31,17 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-3">
+								<div class="col-sm-4">
 									<label for="loanAmount" class="form-label">Valor</label>
-									<input type="number" formControlName="loanAmount"
-										class="form-control form-control-sm" id="loanAmount" />
+									<input (change)="addInstallments()" type="number" formControlName="loanAmount" class="form-control form-control-sm" id="loanAmount" />
 								</div>
-								<div class="col-sm-3">
-									<label for="startDate" class="form-label">Valor</label>
-									<input type="date" formControlName="startDate" class="form-control form-control-sm"
-										id="startDate" />
+								<div class="col-sm-4">
+									<label for="startDate" class="form-label">Data do empréstimo</label>
+									<input type="date" formControlName="startDate" class="form-control form-control-sm" id="startDate" />
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-4">
 									<label for="amountOfInstallments" class="form-label">Parcelas</label>
-									<input type="number" formControlName="amountOfInstallments" class="form-control form-control-sm" id="amountOfInstallments"
-										(change)="addInstallments()" />
+									<input (change)="addInstallments()"  type="number" formControlName="amountOfInstallments" class="form-control form-control-sm" id="amountOfInstallments" />
 								</div>
 							</div>
 						</div>
@@ -68,10 +65,9 @@
 							<div class="card-body">
 								<div class="row no-gutters align-items-center">
 									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Parcela
-											{{ i + 1 }}/{{installments.controls.length}}</div>
-										<input formControlName="amount" id="amount-{{ i }}"
-											class="form-control form-control-sm" />
+										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Parcela {{ i + 1 }}/{{ installments.controls.length }}</div>
+										<span >{{ installment.value.amount }}</span><br>
+										<span >{{ installment.value.dueDate| date:'dd/MM/yyyy' }}</span>
 									</div>
 									<div class="col-auto">
 										<i class="fas fa-user fa-cog fa-2x text-gray-300"></i>
