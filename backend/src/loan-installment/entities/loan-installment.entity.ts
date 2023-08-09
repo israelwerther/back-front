@@ -6,8 +6,8 @@ export class LoanInstallment {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'installment_amount', nullable: true })
-    installmentAmount: number;
+    @Column({ name: 'installment_value', nullable: true })
+    installmentValue: number;
 
     @Column({ name: 'loan_id', nullable: true })
     loanId: number;
