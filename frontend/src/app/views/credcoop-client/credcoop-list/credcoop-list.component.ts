@@ -35,9 +35,7 @@ export class CredcoopClientListComponent implements OnInit {
 
   ngOnInit() {
     this.loadCredcoopClients();
-  }
-
-  getModalProfileEditForm() {}
+  }  
 
   loadCredcoopClients() {
     const token = localStorage.getItem('token_storage');
