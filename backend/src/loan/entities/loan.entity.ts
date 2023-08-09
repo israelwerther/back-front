@@ -1,5 +1,6 @@
 import { CredcoopClientEntity } from "src/credcoop-client/entities/credcoop-client.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { LoanInstallment } from "src/loan-installment/entities/loan-installment.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 @Entity({ name: "loan" })
 export class LoanEntity {
     @PrimaryGeneratedColumn()
@@ -25,6 +26,12 @@ export class LoanEntity {
 
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
+
+    
+
+    @OneToMany(() => LoanInstallment, (installment) => installment.loan, { cascade: true })
+    @JoinColumn({ name: 'credcoop_client_id' })
+    installments?: LoanInstallment[];
 
     @Column({ name: 'client_loan_id', nullable: true })
     clientLoanId: number;

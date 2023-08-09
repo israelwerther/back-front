@@ -1,8 +1,25 @@
-export class CreateLoanDto {    
-    id: number;    
-    contractNumber: string;    
-    amount: number;    
-    interestRate: number;    
+import { IsDateString, IsNotEmpty, IsNumber, ValidateNested } from "class-validator";
+import { CreateLoanInstallmentDto } from "src/loan-installment/dto/create-loan-installment.dto";
+
+export class CreateLoanDto {
+    @IsNotEmpty()
+    contractNumber: string;
+
+    @IsNumber()
+    loanAmount: number;
+
+    @IsNumber()
+    interestRate: number;
+
+    @IsDateString()
     startDate: Date;
+
+    @IsNumber()
     amountOfInstallments: number;
+
+    @IsNumber()
+    clientLoanId: number;
+
+    @ValidateNested({ each: true })
+    installments: CreateLoanInstallmentDto[];
 }

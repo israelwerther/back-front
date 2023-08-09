@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,11 +9,22 @@ import { LoanEntity } from './entities/loan.entity';
 export class LoanService {
   constructor(
     @InjectRepository(LoanEntity)
-    private readonly LoanRepository: Repository<LoanEntity>,
-  ) { }
+    private readonly loanRepository: Repository<LoanEntity>,
+  ) {}
 
-  async createLoan(createCredcoopClientDto: CreateLoanDto): Promise<LoanEntity> {
-    return await this.LoanRepository.save(createCredcoopClientDto);
+  async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
+    return await this.loanRepository.save(createLoanDto);
+  }
+
+  async findLoanId(loanId: number): Promise<LoanEntity> {
+    const user = await this.loanRepository.findOne({
+      where: { id: loanId },
+    });
+
+    if (!user) {
+      throw new NotFoundException(`Loan ${loanId} not found`);
+    }
+    return user;
   }
 
   findAll() {
