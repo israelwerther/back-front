@@ -4,6 +4,8 @@ import { UpdateLoanDto } from './dto/update-loan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoanEntity } from './entities/loan.entity';
+import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
+import { ReturnClientLoanDto } from './dto/return-client-loan.dto';
 
 @Injectable()
 export class LoanService {
@@ -16,15 +18,28 @@ export class LoanService {
     return await this.loanRepository.save(createLoanDto);
   }
 
+  async getAllLoan(
+    options: IPaginationOptions & { contractNumber?: string }
+  ): Promise<Pagination<ReturnClientLoanDto>> {
+    const queryBuilder = this.loanRepository.createQueryBuilder('c');
+    queryBuilder.select(['c.id', 'c.contractNumber']).orderBy('c.contractNumber', 'ASC');
+
+    if (options.contractNumber) {
+      queryBuilder.where('c.contractNumber ILIKE :contractNumber', { contractNumber: `%${options.contractNumber}%` });
+    }
+
+    return paginate<ReturnClientLoanDto>(queryBuilder, options);
+  }
+
   async findLoanId(loanId: number): Promise<LoanEntity> {
-    const user = await this.loanRepository.findOne({
+    const loan = await this.loanRepository.findOne({
       where: { id: loanId },
     });
 
-    if (!user) {
+    if (!loan) {
       throw new NotFoundException(`Loan ${loanId} not found`);
     }
-    return user;
+    return loan;
   }
 
   findAll() {
