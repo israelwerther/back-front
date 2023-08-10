@@ -12,8 +12,6 @@ export class CredcoopLoanListComponent {
   private apiUrl = 'http://localhost:8080/loan';
   loans: any[] = [];
   pages: number[] = [];
-  currentPage = 1;
-  itemsPerPage = 10;
   totalItems = 0;
   totalPages: number = 0;
   searchContractNumber = "";
@@ -23,14 +21,14 @@ export class CredcoopLoanListComponent {
     currentPage: 1,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.loadCredcoopLoans();
-  }  
+  }
 
   loadCredcoopLoans() {
-    const token = localStorage.getItem('token_storage');    
+    const token = localStorage.getItem('token_storage');
     if (token) {
       this.getCredcoopLoans(token).subscribe({
         next: (response) => {
@@ -48,7 +46,7 @@ export class CredcoopLoanListComponent {
   getCredcoopLoans(token: string, contractNumber?: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
 
-    let apiUrl = `${this.apiUrl}?page=${this.currentPage}&limit=${this.itemsPerPage}`;
+    let apiUrl = `${this.apiUrl}?page=${this.config.currentPage}&limit=${this.config.itemsPerPage}`;
     if (contractNumber) {
       apiUrl += `&contractNumber=${contractNumber}`;
     }
@@ -61,15 +59,15 @@ export class CredcoopLoanListComponent {
 
     if (token) {
       this.getCredcoopLoans(token, this.searchContractNumber).subscribe({
-          next: (response) => {
-            this.loans = response.items;
-            this.totalItems = response.meta.totalItems;
-            this.updateTotalPages(this.totalItems);
-          },
-          error: (error) => {
-            console.error('Erro ao obter os clientes:', error);
-          },
-        });
+        next: (response) => {
+          this.loans = response.items;
+          this.totalItems = response.meta.totalItems;
+          this.updateTotalPages(this.totalItems);
+        },
+        error: (error) => {
+          console.error('Erro ao obter os clientes:', error);
+        },
+      });
     }
   }
 
@@ -79,7 +77,7 @@ export class CredcoopLoanListComponent {
       const token = localStorage.getItem('token_storage');
 
       if (token) {
-        this.currentPage = page;
+        this.config.currentPage = page;
         this.getCredcoopLoans(token).subscribe(
           (response) => {
             this.loans = response.items;
@@ -101,6 +99,6 @@ export class CredcoopLoanListComponent {
     this.totalPages = Math.ceil(totalItems / this.config.itemsPerPage);
     this.updatePages();
   }
-  
+
 
 }
