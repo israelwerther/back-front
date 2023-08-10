@@ -40,8 +40,7 @@ export class AuthComponent {
     if (this.isLoggedIn) {
       this.router.navigate(['/home']);
     }
-
-    console.log("Addddddddddddd")
+    
   }
 
 }
