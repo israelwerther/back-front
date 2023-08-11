@@ -9,11 +9,6 @@ export class LoanEntity {
   @Column({ name: 'contract_number', nullable: true })
   contractNumber: string;
 
-  @BeforeInsert()
-  generateContractNumber() {
-    this.contractNumber = `CONTRACT-${Date.now()}`;
-  }
-
   @Column({ name: 'loan_amount', nullable: true })
   loanAmount: number;
 
@@ -25,6 +20,12 @@ export class LoanEntity {
 
   @Column({ name: 'amount_of_installments', nullable: true })
   amountOfInstallments: number;
+  
+  @Column({ name: 'in_person_modality', default: true })
+  inPersonModality: boolean
+
+  @Column({ name: 'online_modality', default: false })
+  onlineModality: boolean
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -32,19 +33,18 @@ export class LoanEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => LoanInstallment, (installment) => installment.loan, {
-    cascade: true,
-  })
+  @OneToMany(() => LoanInstallment, (installment) => installment.loan, { cascade: true, })
   @JoinColumn({ name: 'credcoop_client_id' })
   installments?: LoanInstallment[];
 
   @Column({ name: 'client_loan_id', nullable: true })
   clientLoanId: number;
-  @ManyToOne(
-    () => CredcoopClientEntity,
-    (credcoopClient) => credcoopClient.clientLoans,
-    { onDelete: 'CASCADE', nullable: true },
-  )
+  @ManyToOne(() => CredcoopClientEntity, (credcoopClient) => credcoopClient.clientLoans, { onDelete: 'CASCADE', nullable: true })
   @JoinColumn({ name: 'client_loan_id', referencedColumnName: 'id' })
   credcoopClient?: CredcoopClientEntity;
+
+  @BeforeInsert()
+  generateContractNumber() {
+    this.contractNumber = `TESTE1-${Date.now()}`;
+  }
 }
