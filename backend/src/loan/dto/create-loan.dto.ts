@@ -2,9 +2,7 @@ import { IsDateString, IsNotEmpty, IsNumber, ValidateNested } from "class-valida
 import { CreateLoanInstallmentDto } from "src/loan-installment/dto/create-loan-installment.dto";
 
 export class CreateLoanDto {
-    @IsNotEmpty()
-    contractNumber: string;
-
+    
     @IsNumber()
     loanAmount: number;
 

@@ -15,7 +15,11 @@ export class LoanService {
   ) {}
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
-    return await this.loanRepository.save(createLoanDto);
+    console.log('=========');
+    const loan = new LoanEntity();
+    Object.assign(loan, createLoanDto);
+    this.loanRepository.create(loan);
+    return await this.loanRepository.save(loan);
   }
 
   async getAllLoan(

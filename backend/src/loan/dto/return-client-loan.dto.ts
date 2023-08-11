@@ -2,7 +2,7 @@ import { LoanEntity } from "../entities/loan.entity";
 
 export class ReturnClientLoanDto {
     id: number;    
-    contractNumber: string;    
+    contractNumber: string;
     loanAmount: number;    
     interestRate: number;    
     startDate: Date;
