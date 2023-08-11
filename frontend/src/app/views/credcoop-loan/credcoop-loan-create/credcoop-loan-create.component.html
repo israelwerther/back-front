@@ -21,9 +21,8 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<label for="clientLoanId" class="form-label">Cliente</label>
-									<ng-select formControlName="clientLoanId" [items]="clients" bindLabel="clientName"
-										bindValue="id" class="text-uppercase"
-										placeholder="Escolha o Cliente que deseja realizar o empréstimo">
+									<ng-select formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id"
+										class="text-uppercase" placeholder="Escolha o Cliente que deseja realizar o empréstimo">
 										<ng-option *ngFor="let client of clients" [value]="client.id">
 											{{ client.clientName }}
 										</ng-option>
@@ -33,7 +32,8 @@
 							<div class="row">
 								<div class="col-sm-4">
 									<label for="loanAmount" class="form-label">Valor</label>
-									<input (change)="addInstallments()" type="number" formControlName="loanAmount" class="form-control form-control-sm" id="loanAmount" />
+									<input (change)="addInstallments()" type="number" formControlName="loanAmount"
+										class="form-control form-control-sm" id="loanAmount" />
 								</div>
 								<div class="col-sm-4">
 									<label for="startDate" class="form-label">Data do empréstimo</label>
@@ -41,7 +41,8 @@
 								</div>
 								<div class="col-sm-4">
 									<label for="amountOfInstallments" class="form-label">Parcelas</label>
-									<input (change)="addInstallments()"  type="number" formControlName="amountOfInstallments" class="form-control form-control-sm" id="amountOfInstallments" />
+									<input (change)="addInstallments()" type="number" formControlName="amountOfInstallments"
+										class="form-control form-control-sm" id="amountOfInstallments" />
 								</div>
 							</div>
 						</div>
@@ -65,9 +66,10 @@
 							<div class="card-body">
 								<div class="row no-gutters align-items-center">
 									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Parcela {{ i + 1 }}/{{ installments.controls.length }}</div>
-										<span >{{ installment.value.amount }}</span><br>
-										<span >{{ installment.value.dueDate| date:'dd/MM/yyyy' }}</span>
+										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Parcela
+											{{ i + 1 }}/{{ installments.controls.length }}</div>
+										<span>{{ installment.value.amount }}</span><br>
+										<span>{{ installment.value.dueDate| date:'dd/MM/yyyy' }}</span>
 									</div>
 									<div class="col-auto">
 										<i class="fas fa-user fa-cog fa-2x text-gray-300"></i>

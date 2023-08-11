@@ -20,12 +20,12 @@ export class LoanEntity {
 
   @Column({ name: 'amount_of_installments', nullable: true })
   amountOfInstallments: number;
-  
+
   @Column({ name: 'in_person_modality', default: true })
-  inPersonModality: boolean
+  inPersonModality: boolean;
 
   @Column({ name: 'online_modality', default: false })
-  onlineModality: boolean
+  onlineModality: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -43,6 +43,7 @@ export class LoanEntity {
   @JoinColumn({ name: 'client_loan_id', referencedColumnName: 'id' })
   credcoopClient?: CredcoopClientEntity;
 
+  // Generate the contract number
   @BeforeInsert()
   generateContractNumber() {
     this.contractNumber = `TESTE1-${Date.now()}`;

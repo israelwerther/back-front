@@ -37,6 +37,9 @@ export class CredcoopLoanCreateComponent {
     loanAmount: [100, Validators.required],
     startDate: [this.getTodayDate(), Validators.required],
     amountOfInstallments: [1, Validators.required],
+    inPersonModality: [true],
+    onlineModality: [false],
+    interestRate: [5],
     installments: this.fb.array([
       this.fb.group({
         amount: [100],
@@ -46,7 +49,6 @@ export class CredcoopLoanCreateComponent {
   });
 
   get installments() {
-    console.log('installments::: ', this.loanForm.get('installments'));
     return this.loanForm.get('installments') as FormArray;
   }
 
@@ -89,6 +91,9 @@ export class CredcoopLoanCreateComponent {
         loanAmount: this.loanForm.value.loanAmount,
         startDate: parsedStartDate,
         amountOfInstallments: this.loanForm.value.amountOfInstallments,
+        inPersonModality: this.loanForm.value.inPersonModality,
+        onlineModality: this.loanForm.value.onlineModality,
+        interestRate: this.loanForm.value.interestRate,
       };
 
       this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
@@ -97,7 +102,7 @@ export class CredcoopLoanCreateComponent {
           this.router.navigate(['home']);
         },
         error: (error) => {
-          console.error('Erro ao cadastrar o cliente e endereço:', error);
+          console.error('Erro ao cadastrar o empréstimo:', error);
         },
       });
     }
