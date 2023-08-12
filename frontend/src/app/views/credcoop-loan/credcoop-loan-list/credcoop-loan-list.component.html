@@ -14,8 +14,9 @@
 		<div class="table-responsive">
 			<div class="d-none d-sm-inline-block form-inline float-right pb-2">
 				<div class="input-group">
-					<input [(ngModel)]="searchContractNumber" (keyup.enter)="searchLoans()" name="search" type="input"
-						class="form-control small" placeholder="Pesquisar..." aria-label="Search" aria-describedby="basic-addon2" />
+					<input [(ngModel)]="searchQuery" (keyup.enter)="searchLoans()" name="searchContractNumber" type="input"
+						class="form-control small" placeholder="Pesquisar por contrato..." aria-label="Search" aria-describedby="basic-addon2" />
+					
 					<div class="input-group-append">
 						<button (click)="searchLoans()" class="btn btn-primary" type="button">
 							<i class="fas fa-search fa-sm"></i>

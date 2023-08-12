@@ -23,18 +23,16 @@ export class LoanController {
   async getAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
-    @Query('contractNumber') contractNumber?: string
+    @Query('searchQuery') searchQuery?: string,
   ): Promise<Pagination<ReturnClientLoanDto>> {
     limit = limit > 100 ? 100 : limit;
-    const options = { page, limit, contractNumber };
+    const options = { page, limit, searchQuery };
 
     const data = await this.loanService.getAllLoan(options);
 
     return {
       items: data.items,
-      meta: {
-        ...data.meta,
-      },
+      meta: { ...data.meta }
     };
   }
 

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ export class CredcoopLoanListComponent {
   pages: number[] = [];
   totalItems = 0;
   totalPages: number = 0;
-  searchContractNumber = "";
+  searchQuery = "";
 
   config: PaginationInstance = {
     itemsPerPage: 10,
@@ -43,12 +43,17 @@ export class CredcoopLoanListComponent {
     }
   }
 
-  getCredcoopLoans(token: string, contractNumber?: string): Observable<any> {
+  getCredcoopLoans(token: string, searchQuery?: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
 
+    let params = new HttpParams();
+    if (searchQuery) {
+      params = params.set('searchQuery', searchQuery);
+    }
+
     let apiUrl = `${this.apiUrl}?page=${this.config.currentPage}&limit=${this.config.itemsPerPage}`;
-    if (contractNumber) {
-      apiUrl += `&contractNumber=${contractNumber}`;
+    if (searchQuery) {
+      apiUrl += `&searchQuery=${searchQuery}`;
     }
 
     return this.http.get<any>(apiUrl, { headers });
@@ -58,14 +63,14 @@ export class CredcoopLoanListComponent {
     const token = localStorage.getItem('token_storage');
 
     if (token) {
-      this.getCredcoopLoans(token, this.searchContractNumber).subscribe({
+      this.getCredcoopLoans(token, this.searchQuery).subscribe({
         next: (response) => {
           this.loans = response.items;
           this.totalItems = response.meta.totalItems;
           this.updateTotalPages(this.totalItems);
         },
         error: (error) => {
-          console.error('Erro ao obter os clientes:', error);
+          console.error('Erro ao obter os empréstimos:', error);
         },
       });
     }

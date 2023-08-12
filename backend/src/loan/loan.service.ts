@@ -21,9 +21,7 @@ export class LoanService {
     return await this.loanRepository.save(loan);
   }
 
-  async getAllLoan(
-    options: IPaginationOptions & { contractNumber?: string }
-  ): Promise<Pagination<ReturnClientLoanDto>> {
+  async getAllLoan( options: IPaginationOptions & { searchQuery?: string } ): Promise<Pagination<ReturnClientLoanDto>> {
     const queryBuilder = this.loanRepository.createQueryBuilder('loan');
     queryBuilder.select([
       'loan.id', 
@@ -32,9 +30,12 @@ export class LoanService {
       'loan.clientLoanId',
       'client.clientName',
     ]).orderBy('loan.createdAt', 'DESC');
-
-    if (options.contractNumber) {
-      queryBuilder.where('loan.contractNumber ILIKE :contractNumber', { contractNumber: `%${options.contractNumber}%` });
+    
+    if (options.searchQuery) {
+      queryBuilder.where(
+          'loan.contractNumber ILIKE :searchQuery OR client.clientName ILIKE :searchQuery',
+          { searchQuery: `%${options.searchQuery}%` }
+      );
     }
 
     queryBuilder.leftJoin('loan.credcoopClient', 'client', 'loan.clientLoanId = client.id');
