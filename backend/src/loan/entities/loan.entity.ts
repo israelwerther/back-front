@@ -48,4 +48,9 @@ export class LoanEntity {
   generateContractNumber() {
     this.contractNumber = `TESTE1-${Date.now()}`;
   }
+
+  @BeforeInsert()
+  generatesCalculationInstallments() {
+    
+  }
 }

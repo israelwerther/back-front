@@ -37,9 +37,8 @@ export class CredcoopLoanCreateComponent {
     loanAmount: [100, Validators.required],
     startDate: [this.getTodayDate(), Validators.required],
     amountOfInstallments: [1, Validators.required],
-    inPersonModality: [true],
-    onlineModality: [false],
     interestRate: [5],
+    modality: ['online', [Validators.required]],
     installments: this.fb.array([
       this.fb.group({
         amount: [100],
@@ -81,33 +80,32 @@ export class CredcoopLoanCreateComponent {
   
 
   onSubmitLoan() {
+    const startDateValue = this.loanForm.value.startDate;
+    const parsedStartDate = startDateValue ? new Date(startDateValue) : null;
+    const selectedModality = this.loanForm.value.modality;
+    
     if (this.loanForm.valid) {
-
-      const startDateValue = this.loanForm.value.startDate;
-      const parsedStartDate = startDateValue ? new Date(startDateValue) : null;
-
       const LoanData: Loan = {
         clientLoanId: this.loanForm.value.clientLoanId,
         loanAmount: this.loanForm.value.loanAmount,
         startDate: parsedStartDate,
         amountOfInstallments: this.loanForm.value.amountOfInstallments,
-        inPersonModality: this.loanForm.value.inPersonModality,
-        onlineModality: this.loanForm.value.onlineModality,
+        inPersonModality: selectedModality === 'inPerson',
+        onlineModality: selectedModality === 'online',
         interestRate: this.loanForm.value.interestRate,
       };
-
+  
       this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
         next: () => {
-          console.log("Empréstimo cadastrado com sucesso")
+          console.log("Empréstimo cadastrado com sucesso");
           this.router.navigate(['home']);
         },
         error: (error) => {
           console.error('Erro ao cadastrar o empréstimo:', error);
         },
       });
-    }
-    else {
-      console.log("invalid form")
+    } else {
+      console.log("Formulário inválido");
       //this.missingFields();
     }
   }
