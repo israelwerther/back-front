@@ -24,12 +24,20 @@ export class LoanService {
   async getAllLoan(
     options: IPaginationOptions & { contractNumber?: string }
   ): Promise<Pagination<ReturnClientLoanDto>> {
-    const queryBuilder = this.loanRepository.createQueryBuilder('c');
-    queryBuilder.select(['c.id', 'c.contractNumber']).orderBy('c.contractNumber', 'ASC');
+    const queryBuilder = this.loanRepository.createQueryBuilder('loan');
+    queryBuilder.select([
+      'loan.id', 
+      'loan.contractNumber',
+      'loan.loanAmount',
+      'loan.clientLoanId',
+      'client.clientName',
+    ]).orderBy('loan.createdAt', 'DESC');
 
     if (options.contractNumber) {
-      queryBuilder.where('c.contractNumber ILIKE :contractNumber', { contractNumber: `%${options.contractNumber}%` });
+      queryBuilder.where('loan.contractNumber ILIKE :contractNumber', { contractNumber: `%${options.contractNumber}%` });
     }
+
+    queryBuilder.leftJoin('loan.credcoopClient', 'client', 'loan.clientLoanId = client.id');
 
     return paginate<ReturnClientLoanDto>(queryBuilder, options);
   }

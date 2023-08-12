@@ -1,77 +1,77 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Empréstimos</h1>
 <p class="mb-4">
-    Acompanhe os empréstimos em andamento
+	Acompanhe os empréstimos em andamento
 </p>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Empréstimos Credcoop</h6>
-    </div>
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Empréstimos Credcoop</h6>
+	</div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <div class="d-none d-sm-inline-block form-inline float-right pb-2">
-                <div class="input-group">
-                    <input [(ngModel)]="searchContractNumber" (keyup.enter)="searchLoans()" name="search" type="input"
-                        class="form-control small" placeholder="Pesquisar..." aria-label="Search"
-                        aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button (click)="searchLoans()" class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<div class="d-none d-sm-inline-block form-inline float-right pb-2">
+				<div class="input-group">
+					<input [(ngModel)]="searchContractNumber" (keyup.enter)="searchLoans()" name="search" type="input"
+						class="form-control small" placeholder="Pesquisar..." aria-label="Search" aria-describedby="basic-addon2" />
+					<div class="input-group-append">
+						<button (click)="searchLoans()" class="btn btn-primary" type="button">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			</div>
 
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>    
-                        <!-- Exibindo id temporariamente para testes - Remover depois -->
-                        <th>id</th>
-                        <th>Contrato</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>id</th>
-                        <th>Contrato</th>
-                    </tr>
-                </tfoot>
-                <tbody class="text-uppercase">
-                    <tr
-                        *ngFor="let loan of loans| paginate: {itemsPerPage: config.itemsPerPage, currentPage: config.currentPage, totalItems: totalItems}">
-                        <td style="margin-bottom: 0 !important;">{{ loan.id }}</td>
-                        <td>{{ loan.contractNumber }}</td>
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Cliente</th>
+						<th>Contrato</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>Cliente</th>
+						<th>Contrato</th>
+						<th></th>
+					</tr>
+				</tfoot>
+				<tbody class="text-uppercase">
+					<tr
+						*ngFor="let loan of loans| paginate: {itemsPerPage: config.itemsPerPage, currentPage: config.currentPage, totalItems: totalItems}">
+						<td>{{ loan.credcoopClient.clientName }}</td>
+						<td>{{ loan.contractNumber }}</td>
 
-                        <td class="d-flex justify-content-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa fa-bars"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item" type="button">
-                                        <i class="fas fa-fw fa-file-invoice mx-1"></i>Detalhes
-                                    </button>
-                                    <button class="dropdown-item" type="button">
-                                        <i class="fas fa-fw fa-pencil-alt mx-1"></i>Editar
-                                    </button>
-                                    <button class="dropdown-item" type="button">
-                                        <i class="fas fa-fw fa-print mx-1"></i>Imprimir
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col d-flex align-items-center">
-                <pagination-controls (pageChange)="changePage($event)" [maxSize]="5" [directionLinks]="true"
-                    [autoHide]="true" nextLabel="Próximo" previousLabel="Anterior">
-                </pagination-controls>
-            </div>
-        </div>
-    </div>
+						<td class="d-flex justify-content-center">
+							<div class="btn-group">
+								<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"
+									aria-expanded="false">
+									<i class="fa fa-bars"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">
+										<i class="fas fa-fw fa-file-invoice mx-1"></i>Detalhes
+									</button>
+									<button class="dropdown-item" type="button">
+										<i class="fas fa-fw fa-pencil-alt mx-1"></i>Editar
+									</button>
+									<button class="dropdown-item" type="button">
+										<i class="fas fa-fw fa-print mx-1"></i>Imprimir
+									</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="col d-flex align-items-center">
+				<pagination-controls (pageChange)="changePage($event)" [maxSize]="5" [directionLinks]="true" [autoHide]="true"
+					nextLabel="Próximo" previousLabel="Anterior">
+				</pagination-controls>
+			</div>
+		</div>
+	</div>
 </div>

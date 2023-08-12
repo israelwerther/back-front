@@ -46,7 +46,6 @@ export class LoanEntity {
   // Gera número de contrato
   private static lastYear = new Date().getFullYear() - 1; // Ano anterior  
   private static contractCounter = 0; // Inicializa o contador
-
   @BeforeInsert()
   generateContractNumber() {
     const modality = this.inPersonModality ? 1 : 0;

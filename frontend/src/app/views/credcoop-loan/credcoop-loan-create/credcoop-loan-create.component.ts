@@ -94,11 +94,11 @@ export class CredcoopLoanCreateComponent {
         onlineModality: selectedModality === 'online',
         interestRate: this.loanForm.value.interestRate,
       };
-  
+
       this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
         next: () => {
           console.log("Empréstimo cadastrado com sucesso");
-          this.router.navigate(['home']);
+          this.router.navigate(['emprestimos-credcoop-lista']);
         },
         error: (error) => {
           console.error('Erro ao cadastrar o empréstimo:', error);
