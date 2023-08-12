@@ -43,10 +43,29 @@ export class LoanEntity {
   @JoinColumn({ name: 'client_loan_id', referencedColumnName: 'id' })
   credcoopClient?: CredcoopClientEntity;
 
-  // Generate the contract number
+  // Gera número de contrato
+  private static lastYear = new Date().getFullYear() - 1; // Ano anterior  
+  private static contractCounter = 0; // Inicializa o contador
+
   @BeforeInsert()
   generateContractNumber() {
-    this.contractNumber = `TESTE1-${Date.now()}`;
+    const modality = this.inPersonModality ? 1 : 0;
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = currentDate.getFullYear().toString().slice(-2);
+    const credcoop = '1'
+    
+    // Verifica se é o primeiro empréstimo do ano
+    if (currentDate.getFullYear() > LoanEntity.lastYear) {
+      LoanEntity.contractCounter = 1; // Reinicia o contador para 1
+      LoanEntity.lastYear = currentDate.getFullYear(); // Atualiza o ano
+    } else {
+      LoanEntity.contractCounter++; // Incrementa o contador
+    }
+
+    this.contractNumber = `${modality}${credcoop}${day}${month}${year}${LoanEntity.contractCounter}`;
+    console.log('this.contractNumber::: ', this.contractNumber);
   }
 
   @BeforeInsert()
