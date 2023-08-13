@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './credcoop-loan-list.component.html',
   styleUrls: ['./credcoop-loan-list.component.css'],
 })
-export class CredcoopLoanListComponent {
+export class CredcoopLoanListComponent implements OnInit {
   private apiUrl = 'http://localhost:8080/loan';
   loans: any[] = [];
   pages: number[] = [];
