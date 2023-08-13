@@ -21,7 +21,7 @@ export class CreateLoanDto {
     onlineModality: boolean;
 
     @IsNumber()
-    clientLoanId: number;
+    credcoopClientLoanId: number;
 
     @ValidateNested({ each: true })
     installments: CreateLoanInstallmentDto[];

@@ -33,7 +33,7 @@ export class CredcoopLoanCreateComponent {
   }
 
   loanForm = this.fb.group({
-    clientLoanId: [null, Validators.required],
+    credcoopClientLoanId: [null, Validators.required],
     loanAmount: [100, Validators.required],
     startDate: [this.getTodayDate(), Validators.required],
     amountOfInstallments: [1, Validators.required],
@@ -86,7 +86,7 @@ export class CredcoopLoanCreateComponent {
     
     if (this.loanForm.valid) {
       const LoanData: Loan = {
-        clientLoanId: this.loanForm.value.clientLoanId,
+        credcoopClientLoanId: this.loanForm.value.credcoopClientLoanId,
         loanAmount: this.loanForm.value.loanAmount,
         startDate: parsedStartDate,
         amountOfInstallments: this.loanForm.value.amountOfInstallments,

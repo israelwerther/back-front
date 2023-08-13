@@ -27,7 +27,7 @@ export class LoanService {
       'loan.id',
       'loan.contractNumber',
       'loan.loanAmount',
-      'loan.clientLoanId',
+      'loan.credcoopClientLoanId',
       'client.clientName',
     ]).orderBy('loan.createdAt', 'DESC');
 
@@ -38,7 +38,7 @@ export class LoanService {
       );
     }
 
-    queryBuilder.leftJoin('loan.credcoopClient', 'client', 'loan.clientLoanId = client.id');
+    queryBuilder.leftJoin('loan.credcoopClient', 'client', 'loan.credcoopClientLoanId = client.id');
 
     return paginate<ReturnClientLoanDto>(queryBuilder, options);
   }
@@ -56,7 +56,7 @@ export class LoanService {
 
   async getTotalCredcoopLoans(): Promise<number> {
     const totalCredcoopLoans = await this.loanRepository.count({
-      where: { clientLoanId: Not(IsNull()) }
+      where: { credcoopClientLoanId: Not(IsNull()) }
     })
     return totalCredcoopLoans;
   }

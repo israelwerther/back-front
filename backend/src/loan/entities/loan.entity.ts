@@ -37,10 +37,10 @@ export class LoanEntity {
   @JoinColumn({ name: 'credcoop_client_id' })
   installments?: LoanInstallment[];
 
-  @Column({ name: 'client_loan_id', nullable: true })
-  clientLoanId: number;
+  @Column({ name: 'credcoop_client_loan_id', nullable: true })
+  credcoopClientLoanId: number;
   @ManyToOne(() => CredcoopClientEntity, (credcoopClient) => credcoopClient.clientLoans, { onDelete: 'CASCADE', nullable: true })
-  @JoinColumn({ name: 'client_loan_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'credcoop_client_loan_id', referencedColumnName: 'id' })
   credcoopClient?: CredcoopClientEntity;
 
   // Gera número de contrato

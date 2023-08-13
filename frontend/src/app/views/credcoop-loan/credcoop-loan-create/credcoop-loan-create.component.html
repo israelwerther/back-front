@@ -21,8 +21,8 @@
 							<hr>
 							<div class="row">
 								<div class="col-sm-12">
-									<label for="clientLoanId" class="form-label">Cliente</label>
-									<ng-select formControlName="clientLoanId" [items]="clients" bindLabel="clientName" bindValue="id"
+									<label for="credcoopClientLoanId" class="form-label">Cliente</label>
+									<ng-select formControlName="credcoopClientLoanId" [items]="clients" bindLabel="clientName" bindValue="id"
 										class="text-uppercase" placeholder="Escolha o Cliente que deseja realizar o empréstimo">
 										<ng-option *ngFor="let client of clients" [value]="client.id">
 											{{ client.clientName }}
