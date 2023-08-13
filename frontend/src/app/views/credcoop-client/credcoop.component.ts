@@ -11,12 +11,12 @@ export class CredcoopClientComponent implements OnInit{
   totalCredcoopClients: number = 0;
 
   ngOnInit() {
-    this.loadQueryCredcoopClientCount();
+    this.returnCredcoopClientCount();
   }
 
   constructor(private credcoopClientService: CredcoopClientService) {}
 
-  loadQueryCredcoopClientCount() {
+  returnCredcoopClientCount() {
     this.credcoopClientService.getQueryCredcoop().subscribe((result) => {
       this.totalCredcoopClients = result.data.credcoopClientsCount;
     });
