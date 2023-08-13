@@ -15,11 +15,14 @@ import { CredcoopClientModule } from './credcoop-client/credcoop-client.module';
 import { ClientAddressModule } from './client-address/client-address.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { UserResolver } from './graphql/resolver/user.resolver';
 import { CredcoopClientEntity } from './credcoop-client/entities/credcoop-client.entity';
-import { CredcoopClientResolver } from './graphql/resolver/credcoop-client.resolver';
 import { CredcoopClientService } from './credcoop-client/credcoop-client.service';
 import { LoanInstallmentModule } from './loan-installment/loan-installment.module';
+
+// Resolvers
+import { UserResolver } from './graphql/resolver/user.resolver';
+import { CredcoopClientResolver } from './graphql/resolver/credcoop-client.resolver';
+import { CredcoopLoanResolver } from './graphql/resolver/credcoop-loan.resolver';
 
 @Module({
   imports: [
@@ -65,6 +68,7 @@ import { LoanInstallmentModule } from './loan-installment/loan-installment.modul
     UserResolver,
     CredcoopClientResolver,
     CredcoopClientService,
+    CredcoopLoanResolver,
   ],
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { LoanEntity } from './entities/loan.entity';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { ReturnClientLoanDto } from './dto/return-client-loan.dto';
@@ -12,7 +12,7 @@ export class LoanService {
   constructor(
     @InjectRepository(LoanEntity)
     private readonly loanRepository: Repository<LoanEntity>,
-  ) {}
+  ) { }
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
@@ -21,20 +21,20 @@ export class LoanService {
     return await this.loanRepository.save(loan);
   }
 
-  async getAllLoan( options: IPaginationOptions & { searchQuery?: string } ): Promise<Pagination<ReturnClientLoanDto>> {
+  async getAllLoan(options: IPaginationOptions & { searchQuery?: string }): Promise<Pagination<ReturnClientLoanDto>> {
     const queryBuilder = this.loanRepository.createQueryBuilder('loan');
     queryBuilder.select([
-      'loan.id', 
+      'loan.id',
       'loan.contractNumber',
       'loan.loanAmount',
       'loan.clientLoanId',
       'client.clientName',
     ]).orderBy('loan.createdAt', 'DESC');
-    
+
     if (options.searchQuery) {
       queryBuilder.where(
-          'loan.contractNumber ILIKE :searchQuery OR client.clientName ILIKE :searchQuery',
-          { searchQuery: `%${options.searchQuery}%` }
+        'loan.contractNumber ILIKE :searchQuery OR client.clientName ILIKE :searchQuery',
+        { searchQuery: `%${options.searchQuery}%` }
       );
     }
 
@@ -54,19 +54,11 @@ export class LoanService {
     return loan;
   }
 
-  findAll() {
-    return `This action returns all loan`;
+  async getTotalCredcoopLoans(): Promise<number> {
+    const totalCredcoopLoans = await this.loanRepository.count({
+      where: { clientLoanId: Not(IsNull()) }
+    })
+    return totalCredcoopLoans;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} loan`;
-  }
-
-  update(id: number, updateLoanDto: UpdateLoanDto) {
-    return `This action updates a #${id} loan`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} loan`;
-  }
 }

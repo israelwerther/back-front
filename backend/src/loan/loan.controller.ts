@@ -36,24 +36,5 @@ export class LoanController {
     };
   }
 
-  @Get()
-  findAll() {
-    return this.loanService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.loanService.findOne(+id);
-  }
-
-  @UsePipes(ValidationPipe)
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLoanDto: UpdateLoanDto) {
-    return this.loanService.update(+id, updateLoanDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.loanService.remove(+id);
-  }
+  
 }

@@ -8,7 +8,7 @@ import { CredcoopClientResolver } from 'src/graphql/resolver/credcoop-client.res
 @Module({
   imports: [TypeOrmModule.forFeature([CredcoopClientEntity])],
   controllers: [CredcoopClientController],
-  providers: [CredcoopClientResolver, CredcoopClientService],
+  providers: [CredcoopClientService, CredcoopClientResolver],
   exports: [CredcoopClientService],
 })
 export class CredcoopClientModule { }
