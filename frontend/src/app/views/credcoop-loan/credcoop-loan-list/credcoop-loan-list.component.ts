@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./credcoop-loan-list.component.css'],
 })
 export class CredcoopLoanListComponent implements OnInit {
-  private apiUrl = 'http://localhost:8080/loan';
+  private apiUrl = 'http://localhost:8080/loan/credcoop';
   loans: any[] = [];
   pages: number[] = [];
   totalItems = 0;

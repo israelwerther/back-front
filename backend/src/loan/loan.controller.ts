@@ -19,7 +19,7 @@ export class LoanController {
     return this.loanService.createLoan(createLoanDto);
   }
 
-  @Get()
+  @Get('/credcoop')
   async getAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
@@ -28,7 +28,7 @@ export class LoanController {
     limit = limit > 100 ? 100 : limit;
     const options = { page, limit, searchQuery };
 
-    const data = await this.loanService.getAllLoan(options);
+    const data = await this.loanService.getAllCredcoopLoan(options);
 
     return {
       items: data.items,

@@ -21,7 +21,7 @@ export class LoanService {
     return await this.loanRepository.save(loan);
   }
 
-  async getAllLoan(options: IPaginationOptions & { searchQuery?: string }): Promise<Pagination<ReturnClientLoanDto>> {
+  async getAllCredcoopLoan(options: IPaginationOptions & { searchQuery?: string }): Promise<Pagination<ReturnClientLoanDto>> {
     const queryBuilder = this.loanRepository.createQueryBuilder('loan');
     queryBuilder.select([
       'loan.id',
@@ -33,9 +33,11 @@ export class LoanService {
 
     if (options.searchQuery) {
       queryBuilder.where(
-        'loan.contractNumber ILIKE :searchQuery OR client.clientName ILIKE :searchQuery',
+        '(loan.contractNumber ILIKE :searchQuery OR client.clientName ILIKE :searchQuery) AND loan.credcoopClientLoanId IS NOT NULL',
         { searchQuery: `%${options.searchQuery}%` }
       );
+    } else {
+      queryBuilder.where('loan.credcoopClientLoanId IS NOT NULL');
     }
 
     queryBuilder.leftJoin('loan.credcoopClient', 'client', 'loan.credcoopClientLoanId = client.id');
