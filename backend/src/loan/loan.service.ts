@@ -16,9 +16,23 @@ export class LoanService {
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
+    console.log('createLoanDto 1 = ', createLoanDto);    
+
+    // Cria as parcelas com o valor desejado
+    if (createLoanDto.amountOfInstallments) {
+      createLoanDto.installments = Array.from({ length: createLoanDto.amountOfInstallments },
+        () => ({
+          installmentValue: 333,
+        }),
+      );
+    }
+
     Object.assign(loan, createLoanDto);
-    this.loanRepository.create(loan);
-    return await this.loanRepository.save(loan);
+    console.log('createLoanDto 2 = ', createLoanDto);
+
+    const createdLoan = await this.loanRepository.save(loan);
+
+    return createdLoan;
   }
 
   async getAllCredcoopLoan(options: IPaginationOptions & { searchQuery?: string }): Promise<Pagination<ReturnClientLoanDto>> {

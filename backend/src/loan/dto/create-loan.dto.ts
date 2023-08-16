@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsNumber, ValidateNested } from "class-validator";
+import { IsBoolean, IsDateString, IsNumber } from "class-validator";
 import { CreateLoanInstallmentDto } from "src/loan-installment/dto/create-loan-installment.dto";
 
 export class CreateLoanDto {    
@@ -21,8 +21,7 @@ export class CreateLoanDto {
     onlineModality: boolean;
 
     @IsNumber()
-    credcoopClientLoanId: number;
-
-    @ValidateNested({ each: true })
+    credcoopClientLoanId: number;    
+    
     installments: CreateLoanInstallmentDto[];
 }
