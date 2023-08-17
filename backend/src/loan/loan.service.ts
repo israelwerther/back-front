@@ -17,92 +17,97 @@ export class LoanService {
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
     const fees = 0.083
+    const dailyIOF = 0.00137
+    const extraIOF = 0.0038
     const loanAmount = createLoanDto.loanAmount
     const amountOfInstallments = createLoanDto.amountOfInstallments;
-    const iof_diario = 0.00137
-    const iof_adicional = 0.0038
 
     // Parcela
     const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** (amountOfInstallments))/amountOfInstallments).toFixed(2)
 
     // Encargos
-    const encargos = [];
+    let charges = [];
     if (amountOfInstallments > 1) {
-      let somatorioEncargosAnteriores = 0;
+      let previousCharges = 0;
       for (let i = 0; i < amountOfInstallments; i++) {
         if (i === 0) {
-          encargos[i] = Math.round((loanAmount * fees) * 100) / 100;
+          charges[i] = Math.round((loanAmount * fees) * 100) / 100;
         } else {
-          somatorioEncargosAnteriores += encargos[i - 1];
-          encargos[i] = Math.round(((loanAmount + somatorioEncargosAnteriores) * fees) * 100) / 100;
+          previousCharges += charges[i - 1];
+          charges[i] = Math.round(((loanAmount + previousCharges) * fees) * 100) / 100;
         }
       }
     }
 
     // Lógica para cálculo do valor principal
-    const principal = [];
+    let valueMain = [];
     if (amountOfInstallments > 1) {
       for (let i = 0; i < amountOfInstallments; i++) {        
-        principal[i] = Math.floor((Number(calculatedInstallmentValue) - encargos[i]) * 100) / 100;        
+        valueMain[i] = Math.floor((Number(calculatedInstallmentValue) - charges[i]) * 100) / 100;
+        
       }
     } else {
       for (let i = 0; i < amountOfInstallments; i++) {
-        principal[0] = loanAmount // Quando é em apenas uma parcela esse valor deve ser esse mesmo?        
+        valueMain[0] = loanAmount // Quando é em apenas uma parcela esse valor deve ser esse mesmo?        
       }
     }
 
+    // Ajusta a quantidade de dias para alinhar os cálculos
     const startDate = new Date(createLoanDto.startDate);
-    let mes = startDate.getMonth() + 1;
-    let mes_num = mes;
-    let qtd_dias = 0;
-    let iof_fora_contrato_total = 0;
+    const month = startDate.getMonth() + 1;
+    let auxMonth = month;
+    let numberOfDays = 0;
+    let sumIOFOutOfContract = 0;
+    let IOFOutOfContract = [];
 
-    let iof_fora_contrato = [];
-
-    for (let i = 0; i < createLoanDto.amountOfInstallments; i++) {
-      if (mes_num == 1 || mes_num == 3 || mes_num == 5 || mes_num == 7 || mes_num == 8 || mes_num == 10 || mes_num == 12) {
-        qtd_dias += 31;
-      } else if (mes_num == 2) {
-        qtd_dias += 28;
+    for (let i = 0; i < amountOfInstallments; i++) {
+      if (auxMonth == 1 || auxMonth == 3 || auxMonth == 5 || auxMonth == 7 || auxMonth == 8 || auxMonth == 10 || auxMonth == 12) {
+        numberOfDays += 31;
+      } else if (auxMonth == 2) {
+        numberOfDays += 28;
       } else {
-        qtd_dias += 30;
+        numberOfDays += 30;
       }
 
-      mes_num += 1;
-      if (mes_num == 13) {
-        mes_num = 1;
+      auxMonth += 1;
+      if (auxMonth == 13) {
+        auxMonth = 1;
       }
 
-      iof_fora_contrato[i] = Math.floor(((principal[i]*qtd_dias*iof_diario)/100)*100)/100 + Math.floor((principal[i]*iof_adicional)*100)/100
-      iof_fora_contrato_total += iof_fora_contrato[i]      
+      IOFOutOfContract[i] = Math.floor(((valueMain[i]*numberOfDays*dailyIOF)/100)*100)/100 + Math.floor((valueMain[i]*extraIOF)*100)/100
+      sumIOFOutOfContract += IOFOutOfContract[i]      
     }
     
     // iof_inicial
-    let iof_inicial = Math.round(iof_fora_contrato_total*100)/100
-    // console.log('iof_inicial::: ', iof_inicial);
+    const initialIOF = Math.round(sumIOFOutOfContract*100)/100
 
     // juros_acerto
-    let juros_acerto = loanAmount*(fees/30)*((mes_num+1)-(mes_num+1))
-    // console.log('juros_acerto::: ', juros_acerto);
+    const interestRateAdjustment = loanAmount*(fees/30)*((auxMonth+1)-(auxMonth+1))
 
     // iof_final
-    let iof_final = Math.round((loanAmount*iof_inicial)/(loanAmount-iof_inicial)*100)/100
-    // console.log('iof_final::: ', iof_final);
+    const finalIOF = Math.round((loanAmount*initialIOF)/(loanAmount-initialIOF)*100)/100
 
     // valor_contrato
-    var valor_contrato = loanAmount+juros_acerto+iof_final
-    // console.log('valor_contrato::: ', valor_contrato);
+    const valueInTheContract = loanAmount+interestRateAdjustment+finalIOF
 
     // valor_total_a_Prazo
-    var valor_total_a_Prazo = Math.round((valor_contrato*(1+fees)**amountOfInstallments)*100)/100
-    console.log('valor_total_a_Prazo::: ', valor_total_a_Prazo);
+    let totalTermValue = Math.round((valueInTheContract*(1+fees)**amountOfInstallments)*100)/100
 
-    
+    let finalInstallment = 0
+    let boleto = true
+    if (boleto){
+        finalInstallment = Math.round((totalTermValue/amountOfInstallments+10)*100)/100     
+           
+    }else {
+        finalInstallment = Math.round((totalTermValue/amountOfInstallments)*100)/100
+        console.log('2'); 
+      }
+    console.log('finalInstallment::: ', finalInstallment);
 
-    if (createLoanDto.amountOfInstallments) {
-      createLoanDto.installments = Array.from({ length: createLoanDto.amountOfInstallments },
+    if (amountOfInstallments) {
+      createLoanDto.installments = Array.from({ length: amountOfInstallments },
         () => ({
-          installmentValue: 8877,
+          installmentValue: finalInstallment,
         }),
       );
     }

@@ -6,7 +6,7 @@ export class LoanInstallment {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'installment_value', nullable: true })
+    @Column({ name: 'installment_value', type: 'decimal', precision: 10, scale: 2, nullable: true })
     installmentValue: number;
 
     @Column({ name: 'loan_id', nullable: true })
