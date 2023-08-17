@@ -44,7 +44,7 @@ export class LoanService {
 
   // Função para calcular valores do empréstimo
   private calculateLoanValues(loanAmount: number, amountOfInstallments: number, fees: number, dailyIOF: number, extraIOF: number, loanStartDate: Date) {
-    
+
     // Parcela
     const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** amountOfInstallments) / amountOfInstallments).toFixed(2);
 
@@ -123,7 +123,7 @@ export class LoanService {
     } else {
       finalInstallment = Math.round((totalTermValue / amountOfInstallments) * 100) / 100;
       console.log('2');
-    }    
+    }
 
     return {
       calculatedInstallmentValue,

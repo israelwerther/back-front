@@ -1,6 +1,8 @@
 import { CredcoopClientEntity } from 'src/credcoop-client/entities/credcoop-client.entity';
 import { LoanInstallment } from 'src/loan-installment/entities/loan-installment.entity';
 import { BeforeInsert, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn, } from 'typeorm';
+
+
 @Entity({ name: 'loan' })
 export class LoanEntity {
   @PrimaryGeneratedColumn()
@@ -15,7 +17,7 @@ export class LoanEntity {
   @Column({ name: 'interest_rate', nullable: true })
   interestRate: number;
 
-  @Column({ name: 'start_date', nullable: true })
+  @Column({ name: 'start_date', nullable: true, type: 'timestamptz' })
   startDate: Date;
 
   @Column({ name: 'amount_of_installments', nullable: true })
