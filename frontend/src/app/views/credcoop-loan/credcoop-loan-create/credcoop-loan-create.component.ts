@@ -34,9 +34,9 @@ export class CredcoopLoanCreateComponent {
 
   loanForm = this.fb.group({
     credcoopClientLoanId: [null, Validators.required],
-    loanAmount: [100, Validators.required],
+    loanAmount: [1000, Validators.required],
     startDate: [this.getTodayDate(), Validators.required],
-    amountOfInstallments: [1, Validators.required],
+    amountOfInstallments: [12, Validators.required],
     interestRate: [5],
     modality: ['online', [Validators.required]],
     installments: this.fb.array([
