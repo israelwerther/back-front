@@ -16,14 +16,16 @@ export class LoanService {
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
-    const fees = 0.083
-    const dailyIOF = 0.00137
-    const extraIOF = 0.0038
     const loanAmount = createLoanDto.loanAmount
     const amountOfInstallments = createLoanDto.amountOfInstallments;
 
+    const fees = 0.083
+    const dailyIOF = 0.00137
+    const extraIOF = 0.0038
+    
+
     // Parcela
-    const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** (amountOfInstallments))/amountOfInstallments).toFixed(2)
+    const calculatedInstallmentValue = this.calculateInstallmentValue(loanAmount, fees, amountOfInstallments);
 
     // Encargos
     let charges = [];
@@ -95,14 +97,13 @@ export class LoanService {
 
     let finalInstallment = 0
     let boleto = true
-    if (boleto){
-        finalInstallment = Math.round((totalTermValue/amountOfInstallments+10)*100)/100     
-           
-    }else {
-        finalInstallment = Math.round((totalTermValue/amountOfInstallments)*100)/100
-        console.log('2'); 
-      }
-    console.log('finalInstallment::: ', finalInstallment);
+    if (boleto) {
+      finalInstallment = Math.round((totalTermValue / amountOfInstallments + 10) * 100) / 100
+    } else {
+      finalInstallment = Math.round((totalTermValue / amountOfInstallments) * 100) / 100
+      console.log('2');
+    }
+    
 
     if (amountOfInstallments) {
       createLoanDto.installments = Array.from({ length: amountOfInstallments },
@@ -118,6 +119,11 @@ export class LoanService {
 
     return createdLoan;
   }
+
+  calculateInstallmentValue(loanAmount: number, fees: number, amountOfInstallments: number): string {
+    return ((loanAmount * (1 + fees) ** amountOfInstallments) / amountOfInstallments).toFixed(2);
+  }
+  
 
   async getAllCredcoopLoan(options: IPaginationOptions & { searchQuery?: string }): Promise<Pagination<ReturnClientLoanDto>> {
     const queryBuilder = this.loanRepository.createQueryBuilder('loan');
