@@ -6,6 +6,8 @@ import { IsNull, Not, Repository } from 'typeorm';
 import { LoanEntity } from './entities/loan.entity';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { ReturnClientLoanDto } from './dto/return-client-loan.dto';
+// import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 @Injectable()
 export class LoanService {
@@ -17,22 +19,46 @@ export class LoanService {
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
     const loanAmount = createLoanDto.loanAmount
-    const amountOfInstallments = createLoanDto.amountOfInstallments;
+    const amountOfInstallments = createLoanDto.amountOfInstallments;    
+    const startDate = moment.tz(createLoanDto.startDate, 'UTC');
+    console.log('startDate::: ', startDate);    
 
     // taxas fixas
     const fees = 0.083
     const dailyIOF = 0.00137
     const extraIOF = 0.0038
-
+    
+    const dueDateDay = Number(startDate.format("DD"));
     const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
-
+    
     if (amountOfInstallments) {
-      createLoanDto.installments = Array.from({ length: amountOfInstallments },
-        () => ({
+      createLoanDto.installments = [];
+    
+      let prevDueDate = startDate.toDate();
+      
+      for (let index = 0; index < amountOfInstallments; index++) {
+        let dueDate = moment(prevDueDate).add(1, 'month');
+        
+        console.log('prevDueDate.getUTCDate()::: ', prevDueDate.getUTCDate());
+        console.log('prevDueDate.getUTCMonth()::: ', prevDueDate.getUTCMonth());
+        if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {          
+          if (dueDate.month() === 1) { // Check if next month is February
+            dueDate.set('date', 0); // Set day to 1
+            dueDate.add(1, 'month'); // Increment month to March
+          }
+        }
+        
+        prevDueDate = dueDate.toDate();
+    
+        createLoanDto.installments.push({
           installmentValue: calculatedValues.finalInstallment,
-        }),
-      );
+          dueDate: prevDueDate,
+        });
+      }
+    } else {
+      createLoanDto.installments = [];
     }
+    
 
     Object.assign(loan, createLoanDto);
 

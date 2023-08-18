@@ -98,7 +98,7 @@ export class CredcoopLoanCreateComponent {
       this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
         next: () => {
           console.log("Empréstimo cadastrado com sucesso");
-          this.router.navigate(['emprestimos-credcoop-lista']);
+          // this.router.navigate(['emprestimos-credcoop-lista']);
         },
         error: (error) => {
           console.error('Erro ao cadastrar o empréstimo:', error);

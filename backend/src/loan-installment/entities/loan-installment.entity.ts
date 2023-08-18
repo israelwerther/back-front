@@ -9,6 +9,9 @@ export class LoanInstallment {
     @Column({ name: 'installment_value', type: 'decimal', precision: 10, scale: 2, nullable: true })
     installmentValue: number;
 
+    @Column({ name: 'due_date', nullable: true, type: 'timestamptz' })
+    dueDate: Date
+
     @Column({ name: 'loan_id', nullable: true })
     loanId: number;
     @ManyToOne(() => LoanEntity, loan => loan.installments, { onDelete: 'CASCADE', nullable: true })
