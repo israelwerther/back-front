@@ -212,7 +212,7 @@ export class LoanService {
     });
 
     if (!existingClient) {
-      throw new NotFoundException('Cliente não encontrado.');
+      throw new NotFoundException('Loan not found');
     }
 
     Object.assign(existingClient, updatedData); ReturnClientLoanDto

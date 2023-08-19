@@ -1,5 +1,6 @@
 import { ReturnLoanInstallmentDto } from 'src/loan-installment/dto/return-loan-installment.dto';
 import { LoanEntity } from '../entities/loan.entity';
+import { LoanInstallment } from 'src/loan-installment/entities/loan-installment.entity';
 
 export class ReturnClientLoanDto {
   id: number;
@@ -10,7 +11,7 @@ export class ReturnClientLoanDto {
   amountOfInstallments: number;
   inPersonModality: boolean;
   onlineModality: boolean;
-  installments?: ReturnLoanInstallmentDto[];
+  installments?: LoanInstallment[];
 
   constructor(clientLoans: LoanEntity) {
     if (clientLoans) {
@@ -24,8 +25,11 @@ export class ReturnClientLoanDto {
       this.onlineModality = clientLoans.onlineModality;
 
       this.installments = clientLoans.installments
-        ? clientLoans.installments.map((loans) => new ReturnLoanInstallmentDto(loans))
-        : undefined;
+      // this.installments = clientLoans.installments
+      //   ? clientLoans.installments.map((loans) => new ReturnLoanInstallmentDto(loans))
+      //   : undefined;
+
+
     }
   }
 }
