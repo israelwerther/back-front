@@ -36,5 +36,10 @@ export class LoanController {
     };
   }
 
+  @UsePipes(ValidationPipe)
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() returnClientLoanDto: ReturnClientLoanDto) {
+    return this.loanService.editLoan(+id, returnClientLoanDto);
+  }
   
 }

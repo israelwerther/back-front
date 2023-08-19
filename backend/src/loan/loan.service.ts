@@ -20,8 +20,7 @@ export class LoanService {
     const loan = new LoanEntity();
     const loanAmount = createLoanDto.loanAmount
     const amountOfInstallments = createLoanDto.amountOfInstallments;    
-    const startDate = moment.tz(createLoanDto.startDate, 'UTC');
-    console.log('startDate::: ', startDate);    
+    const startDate = moment.tz(createLoanDto.startDate, 'UTC');       
 
     // taxas fixas
     const fees = 0.083
@@ -37,14 +36,13 @@ export class LoanService {
       let prevDueDate = startDate.toDate();
       
       for (let index = 0; index < amountOfInstallments; index++) {
-        let dueDate = moment(prevDueDate).add(1, 'month');
+        let dueDate = moment(prevDueDate).add(1, 'month');        
         
-        console.log('prevDueDate.getUTCDate()::: ', prevDueDate.getUTCDate());
-        console.log('prevDueDate.getUTCMonth()::: ', prevDueDate.getUTCMonth());
         if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {          
-          if (dueDate.month() === 1) { // Check if next month is February
-            dueDate.set('date', 0); // Set day to 1
-            dueDate.add(1, 'month'); // Increment month to March
+          // Checa se o mês é fevereiro
+          if (dueDate.month() === 1) { 
+            dueDate.set('date', 0);
+            dueDate.add(1, 'month');
           }
         }
         
@@ -63,6 +61,7 @@ export class LoanService {
     Object.assign(loan, createLoanDto);
 
     const createdLoan = await this.loanRepository.save(loan);
+    console.log('createdLoan::: ', createdLoan);
 
     return createdLoan;
   }  
@@ -202,6 +201,22 @@ export class LoanService {
       where: { credcoopClientLoanId: Not(IsNull()) }
     })
     return totalCredcoopLoans;
+  }
+
+  async editLoan(id: number, updatedData: ReturnClientLoanDto): Promise<LoanEntity> {
+    const existingClient = await this.loanRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: ['installments']
+    });
+
+    if (!existingClient) {
+      throw new NotFoundException('Cliente não encontrado.');
+    }
+
+    Object.assign(existingClient, updatedData); ReturnClientLoanDto
+    return this.loanRepository.save(existingClient);
   }
 
 }
