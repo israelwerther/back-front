@@ -203,6 +203,15 @@ export class LoanService {
     return totalCredcoopLoans;
   }
 
+  async findOne(id: number): Promise<LoanEntity> {
+    return await this.loanRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: ['installments']
+    });
+  }
+
   async editLoan(id: number, updatedData: ReturnClientLoanDto): Promise<LoanEntity> {
     const existingClient = await this.loanRepository.findOne({
       where: {
@@ -218,5 +227,8 @@ export class LoanService {
     Object.assign(existingClient, updatedData); ReturnClientLoanDto
     return this.loanRepository.save(existingClient);
   }
+
+  
+
 
 }

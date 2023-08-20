@@ -11,7 +11,7 @@ export class LoanEntity {
   @Column({ name: 'contract_number', nullable: true })
   contractNumber: string;
 
-  @Column({ name: 'loan_amount', nullable: true })
+  @Column({ name: 'loan_amount', type: 'decimal', precision: 10, scale: 2, nullable: true })
   loanAmount: number;
 
   @Column({ name: 'interest_rate', nullable: true })

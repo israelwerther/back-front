@@ -85,7 +85,7 @@ export class CredcoopLoanCreateComponent {
     const selectedModality = this.loanForm.value.modality;
     
     if (this.loanForm.valid) {
-      const LoanData: Loan = {
+      const loanData: Loan = {
         credcoopClientLoanId: this.loanForm.value.credcoopClientLoanId,
         loanAmount: this.loanForm.value.loanAmount,
         startDate: parsedStartDate,
@@ -93,9 +93,10 @@ export class CredcoopLoanCreateComponent {
         inPersonModality: selectedModality === 'inPerson',
         onlineModality: selectedModality === 'online',
         interestRate: this.loanForm.value.interestRate,
+        installments: this.loanForm.value.installments || [],
       };
 
-      this.credcoopLoanService.createCredcoopLoan(LoanData).subscribe({
+      this.credcoopLoanService.createCredcoopLoan(loanData).subscribe({
         next: () => {
           console.log("Empréstimo cadastrado com sucesso");
           // this.router.navigate(['emprestimos-credcoop-lista']);

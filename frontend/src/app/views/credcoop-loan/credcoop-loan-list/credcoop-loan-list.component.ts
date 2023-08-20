@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 
@@ -14,14 +15,14 @@ export class CredcoopLoanListComponent implements OnInit {
   pages: number[] = [];
   totalItems = 0;
   totalPages: number = 0;
-  searchQuery = "";
+  searchQuery = '';
 
   config: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1,
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.loadCredcoopLoans();
@@ -105,5 +106,7 @@ export class CredcoopLoanListComponent implements OnInit {
     this.updatePages();
   }
 
-
+  editLoan(id: string) {
+    this.router.navigate([`/credcoop-atualiza-emprestimo/${id}`]);
+  }
 }

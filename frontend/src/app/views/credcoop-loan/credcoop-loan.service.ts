@@ -22,6 +22,12 @@ export class CredcoopLoanService {
     return this.http.post(url, LoanData, { headers });
   }  
 
+  updateCredcoopLoan(loanId: string, loanData: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', token);
+    const loanUrl = `${this.apiUrl}/${loanId}`;
+    return this.http.patch(loanUrl, loanData, { headers })
+  }
+
   getQueryCredcoopLoan(): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: gql`
@@ -31,6 +37,13 @@ export class CredcoopLoanService {
       `,
       fetchPolicy: 'network-only',
     }).valueChanges;
+  }
+
+  getCredcoopLoanById(loanId: string, token: string): Observable<any> {
+    console.log('loanId::: ', loanId);
+    const headers = new HttpHeaders().set('Authorization', token);
+    const LoanUrl = `${this.apiUrl}/${loanId}`;
+    return this.http.get(LoanUrl, { headers });
   }
   
 }

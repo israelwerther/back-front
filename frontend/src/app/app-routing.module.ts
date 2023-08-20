@@ -14,6 +14,7 @@ import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan
 import { CredcoopDetailComponent } from './views/credcoop-client/credcoop-detail/credcoop-detail.component';
 import { CredcoopLoanListComponent } from './views/credcoop-loan/credcoop-loan-list/credcoop-loan-list.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
+import { CredcoopLoanUpdateComponent } from './views/credcoop-loan/credcoop-loan-update/credcoop-loan-update.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'credcoop-atualiza/:id',
     component: CredcoopClientUpdateComponent,
+  },
+  {
+    path: 'credcoop-atualiza-emprestimo/:id',
+    component: CredcoopLoanUpdateComponent,
   },
   {
     path: 'credcoop-detalhes/:id',

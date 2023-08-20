@@ -23,6 +23,7 @@ import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan
 import { GraphQLModule } from './graphql.module';
 import { CredcoopDetailComponent } from './views/credcoop-client/credcoop-detail/credcoop-detail.component';
 import { CredcoopLoanListComponent } from './views/credcoop-loan/credcoop-loan-list/credcoop-loan-list.component';
+import { CredcoopLoanUpdateComponent } from './views/credcoop-loan/credcoop-loan-update/credcoop-loan-update.component';
 
 
 @NgModule({
@@ -42,7 +43,9 @@ import { CredcoopLoanListComponent } from './views/credcoop-loan/credcoop-loan-l
     CredcoopLoanComponent,
     CredcoopLoanCreateComponent,
     CredcoopLoanListComponent,
+    CredcoopLoanUpdateComponent,
     CredcoopDetailComponent,
+
   ],
 
   imports: [

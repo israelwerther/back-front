@@ -1,4 +1,7 @@
+import { Installments } from "./installments";
+
 export interface Loan {    
+    contractNumber?: number | null;
     credcoopClientLoanId?: number | null;
     loanAmount?: number | null;
     startDate?: Date | null;
@@ -6,4 +9,5 @@ export interface Loan {
     inPersonModality?: boolean | null;
     onlineModality?: boolean | null;
     interestRate?: number | null;
+    installments: Installments[];
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, DefaultValuePipe, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { LoanService } from './loan.service';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
@@ -6,6 +6,7 @@ import { Roles } from 'src/decorators/roles.decorators';
 import { UserType } from 'src/user/enum/user-type.enum';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { ReturnClientLoanDto } from './dto/return-client-loan.dto';
+import { LoanEntity } from './entities/loan.entity';
 
 
 @Roles(UserType.User)
@@ -34,6 +35,17 @@ export class LoanController {
       items: data.items,
       meta: { ...data.meta }
     };
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: number): Promise<LoanEntity> {
+    const client = await this.loanService.findOne(id);
+
+    if (!client) {
+      throw new NotFoundException('Credcoop Loan not found.');
+    }
+
+    return client;
   }
 
   @UsePipes(ValidationPipe)
