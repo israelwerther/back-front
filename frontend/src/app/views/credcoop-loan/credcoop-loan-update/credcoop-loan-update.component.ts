@@ -26,6 +26,8 @@ export class CredcoopLoanUpdateComponent {
     this.route.params.subscribe((params) => {
       this.loanId = params['id'];
       this.getCredcoopLoanData(this.loanId);
+      // this.teste()
+      // this.teste2()
     });
   }
 
@@ -109,5 +111,38 @@ export class CredcoopLoanUpdateComponent {
     }
   }
 
+  
+  // teste() {
+  //   class Produto {
+  //     nome: string;
+  //     preco: number;
+    
+  //     constructor(nome: string, preco: number) {
+  //       this.nome = nome;
+  //       this.preco = preco;
+  //     }
+  //   }
+  //   const nomeEscolhido: string = "Produto Legal";
+  //   const precoEscolhido: number = 19.99;
+  
+  //   const produto1 = new Produto(nomeEscolhido, precoEscolhido);
+  //   console.log("Detalhes do produto:", produto1);
+  // }
 
+  // teste2() {
+  //   class Produto {
+  //     nome: string = "";
+  //     preco: number = 0;
+  //   } 
+    
+  //   const nomeEscolhido: string = "Produto Enfermo";
+  //   const precoEscolhido: number = 19.99;
+
+  //   const produto = new Produto();
+  //   produto.nome = nomeEscolhido;
+  //   produto.preco = precoEscolhido;
+
+  //   console.log("Detalhes do produto 2:", produto);
+    
+  // }
 }
