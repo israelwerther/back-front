@@ -103,6 +103,26 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider" />
+
+    <!-- Credcoop Heading -->
+    <div class="sidebar-heading">Configurações</div>
+
+    <!-- Nav Item - Configuration Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#configurationCollapse"
+        aria-expanded="true" aria-controls="configurationCollapse">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Taxas</span>
+      </a>
+      <div id="configurationCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a [routerLink]="['alterar-taxas']" routerLinkActive="active" class="collapse-item">Taxas Fixas</a>
+        </div>
+      </div>
+    </li>    
+
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
    
   </ul>
   <!-- End of Sidebar -->

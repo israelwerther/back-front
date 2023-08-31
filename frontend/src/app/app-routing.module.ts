@@ -15,6 +15,7 @@ import { CredcoopDetailComponent } from './views/credcoop-client/credcoop-detail
 import { CredcoopLoanListComponent } from './views/credcoop-loan/credcoop-loan-list/credcoop-loan-list.component';
 import { CredcoopLoanComponent } from './views/credcoop-loan/credcoop-loan.component';
 import { CredcoopLoanUpdateComponent } from './views/credcoop-loan/credcoop-loan-update/credcoop-loan-update.component';
+import { RateComponent } from './views/rate/rate.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,12 @@ const routes: Routes = [
     path: 'emprestimos-credcoop-lista',
     component: CredcoopLoanListComponent,
   },
+  // Rates
+  {
+    path: 'alterar-taxas',
+    component: RateComponent,
+  },
+
 ];
 
 @NgModule({

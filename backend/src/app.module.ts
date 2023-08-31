@@ -23,6 +23,7 @@ import { LoanInstallmentModule } from './loan-installment/loan-installment.modul
 import { UserResolver } from './graphql/resolver/user.resolver';
 import { CredcoopClientResolver } from './graphql/resolver/credcoop-client.resolver';
 import { CredcoopLoanResolver } from './graphql/resolver/credcoop-loan.resolver';
+import { RateModule } from './rate/rate.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { CredcoopLoanResolver } from './graphql/resolver/credcoop-loan.resolver'
     CredcoopClientModule,
     ClientAddressModule,
     LoanInstallmentModule,
+    RateModule,
   ],
   controllers: [],
   providers: [
