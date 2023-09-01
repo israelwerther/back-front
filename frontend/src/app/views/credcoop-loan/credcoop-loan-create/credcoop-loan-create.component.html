@@ -22,8 +22,9 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<label for="credcoopClientLoanId" class="form-label">Cliente</label>
-									<ng-select formControlName="credcoopClientLoanId" [items]="clients" bindLabel="clientName" bindValue="id"
-										class="text-uppercase" placeholder="Escolha o Cliente que deseja realizar o empréstimo">
+									<ng-select formControlName="credcoopClientLoanId" [items]="clients" bindLabel="clientName"
+										bindValue="id" class="text-uppercase"
+										placeholder="Escolha o Cliente que deseja realizar o empréstimo">
 										<ng-option *ngFor="let client of clients" [value]="client.id">
 											{{ client.clientName }}
 										</ng-option>
@@ -42,22 +43,25 @@
 								</div>
 								<div class="col-sm-4">
 									<label for="amountOfInstallments" class="form-label">Parcelas</label>
-									<input (change)="addInstallments()" type="number" formControlName="amountOfInstallments" class="form-control form-control-sm" id="amountOfInstallments" />
+									<input (change)="addInstallments()" type="number" formControlName="amountOfInstallments"
+										class="form-control form-control-sm" id="amountOfInstallments" />
 								</div>
 							</div>
 							<div class="row pt-md-3">
 								<div class="col-sm-12">
 									<div class="custom-control custom-radio custom-control-inline">
-										<input id="online" type="radio" class="custom-control-input" name="modality" value="online" formControlName="modality">
+										<input id="online" type="radio" class="custom-control-input" name="modality" value="online"
+											formControlName="modality">
 										<label class="custom-control-label" for="online">Online</label>
 									</div>
 									<div class="custom-control custom-radio custom-control-inline">
-										<input id="inPerson" type="radio" class="custom-control-input" name="modality" value="inPerson" formControlName="modality">
+										<input id="inPerson" type="radio" class="custom-control-input" name="modality" value="inPerson"
+											formControlName="modality">
 										<label class="custom-control-label" for="inPerson">Presencial</label>
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
