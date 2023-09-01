@@ -14,7 +14,6 @@ export class LoanService {
   constructor(
     @InjectRepository(LoanEntity)
     private readonly loanRepository: Repository<LoanEntity>,
-    
   ) { }
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
