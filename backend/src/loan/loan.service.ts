@@ -1,31 +1,38 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateLoanDto } from './dto/create-loan.dto';
-import { UpdateLoanDto } from './dto/update-loan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, Not, Repository } from 'typeorm';
 import { LoanEntity } from './entities/loan.entity';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { ReturnClientLoanDto } from './dto/return-client-loan.dto';
-// import * as moment from 'moment';
 import * as moment from 'moment-timezone';
+import { RateEntity } from 'src/rate/entities/rate.entity';
+
 
 @Injectable()
 export class LoanService {
   constructor(
     @InjectRepository(LoanEntity)
     private readonly loanRepository: Repository<LoanEntity>,
+    @InjectRepository(RateEntity)
+    private rateRepository: Repository<RateEntity>,
   ) { }
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
     const loanAmount = createLoanDto.loanAmount
     const amountOfInstallments = createLoanDto.amountOfInstallments;    
-    const startDate = moment.tz(createLoanDto.startDate, 'UTC');       
+    const startDate = moment.tz(createLoanDto.startDate, 'UTC');
 
-    // taxas fixas
-    const fees = 0.083
-    const dailyIOF = 0.00137
-    const extraIOF = 0.0038
+    // Obtem a taxa mais recente cadastrada permitindo calcular os empréstimos sempre com a taxa atualizada
+    const latestRate = await this.rateRepository.createQueryBuilder('rate').orderBy('rate.createdAt', 'DESC').getOne();
+    if(!latestRate) {
+      throw new Error("Nenhuma taxa para realizar o empréstimo.");
+    }
+ 
+    const fees = parseFloat(latestRate.fees.toString());
+    const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
+    const extraIOF = parseFloat(latestRate.extraIOF.toString());
     
     const dueDateDay = Number(startDate.format("DD"));
     const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
@@ -55,13 +62,12 @@ export class LoanService {
       }
     } else {
       createLoanDto.installments = [];
-    }
-    
+    }    
 
     Object.assign(loan, createLoanDto);
 
     const createdLoan = await this.loanRepository.save(loan);
-    console.log('createdLoan::: ', createdLoan);
+    console.log('@@@@@@@@@@@@@@@@@', createdLoan.installments[0].installmentValue);
 
     return createdLoan;
   }  
@@ -140,7 +146,7 @@ export class LoanService {
     // Valor total a prazo
     const totalTermValue = Math.round((valueInTheContract * (1 + fees) ** amountOfInstallments) * 100) / 100;
 
-    const boleto = true;
+    const boleto = false;
 
     let finalInstallment = 0;
     if (boleto) {
