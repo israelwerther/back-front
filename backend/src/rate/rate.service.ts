@@ -11,9 +11,9 @@ export class RateService {
   constructor(
     @InjectRepository(RateEntity)
     private ratesRepository: Repository<RateEntity>,
-  ) {}
+  ) { }
 
-  async createRate(createRateDto: CreateRateDto) {   
+  async createRate(createRateDto: CreateRateDto) {
     const rates = new RateEntity();
     Object.assign(rates, createRateDto);
     const createdRates = await this.ratesRepository.save(rates)

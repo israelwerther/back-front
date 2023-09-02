@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Loan } from 'src/app/interfaces/loan';
 import { CredcoopLoanService } from '../credcoop-loan.service';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
@@ -10,7 +10,7 @@ import { CredcoopClientService } from '../../credcoop-client/credcoop.service';
   templateUrl: './credcoop-loan-create.component.html',
   styleUrls: ['./credcoop-loan-create.component.css']
 })
-export class CredcoopLoanCreateComponent {
+export class CredcoopLoanCreateComponent implements OnInit {
   clients: any[] = [];
 
   ngOnInit() {

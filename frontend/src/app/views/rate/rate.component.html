@@ -1,1 +1,45 @@
+<div class="row">
+	<div class="col">
+		<h1 class="h3 mb-2 text-gray-800">Taxas</h1>
+		<p class="mb-4">Altere as taxas dos empréstimos</p>
+	</div>
+</div>
 
+<form [formGroup]="rateForm" (ngSubmit)="onSubmitRate()">
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-12 col-md-9 border-right-md">
+					<div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-home-tab">
+							<div class="row">
+								<div class="col-sm-12 pt-4">
+									<h2>Taxas</h2>
+								</div>
+							</div>
+							<hr>
+							<div class="row pt-md-3">
+								<div class="col-sm-4">
+									<label for="fees" class="form-label">Tarifa</label>
+									<input type="number" formControlName="fees" class="form-control form-control-sm" id="fees" />
+								</div>
+								<div class="col-sm-4">
+									<label for="dailyIOF" class="form-label">IOF Diário</label>
+									<input type="number" formControlName="dailyIOF" class="form-control form-control-sm" id="dailyIOF" />
+								</div>
+								<div class="col-sm-4">
+									<label for="extraIOF" class="form-label">IOF dicional</label>
+									<input type="number" formControlName="extraIOF" class="form-control form-control-sm" id="extraIOF" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-3">
+					<button class="btn btn-primary btn-block btn-sm" type="submit">Cadastrar</button>
+					<a class="btn btn-danger btn-block btn-sm" [routerLink]="['/home']">Descartar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
