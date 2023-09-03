@@ -6,7 +6,7 @@ import { LoanEntity } from './entities/loan.entity';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { ReturnClientLoanDto } from './dto/return-client-loan.dto';
 import * as moment from 'moment-timezone';
-import { RateEntity } from 'src/rate/entities/rate.entity';
+import { RateService } from 'src/rate/rate.service';
 
 
 @Injectable()
@@ -14,8 +14,7 @@ export class LoanService {
   constructor(
     @InjectRepository(LoanEntity)
     private readonly loanRepository: Repository<LoanEntity>,
-    @InjectRepository(RateEntity)
-    private rateRepository: Repository<RateEntity>,
+    private readonly rateService: RateService,
   ) { }
 
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
@@ -25,7 +24,7 @@ export class LoanService {
     const startDate = moment.tz(createLoanDto.startDate, 'UTC');
 
     // Taxas fixas
-    const latestRate = await this.getLatestRate();
+    const latestRate = await this.rateService.getLatestRate();
     const fees = parseFloat(latestRate.fees.toString());
     const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
     const extraIOF = parseFloat(latestRate.extraIOF.toString());
@@ -67,16 +66,6 @@ export class LoanService {
 
     return createdLoan;
   }
-
-  // Obtem a taxa mais recente cadastrada permitindo calcular os empréstimos sempre com a taxa atualizada
-  async getLatestRate(): Promise<RateEntity> {
-    const latestRate = await this.rateRepository.createQueryBuilder('rate').orderBy('rate.createdAt', 'DESC').getOne();
-    if (!latestRate) {
-      throw new Error("Nenhuma taxa para realizar o empréstimo.");
-    }
-    return latestRate;
-  }
-
 
   // Função para calcular valores do empréstimo
   private calculateLoanValues(loanAmount: number, amountOfInstallments: number, fees: number, dailyIOF: number, extraIOF: number, loanStartDate: Date) {
