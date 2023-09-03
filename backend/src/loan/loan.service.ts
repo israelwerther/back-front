@@ -21,40 +21,36 @@ export class LoanService {
   async createLoan(createLoanDto: CreateLoanDto): Promise<LoanEntity> {
     const loan = new LoanEntity();
     const loanAmount = createLoanDto.loanAmount
-    const amountOfInstallments = createLoanDto.amountOfInstallments;    
+    const amountOfInstallments = createLoanDto.amountOfInstallments;
     const startDate = moment.tz(createLoanDto.startDate, 'UTC');
 
-    // Obtem a taxa mais recente cadastrada permitindo calcular os empréstimos sempre com a taxa atualizada
-    const latestRate = await this.rateRepository.createQueryBuilder('rate').orderBy('rate.createdAt', 'DESC').getOne();
-    if(!latestRate) {
-      throw new Error("Nenhuma taxa para realizar o empréstimo.");
-    }
- 
+    // Taxas fixas
+    const latestRate = await this.getLatestRate();
     const fees = parseFloat(latestRate.fees.toString());
     const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
     const extraIOF = parseFloat(latestRate.extraIOF.toString());
-    
-    const dueDateDay = Number(startDate.format("DD"));
+
+    // const dueDateDay = Number(startDate.format("DD"));
     const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
-    
+
     if (amountOfInstallments) {
       createLoanDto.installments = [];
-    
+
       let prevDueDate = startDate.toDate();
-      
+
       for (let index = 0; index < amountOfInstallments; index++) {
-        let dueDate = moment(prevDueDate).add(1, 'month');        
-        
-        if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {          
+        let dueDate = moment(prevDueDate).add(1, 'month');
+
+        if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {
           // Checa se o mês é fevereiro
-          if (dueDate.month() === 1) { 
+          if (dueDate.month() === 1) {
             dueDate.set('date', 0);
             dueDate.add(1, 'month');
           }
         }
-        
+
         prevDueDate = dueDate.toDate();
-    
+
         createLoanDto.installments.push({
           installmentValue: calculatedValues.finalInstallment,
           dueDate: prevDueDate,
@@ -62,7 +58,7 @@ export class LoanService {
       }
     } else {
       createLoanDto.installments = [];
-    }    
+    }
 
     Object.assign(loan, createLoanDto);
 
@@ -70,7 +66,16 @@ export class LoanService {
     console.log('@@@@@@@@@@@@@@@@@', createdLoan.installments[0].installmentValue);
 
     return createdLoan;
-  }  
+  }
+
+  // Obtem a taxa mais recente cadastrada permitindo calcular os empréstimos sempre com a taxa atualizada
+  async getLatestRate(): Promise<RateEntity> {
+    const latestRate = await this.rateRepository.createQueryBuilder('rate').orderBy('rate.createdAt', 'DESC').getOne();
+    if (!latestRate) {
+      throw new Error("Nenhuma taxa para realizar o empréstimo.");
+    }
+    return latestRate;
+  }
 
 
   // Função para calcular valores do empréstimo
@@ -234,7 +239,7 @@ export class LoanService {
     return this.loanRepository.save(existingClient);
   }
 
-  
+
 
 
 }
