@@ -1,17 +1,22 @@
+import { Field, ObjectType } from "@nestjs/graphql";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: 'rate' })
+@ObjectType()
 export class RateEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({ name: 'fees', type: 'double precision', nullable: true })
+    @Field()
     fees: number;
 
     @Column({ name: 'daily_iof', type: 'double precision', nullable: true })
+    @Field()
     dailyIOF: number;
 
     @Column({ name: 'extra_iof', type: 'double precision', nullable: true })
+    @Field()
     extraIOF: number;
 
     @CreateDateColumn({ name: 'created_at' })
