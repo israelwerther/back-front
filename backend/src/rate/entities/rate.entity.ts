@@ -5,13 +5,13 @@ export class RateEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'fees', type: 'decimal', precision: 10, scale: 10 })
+    @Column({ name: 'fees', type: 'double precision', nullable: true })
     fees: number;
 
-    @Column({ name: 'daily_iof', type: 'decimal', precision: 10, scale: 10 })
+    @Column({ name: 'daily_iof', type: 'double precision', nullable: true })
     dailyIOF: number;
 
-    @Column({ name: 'extra_iof', type: 'decimal', precision: 10, scale: 10 })
+    @Column({ name: 'extra_iof', type: 'double precision', nullable: true })
     extraIOF: number;
 
     @CreateDateColumn({ name: 'created_at' })
