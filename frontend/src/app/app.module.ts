@@ -25,6 +25,8 @@ import { CredcoopDetailComponent } from './views/credcoop-client/credcoop-detail
 import { CredcoopLoanListComponent } from './views/credcoop-loan/credcoop-loan-list/credcoop-loan-list.component';
 import { CredcoopLoanUpdateComponent } from './views/credcoop-loan/credcoop-loan-update/credcoop-loan-update.component';
 import { RateComponent } from './views/rate/rate.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -59,6 +61,9 @@ import { RateComponent } from './views/rate/rate.component';
     BrowserAnimationsModule,
     NgxPaginationModule,
     GraphQLModule,
+    ToastrModule.forRoot({
+
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

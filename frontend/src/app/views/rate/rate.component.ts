@@ -6,6 +6,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { Rate } from 'src/app/interfaces/Rate';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rate',
@@ -15,15 +16,14 @@ import { map } from 'rxjs/operators';
 
 export class RateComponent {
   private apiUrl = 'http://localhost:8080/rate';
-  // latestRate$!: Observable<any>;
-  rateForm: FormGroup;
-
+  rateForm: FormGroup;  
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private toastr: ToastrService
   ) {
     this.rateForm = this.fb.group({
       fees: [],
@@ -54,6 +54,7 @@ export class RateComponent {
       this.createRate(rateData).subscribe({
         next: () => {
           console.log("Taxas atualizadas com sucesso");
+          this.showSuccessToast();
           // this.router.navigate(['home']);
         },
         error: (error) => {
@@ -64,6 +65,11 @@ export class RateComponent {
       console.log("Formulário inválido");
       //this.missingFields();
     }
+  }
+
+  // Método para exibir o toastr de sucesso
+  showSuccessToast() {
+    this.toastr.success('Taxas atualizadas com sucesso', 'Sucesso');
   }
 
   ngOnInit(): void {
