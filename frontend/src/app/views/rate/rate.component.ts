@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class RateComponent {
   private apiUrl = 'http://localhost:8080/rate';
-  rateForm: FormGroup;  
+  rateForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -26,9 +26,9 @@ export class RateComponent {
     private toastr: ToastrService
   ) {
     this.rateForm = this.fb.group({
-      fees: [],
-      dailyIOF: [],
-      extraIOF: [],
+      fees: [0, Validators.required],
+      dailyIOF: [0, Validators.required],
+      extraIOF: [0, Validators.required],
     });
   }
 
@@ -53,9 +53,7 @@ export class RateComponent {
 
       this.createRate(rateData).subscribe({
         next: () => {
-          console.log("Taxas atualizadas com sucesso");
           this.showSuccessToast();
-          // this.router.navigate(['home']);
         },
         error: (error) => {
           console.error('Erro ao atualizar taxas', error);
@@ -63,13 +61,29 @@ export class RateComponent {
       });
     } else {
       console.log("Formulário inválido");
-      //this.missingFields();
+      this.showErrorToast();
+      this.markFormGroupTouched(this.rateForm);
     }
+  }
+
+  markFormGroupTouched(formGroup: FormGroup | FormArray) {
+    Object.values(formGroup.controls).forEach((control) => {
+      control.markAsTouched();
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 
   // Método para exibir o toastr de sucesso
   showSuccessToast() {
     this.toastr.success('Taxas atualizadas com sucesso', 'Sucesso');
+  }
+
+  // Método para exibir o toastr de erro
+  showErrorToast() {
+    this.toastr.error('Preencha corretamente todos os campos', 'Erro');
   }
 
   ngOnInit(): void {

@@ -22,15 +22,24 @@
               <div *ngIf="rateForm.controls['fees'].value || rateForm.controls['dailyIOF'].value || rateForm.controls['extraIOF'].value" class="row pt-md-3">
                 <div class="col-sm-4">
                   <label for="fees" class="form-label">Tarifa</label>
-                  <input type="number" formControlName="fees" class="form-control form-control-sm" id="fees" />
+                  <input type="number" formControlName="fees" class="form-control form-control-sm" id="fees" step="0.001" />
+                  <small *ngIf="rateForm.get('fees')?.invalid && rateForm.get('fees')?.touched" class="text-danger">
+                    A Tarifa é obrigatória.
+                  </small>
                 </div>
                 <div class="col-sm-4">
                   <label for="dailyIOF" class="form-label">IOF Diário</label>
-                  <input type="number" formControlName="dailyIOF" class="form-control form-control-sm" id="dailyIOF" />
+                  <input type="number" formControlName="dailyIOF" class="form-control form-control-sm" id="dailyIOF" step="0.001" />
+                  <small *ngIf="rateForm.get('dailyIOF')?.invalid && rateForm.get('dailyIOF')?.touched" class="text-danger">
+                    O IOF Diário obrigatório.
+                  </small>
                 </div>
                 <div class="col-sm-4">
                   <label for="extraIOF" class="form-label">IOF Adicional</label>
-                  <input type="number" formControlName="extraIOF" class="form-control form-control-sm" id="extraIOF" />
+                  <input type="number" formControlName="extraIOF" class="form-control form-control-sm" id="extraIOF" step="0.001" />
+                  <small *ngIf="rateForm.get('extraIOF')?.invalid && rateForm.get('extraIOF')?.touched" class="text-danger">
+                    O IOF Adicional obrigatório.
+                  </small>
                 </div>
               </div>
 
