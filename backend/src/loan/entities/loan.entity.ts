@@ -66,7 +66,6 @@ export class LoanEntity {
     }
 
     this.contractNumber = `${modality}${credcoop}${day}${month}${year}${LoanEntity.contractCounter}`;
-    console.log('this.contractNumber::: ', this.contractNumber);
   }
 
   @BeforeInsert()

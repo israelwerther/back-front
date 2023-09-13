@@ -31,6 +31,7 @@
 						<th>Cliente</th>
 						<th>Contrato</th>
 						<th>Valor</th>
+						<th>Data</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -39,6 +40,7 @@
 						<th>Cliente</th>
 						<th>Contrato</th>
 						<th>Valor</th>
+						<th>Data</th>
 						<th></th>
 					</tr>
 				</tfoot>
@@ -48,6 +50,7 @@
 						<td>{{ loan.credcoopClient.clientName }}</td>
 						<td>{{ loan.contractNumber }}</td>
 						<td>{{ loan.loanAmount }}</td>
+						<td>{{ loan.startDate | date:'dd/MM/yyyy':'UTC' }}</td>
 
 						<td class="d-flex justify-content-center">
 							<div class="btn-group">

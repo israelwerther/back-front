@@ -27,29 +27,34 @@ export class LoanService {
     const latestRate = await this.rateService.getLatestRate();
     const fees = parseFloat(latestRate.fees.toString());
     const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
-    const extraIOF = parseFloat(latestRate.extraIOF.toString());
+    const extraIOF = parseFloat(latestRate.extraIOF.toString());    
 
-    // const dueDateDay = Number(startDate.format("DD"));
     const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
 
+    // Cria as datas de vencimento
+    var dueDateArray = [startDate.toDate()]; // Inicializa o array com a data de início   
+    
+    for (let i = 1; i < amountOfInstallments; i++) {
+      let aux = moment(dueDateArray[i - 1]).add(1, 'month'); // Incrementa um mês em relação ao elemento anterior
+      dueDateArray.push(aux.toDate()); // Adiciona a nova data ao array
+    }
+    for (let i=0; i < amountOfInstallments; i++){
+      // console.log("==============", dueDateArray[i])
+    }
+    
     if (amountOfInstallments) {
       createLoanDto.installments = [];
-
-      let prevDueDate = startDate.toDate();
-
+      var prevDueDate = startDate.toDate();
       for (let index = 0; index < amountOfInstallments; index++) {
         let dueDate = moment(prevDueDate).add(1, 'month');
-
-        if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {
+        if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {          
           // Checa se o mês é fevereiro
           if (dueDate.month() === 1) {
             dueDate.set('date', 0);
             dueDate.add(1, 'month');
           }
         }
-
         prevDueDate = dueDate.toDate();
-
         createLoanDto.installments.push({
           installmentValue: calculatedValues.finalInstallment,
           dueDate: prevDueDate,
@@ -58,16 +63,18 @@ export class LoanService {
     } else {
       createLoanDto.installments = [];
     }
+    console.log('createLoanDto.installments::: ', createLoanDto.installments);
+    // console.log('prevDueDate::: ', prevDueDate);
 
     Object.assign(loan, createLoanDto);
 
     const createdLoan = await this.loanRepository.save(loan);
-    console.log('@@@@@@@@@@@@@@@@@', createdLoan.installments[0].installmentValue);
+    // console.log('@@@@@@@@@@@@@@@@@', createdLoan.installments[0].installmentValue);
 
     return createdLoan;
   }
 
-  // Função para calcular valores do empréstimo
+  // Calcula valores do empréstimo
   private calculateLoanValues(loanAmount: number, amountOfInstallments: number, fees: number, dailyIOF: number, extraIOF: number, loanStartDate: Date) {
 
     // Parcela
@@ -147,7 +154,6 @@ export class LoanService {
       finalInstallment = Math.round((totalTermValue / amountOfInstallments + 10) * 100) / 100;
     } else {
       finalInstallment = Math.round((totalTermValue / amountOfInstallments) * 100) / 100;
-      console.log('2');
     }
 
     return {
@@ -161,12 +167,14 @@ export class LoanService {
     };
   }
 
+  // Retorna todos os empréstimos Credcoop paginados 
   async getAllCredcoopLoan(options: IPaginationOptions & { searchQuery?: string }): Promise<Pagination<ReturnClientLoanDto>> {
     const queryBuilder = this.loanRepository.createQueryBuilder('loan');
     queryBuilder.select([
       'loan.id',
       'loan.contractNumber',
       'loan.loanAmount',
+      'loan.startDate',
       'loan.credcoopClientLoanId',
       'client.clientName',
     ]).orderBy('loan.createdAt', 'DESC');
