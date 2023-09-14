@@ -27,50 +27,34 @@ export class LoanService {
     const latestRate = await this.rateService.getLatestRate();
     const fees = parseFloat(latestRate.fees.toString());
     const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
-    const extraIOF = parseFloat(latestRate.extraIOF.toString());    
+    const extraIOF = parseFloat(latestRate.extraIOF.toString());
 
     const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
 
     // Cria as datas de vencimento
-    var dueDateArray = [startDate.toDate()]; // Inicializa o array com a data de início   
-    
+    var dueDates = [moment(startDate.toDate()).add(1, 'month').toDate()];
+
     for (let i = 1; i < amountOfInstallments; i++) {
-      let aux = moment(dueDateArray[i - 1]).add(1, 'month'); // Incrementa um mês em relação ao elemento anterior
-      dueDateArray.push(aux.toDate()); // Adiciona a nova data ao array
+      let aux = moment(dueDates[i - 1]).add(1, 'month');
+      dueDates.push(aux.toDate());
     }
-    for (let i=0; i < amountOfInstallments; i++){
-      // console.log("==============", dueDateArray[i])
-    }
-    
+
     if (amountOfInstallments) {
       createLoanDto.installments = [];
-      var prevDueDate = startDate.toDate();
-      for (let index = 0; index < amountOfInstallments; index++) {
-        let dueDate = moment(prevDueDate).add(1, 'month');
-        if (prevDueDate.getUTCDate() === 30 && prevDueDate.getUTCMonth() === 0) {          
-          // Checa se o mês é fevereiro
-          if (dueDate.month() === 1) {
-            dueDate.set('date', 0);
-            dueDate.add(1, 'month');
-          }
-        }
-        prevDueDate = dueDate.toDate();
+
+      for (let i = 0; i < amountOfInstallments; i++) {
         createLoanDto.installments.push({
           installmentValue: calculatedValues.finalInstallment,
-          dueDate: prevDueDate,
+          dueDate: dueDates[i],
         });
       }
     } else {
+      console.log('Alguma vez?');
       createLoanDto.installments = [];
     }
-    console.log('createLoanDto.installments::: ', createLoanDto.installments);
-    // console.log('prevDueDate::: ', prevDueDate);
-
     Object.assign(loan, createLoanDto);
-
     const createdLoan = await this.loanRepository.save(loan);
-    // console.log('@@@@@@@@@@@@@@@@@', createdLoan.installments[0].installmentValue);
-
+    console.log('createdLoan::: ', createdLoan);
     return createdLoan;
   }
 
