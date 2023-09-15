@@ -31,30 +31,25 @@ export class LoanService {
 
     const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
 
-    // Cria as datas de vencimento
-    var dueDates = [moment(startDate.toDate()).add(1, 'month').toDate()];
-
-    for (let i = 1; i < amountOfInstallments; i++) {
-      let aux = moment(dueDates[i - 1]).add(1, 'month');
-      dueDates.push(aux.toDate());
-    }
+    const dueDates = this.createInstallmentDates(startDate, amountOfInstallments)
 
     if (amountOfInstallments) {
       createLoanDto.installments = [];
-
       for (let i = 0; i < amountOfInstallments; i++) {
         createLoanDto.installments.push({
           installmentValue: calculatedValues.finalInstallment,
           dueDate: dueDates[i],
         });
-      }
-    } else {
-      console.log('Alguma vez?');
+      }      
+    }
+    else {
       createLoanDto.installments = [];
     }
+
     Object.assign(loan, createLoanDto);
+
     const createdLoan = await this.loanRepository.save(loan);
-    console.log('createdLoan::: ', createdLoan);
+
     return createdLoan;
   }
 
@@ -149,6 +144,18 @@ export class LoanService {
       boleto,
       finalInstallment
     };
+  }
+
+  // Cria as datas de vencimento
+  private createInstallmentDates(startDate: moment.Moment, amountOfInstallments: number) {
+    var dueDates = [moment(startDate.toDate()).add(1, 'month').toDate()];
+
+    for (let i = 1; i < amountOfInstallments; i++) {
+      let aux = moment(dueDates[i - 1]).add(1, 'month');
+      dueDates.push(aux.toDate());
+    }
+
+    return dueDates;
   }
 
   // Retorna todos os empréstimos Credcoop paginados 
