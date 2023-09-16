@@ -49,6 +49,7 @@ export class LoanService {
     Object.assign(loan, createLoanDto);
 
     const createdLoan = await this.loanRepository.save(loan);
+    console.log('createdLoan::: ', createdLoan);
 
     return createdLoan;
   }

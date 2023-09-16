@@ -22,8 +22,7 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<label for="credcoopClientLoanId" class="form-label">Cliente</label>
-									<ng-select formControlName="credcoopClientLoanId" [items]="clients" bindLabel="clientName"
-										bindValue="id" class="text-uppercase"
+									<ng-select formControlName="credcoopClientLoanId" [items]="clients" bindLabel="clientName" bindValue="id" class="text-uppercase"
 										placeholder="Escolha o Cliente que deseja realizar o empréstimo">
 										<ng-option *ngFor="let client of clients" [value]="client.id">
 											{{ client.clientName }}
@@ -34,8 +33,7 @@
 							<div class="row pt-md-3">
 								<div class="col-sm-4">
 									<label for="loanAmount" class="form-label">Valor</label>
-									<input (click)="addInstallments()" type="number" formControlName="loanAmount"
-										class="form-control form-control-sm" id="loanAmount" />
+									<input type="number" formControlName="loanAmount" class="form-control form-control-sm" id="loanAmount" />
 								</div>
 								<div class="col-sm-4">
 									<label for="startDate" class="form-label">Data do empréstimo</label>
@@ -43,25 +41,21 @@
 								</div>
 								<div class="col-sm-4">
 									<label for="amountOfInstallments" class="form-label">Parcelas</label>
-									<input (change)="addInstallments()" type="number" formControlName="amountOfInstallments"
-										class="form-control form-control-sm" id="amountOfInstallments" />
+									<input type="number" formControlName="amountOfInstallments" class="form-control form-control-sm" id="amountOfInstallments" />
 								</div>
 							</div>
 							<div class="row pt-md-3">
 								<div class="col-sm-12">
 									<div class="custom-control custom-radio custom-control-inline">
-										<input id="online" type="radio" class="custom-control-input" name="modality" value="online"
-											formControlName="modality">
+										<input id="online" type="radio" class="custom-control-input" name="modality" value="online" formControlName="modality">
 										<label class="custom-control-label" for="online">Online</label>
 									</div>
 									<div class="custom-control custom-radio custom-control-inline">
-										<input id="inPerson" type="radio" class="custom-control-input" name="modality" value="inPerson"
-											formControlName="modality">
+										<input id="inPerson" type="radio" class="custom-control-input" name="modality" value="inPerson" formControlName="modality">
 										<label class="custom-control-label" for="inPerson">Presencial</label>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -72,26 +66,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="card">
-		<div class="card-body">
-			<div formArrayName="installments">
+</form>
 
-				<div class="row">
-					<div *ngFor="let installment of installments.controls; index as i" [formGroupName]="i"
-						class="col-xl-3 col-md-6 mb-4">
-						<div class="card border-left-primary shadow h-100 py-2">
-							<div class="card-body">
-								<div class="row no-gutters align-items-center">
-									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Parcela
-											{{ i + 1 }}/{{ installments.controls.length }}</div>
-										<span>{{ installment.value.amount }}</span><br>
-										<span>{{ installment.value.dueDate| date:'dd/MM/yyyy' }}</span>
-									</div>
-									<div class="col-auto">
-										<i class="fas fa-user fa-cog fa-2x text-gray-300"></i>
-									</div>
-								</div>
+<div class="card">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card border-left-primary shadow h-100 py-2">
+					<div class="card-body">
+						<div class="row no-gutters align-items-center">
+							<div class="col mr-2">
+								<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Parcela 1/1</div>
+								<span>55555</span><br>
+								<span>20/05/1986</span>
+							</div>
+							<div class="col-auto">
+								<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
 							</div>
 						</div>
 					</div>
@@ -99,4 +89,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+</div>
