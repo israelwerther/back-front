@@ -45,5 +45,21 @@ export class CredcoopLoanService {
     const LoanUrl = `${this.apiUrl}/${loanId}`;
     return this.http.get(LoanUrl, { headers });
   }
+
+  installmentDates: Date[] = [];
+  getInstallments(startDate: string, amountOfInstallments: number): Observable<any> {
+    return this.apollo.watchQuery<any>({
+      query: gql`
+      query Query($startDate: String!, $amountOfInstallments: Float!) {
+        getInstallmentDates(startDate: $startDate, amountOfInstallments: $amountOfInstallments)
+      }
+      `,
+      variables: {
+        startDate,
+        amountOfInstallments,
+      },
+      fetchPolicy: 'network-only',
+    }).valueChanges;
+  }
   
 }

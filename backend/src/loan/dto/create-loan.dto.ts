@@ -5,9 +5,6 @@ export class CreateLoanDto {
     @IsNumber()
     loanAmount: number;
 
-    @IsNumber()
-    interestRate: number;
-
     @IsDateString()
     startDate: Date;
 

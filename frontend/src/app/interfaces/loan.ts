@@ -8,6 +8,5 @@ export interface Loan {
     amountOfInstallments?: number | null;
     inPersonModality?: boolean | null;
     onlineModality?: boolean | null;
-    interestRate?: number | null;
     installments: Installments[];
 }

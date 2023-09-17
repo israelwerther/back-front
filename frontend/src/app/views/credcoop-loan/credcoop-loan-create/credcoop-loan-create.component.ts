@@ -13,16 +13,20 @@ import { PublicService } from 'src/app/services/public.service';
 })
 export class CredcoopLoanCreateComponent implements OnInit {
   clients: any[] = [];
+  installmentDates: Date[] = [];
+
+  startDate: string = this.publicService.getTodayDate();
+  amountOfInstallments: number = 12;
 
   ngOnInit() {
     this.loadQueryCredcoop();
+    this.returnInstallments(this.startDate, this.amountOfInstallments);    
   }
 
   constructor(
     private credcoopLoanService: CredcoopLoanService,
     private publicService: PublicService,
     private fb: FormBuilder,
-    private router: Router,
     private credcoopClientService: CredcoopClientService
   ) { }
 
@@ -31,7 +35,6 @@ export class CredcoopLoanCreateComponent implements OnInit {
     loanAmount: [1000, Validators.required],
     startDate: [this.publicService.getTodayDate(), Validators.required],
     amountOfInstallments: [12, Validators.required],
-    interestRate: [5],
     modality: ['online', [Validators.required]],
     installments: this.fb.array([
       this.fb.group({
@@ -41,9 +44,9 @@ export class CredcoopLoanCreateComponent implements OnInit {
     ]),
   });
 
-  get installments() {
-    return this.loanForm.get('installments') as FormArray;
-  }  
+  // get installments() {
+  //   return this.loanForm.get('installments') as FormArray;
+  // }  
 
   onSubmitLoan() {
     const startDateValue = this.loanForm.value.startDate;
@@ -58,7 +61,6 @@ export class CredcoopLoanCreateComponent implements OnInit {
         amountOfInstallments: this.loanForm.value.amountOfInstallments,
         inPersonModality: selectedModality === 'inPerson',
         onlineModality: selectedModality === 'online',
-        interestRate: this.loanForm.value.interestRate,
         installments: this.loanForm.value.installments || [],
       };
 
@@ -82,6 +84,19 @@ export class CredcoopLoanCreateComponent implements OnInit {
     this.credcoopClientService.getQueryCredcoop().subscribe((result) => {
       this.clients = result.data.credcoopClients;
     });
+  }
+
+  returnInstallments(startDate: string, amountOfInstallments: number) {
+    this.credcoopLoanService.getInstallments(startDate, amountOfInstallments).subscribe((result) => {
+      this.installmentDates = result.data.getInstallmentDates;
+    });
+  }
+
+  onInputChange() {
+    // Esta função será chamada quando os inputs forem alterados
+    // Atualize as variáveis startDate e amountOfInstallments aqui
+    // e chame returnInstallments novamente com os novos valores
+    this.returnInstallments(this.startDate, this.amountOfInstallments);
   }
 
 }

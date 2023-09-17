@@ -14,9 +14,6 @@ export class LoanEntity {
   @Column({ name: 'loan_amount', type: 'decimal', precision: 10, scale: 2, nullable: true })
   loanAmount: number;
 
-  @Column({ name: 'interest_rate', nullable: true })
-  interestRate: number;
-
   @Column({ name: 'start_date', nullable: true, type: 'timestamptz' })
   startDate: Date;
 

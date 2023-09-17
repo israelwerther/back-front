@@ -148,7 +148,7 @@ export class LoanService {
   }
 
   // Cria as datas de vencimento
-  private createInstallmentDates(startDate: moment.Moment, amountOfInstallments: number) {
+  public createInstallmentDates(startDate: moment.Moment, amountOfInstallments: number) {
     var dueDates = [moment(startDate.toDate()).add(1, 'month').toDate()];
 
     for (let i = 1; i < amountOfInstallments; i++) {

@@ -35,7 +35,6 @@ export class CredcoopLoanUpdateComponent {
     return this.fb.group({
       contractNumber: ['', Validators.required],
       loanAmount: ['', Validators.required],
-      interestRate: ['', Validators.required],
       startDate: ['', Validators.required],
       amountOfInstallments: ['', Validators.required],
       inPersonModality: ['', Validators.required],
@@ -52,7 +51,6 @@ export class CredcoopLoanUpdateComponent {
           this.credcoopLoanEditForm.patchValue({
             contractNumber: credcoopLoanData.contractNumber,
             loanAmount: credcoopLoanData.loanAmount,
-            interestRate: credcoopLoanData.interestRate,
             startDate: credcoopLoanData.startDate,
             amountOfInstallments: credcoopLoanData.amountOfInstallments,
             inPersonModality: credcoopLoanData.inPersonModality,
@@ -91,7 +89,6 @@ export class CredcoopLoanUpdateComponent {
       amountOfInstallments: this.credcoopLoanEditForm.value.amountOfInstallments,
       inPersonModality: this.credcoopLoanEditForm.value.inPersonModality,
       onlineModality: this.credcoopLoanEditForm.value.onlineModality,
-      interestRate: this.credcoopLoanEditForm.value.interestRate,
       installments: this.credcoopLoanEditForm.value.installments as Installments[],
     };
 

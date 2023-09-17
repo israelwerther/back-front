@@ -88,5 +88,25 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-12 pt-4">
+				<h2>Datas de Vencimento</h2>
+			</div>
+			<div class="col-sm-12 pt-4">
+				<label for="startDateInput">Data de Início:</label>
+				<input type="date" id="startDateInput" [(ngModel)]="startDate" (change)="onInputChange()" />
+			</div>
+			<div class="col-sm-12 pt-4">
+				<label for="installmentsInput">Quantidade de Parcelas:</label>
+				<input type="number" id="installmentsInput" [(ngModel)]="amountOfInstallments" (change)="onInputChange()" />
+			</div>
+			<div class="col-sm-12 pt-4">
+				<button (click)="returnInstallments(startDate, amountOfInstallments)" class="btn btn-primary btn-sm" type="submit">Calcular</button>
+			</div>
+			
+			<ul>
+				<li *ngFor="let date of installmentDates">{{ date | date:'yyyy-MM-dd' }}</li>
+			</ul>
+		</div>
 	</div>
 </div>

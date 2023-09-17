@@ -38,6 +38,7 @@ export class PublicService {
     this.statusSubject.next(!this.status);
   }
 
+  // Traz o dia atual
   getTodayDate(): string {
     const today = new Date();
     const year = today.getFullYear();
