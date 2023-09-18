@@ -5,6 +5,7 @@ import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CredcoopClientService } from '../../credcoop-client/credcoop.service';
 import { PublicService } from 'src/app/services/public.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-credcoop-loan-create',
@@ -24,14 +25,16 @@ export class CredcoopLoanCreateComponent implements OnInit {
     private credcoopLoanService: CredcoopLoanService,
     private publicService: PublicService,
     private fb: FormBuilder,
-    private credcoopClientService: CredcoopClientService
+    private credcoopClientService: CredcoopClientService,
+    private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   loanForm = this.fb.group({
     credcoopClientLoanId: [null, Validators.required],
     loanAmount: [1000, Validators.required],
     startDate: [this.publicService.getTodayDate(), Validators.required],
-    amountOfInstallments: [12, Validators.required],
+    amountOfInstallments: [Validators.required],
     modality: ['online', [Validators.required]],
     installments: this.fb.array([
       this.fb.group({
@@ -63,14 +66,16 @@ export class CredcoopLoanCreateComponent implements OnInit {
 
       this.credcoopLoanService.createCredcoopLoan(loanData).subscribe({
         next: () => {
-          console.log("Empréstimo cadastrado com sucesso");
-          // this.router.navigate(['emprestimos-credcoop-lista']);
+          this.showSuccessToast();
+          this.router.navigate(['emprestimos-credcoop-lista']);
         },
         error: (error) => {
+          this.showErrorToast();
           console.error('Erro ao cadastrar o empréstimo:', error);
         },
       });
     } else {
+      this.showErrorToast();
       console.log("Formulário inválido");
       //this.missingFields();
     }
@@ -97,6 +102,16 @@ export class CredcoopLoanCreateComponent implements OnInit {
     // Atualize as variáveis startDate e amountOfInstallments aqui
     // e chame returnInstallments novamente com os novos valores
     this.returnInstallments(this.startDate, this.amountOfInstallments);
+  }
+
+  // Método para exibir o toastr de sucesso
+  showSuccessToast() {
+    this.toastr.success('Empréstimo realizado com sucesso', 'Sucesso');
+  }
+
+  // Método para exibir o toastr de erro
+  showErrorToast() {
+    this.toastr.error('Erro ao cadastrar o empréstimo', 'Erro');
   }
 
 }
