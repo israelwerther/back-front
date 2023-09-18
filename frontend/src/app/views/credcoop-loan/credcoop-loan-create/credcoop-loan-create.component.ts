@@ -15,9 +15,6 @@ export class CredcoopLoanCreateComponent implements OnInit {
   clients: any[] = [];
   installmentDates: Date[] = [];
 
-  startDate: string = this.publicService.getTodayDate();
-  amountOfInstallments: number = 12;
-
   ngOnInit() {
     this.loadQueryCredcoop();
     this.returnInstallments(this.startDate, this.amountOfInstallments);    
@@ -85,6 +82,9 @@ export class CredcoopLoanCreateComponent implements OnInit {
       this.clients = result.data.credcoopClients;
     });
   }
+
+  startDate: string = this.publicService.getTodayDate();
+  amountOfInstallments: number = 5;
 
   returnInstallments(startDate: string, amountOfInstallments: number) {
     this.credcoopLoanService.getInstallments(startDate, amountOfInstallments).subscribe((result) => {
