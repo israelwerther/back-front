@@ -51,7 +51,10 @@ export class CredcoopLoanService {
     return this.apollo.watchQuery<any>({
       query: gql`
       query Query($startDate: String!, $amountOfInstallments: Float!) {
-        getInstallmentDates(startDate: $startDate, amountOfInstallments: $amountOfInstallments)
+        getInstallmentDates(
+          startDate: $startDate, 
+          amountOfInstallments: $amountOfInstallments
+        )
       }
       `,
       variables: {

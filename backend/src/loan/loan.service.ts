@@ -23,14 +23,10 @@ export class LoanService {
     const amountOfInstallments = createLoanDto.amountOfInstallments;
     const startDate = moment.tz(createLoanDto.startDate, 'UTC');
 
-    // Taxas fixas
-    const latestRate = await this.rateService.getLatestRate();
-    const fees = parseFloat(latestRate.fees.toString());
-    const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
-    const extraIOF = parseFloat(latestRate.extraIOF.toString());
+    // Realiza o calculo do valor da parcela
+    const calculatedValues = await this.calculateLoanValues(loanAmount, amountOfInstallments, createLoanDto.startDate);
 
-    const calculatedValues = this.calculateLoanValues(loanAmount, amountOfInstallments, fees, dailyIOF, extraIOF, createLoanDto.startDate);
-
+    // Cria um array com as datas dos vencimentos
     const dueDates = this.createInstallmentDates(startDate, amountOfInstallments)
 
     if (amountOfInstallments) {
@@ -49,14 +45,17 @@ export class LoanService {
     Object.assign(loan, createLoanDto);
 
     const createdLoan = await this.loanRepository.save(loan);
-    console.log('createdLoan::: ', createdLoan);
 
     return createdLoan;
   }
 
   // Calcula valores do empréstimo
-  private calculateLoanValues(loanAmount: number, amountOfInstallments: number, fees: number, dailyIOF: number, extraIOF: number, loanStartDate: Date) {
-
+  async calculateLoanValues(loanAmount: number, amountOfInstallments: number, loanStartDate: Date) {
+    // Taxas fixas
+    const latestRate = await this.rateService.getLatestRate();
+    const fees = parseFloat(latestRate.fees.toString());
+    const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
+    const extraIOF = parseFloat(latestRate.extraIOF.toString());
     // Parcela
     const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** amountOfInstallments) / amountOfInstallments).toFixed(2);
 

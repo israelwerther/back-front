@@ -3,7 +3,7 @@ import * as moment from 'moment-timezone';
 import { LoanService } from 'src/loan/loan.service';
 
 @Resolver()
-export class YourResolver {
+export class LoanResolver {
   constructor(private loanService: LoanService) {}
 
   @Query(() => [Date])
