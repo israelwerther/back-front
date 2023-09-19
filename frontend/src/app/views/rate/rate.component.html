@@ -5,9 +5,12 @@
   </div>
 </div>
 
-<form [formGroup]="rateForm" (ngSubmit)="onSubmitRate()">
-  <div class="card">
-    <div class="card-body">
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Taxas atuais</h6>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="rateForm" (ngSubmit)="onSubmitRate()">      
       <div class="row">
         <div class="col-12 col-md-9 border-right-md">
           <div class="tab-content" id="v-pills-tabContent">
@@ -18,7 +21,7 @@
                 </div>
               </div>
               <hr>
-							<!-- Modifique aqui as taxas que serão usadas nos próximos empréstimos -->
+              <!-- Modifique aqui as taxas que serão usadas nos próximos empréstimos -->
               <div *ngIf="rateForm.controls['fees'].value || rateForm.controls['dailyIOF'].value || rateForm.controls['extraIOF'].value" class="row pt-md-3">
                 <div class="col-sm-4">
                   <label for="fees" class="form-label">Tarifa</label>
@@ -41,9 +44,16 @@
                     O IOF Adicional obrigatório.
                   </small>
                 </div>
+                <div class="col-sm-4">
+                  <label for="lateFee" class="form-label">Multa por atraso</label>
+                  <input type="number" formControlName="lateFee" class="form-control form-control-sm" id="lateFee" step="0.001" />
+                  <small *ngIf="rateForm.get('lateFee')?.invalid && rateForm.get('lateFee')?.touched" class="text-danger">
+                    O IOF Adicional obrigatório.
+                  </small>
+                </div>
               </div>
 
-							<!-- Taxas que estão sendo usadas atualmente -->
+              <!-- Taxas que estão sendo usadas atualmente -->
               <!-- <div class="row">
                 <div class="col-sm-12 pt-4">
                   <h2>Taxas Atuais</h2>
@@ -69,6 +79,6 @@
           <a class="btn btn-info btn-block btn-sm" [routerLink]="['/home']">Voltar</a>
         </div>
       </div>
-    </div>
+    </form>
   </div>
-</form>
+</div>

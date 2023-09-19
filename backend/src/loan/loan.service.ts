@@ -23,7 +23,7 @@ export class LoanService {
     const amountOfInstallments = createLoanDto.amountOfInstallments;
     const startDate = moment.tz(createLoanDto.startDate, 'UTC');
 
-    // Realiza o calculo do valor da parcela
+    // Realiza o calculo do valor da parcela e as outras taxas
     const calculatedValues = await this.calculateLoanValues(loanAmount, amountOfInstallments, createLoanDto.startDate);
 
     // Cria um array com as datas dos vencimentos
@@ -43,9 +43,7 @@ export class LoanService {
     }
 
     Object.assign(loan, createLoanDto);
-
     const createdLoan = await this.loanRepository.save(loan);
-
     return createdLoan;
   }
 
@@ -56,8 +54,11 @@ export class LoanService {
     const fees = parseFloat(latestRate.fees.toString());
     const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
     const extraIOF = parseFloat(latestRate.extraIOF.toString());
+    const lateFee = 0.020
+    console.log('lateFee::: ', lateFee);
+
     // Parcela
-    const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** amountOfInstallments) / amountOfInstallments).toFixed(2);
+    const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** amountOfInstallments) / amountOfInstallments).toFixed(2);    
 
     // Encargos
     const charges = [];
@@ -125,6 +126,9 @@ export class LoanService {
 
     // Valor total a prazo
     const totalTermValue = Math.round((valueInTheContract * (1 + fees) ** amountOfInstallments) * 100) / 100;
+
+    // Multa por atraso
+
 
     const boleto = false;
 

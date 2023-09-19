@@ -19,6 +19,10 @@ export class RateEntity {
     @Field()
     extraIOF: number;
 
+    @Column({ name: 'late_fee', type: 'double precision', nullable: true })
+    @Field()
+    lateFee: number;
+
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 

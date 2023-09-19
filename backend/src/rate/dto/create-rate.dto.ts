@@ -9,4 +9,7 @@ export class CreateRateDto {
 
     @IsNumber()
     extraIOF: number;
+
+    @IsNumber()
+    lateFee: number;
 }
