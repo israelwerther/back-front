@@ -54,8 +54,9 @@ export class LoanService {
     const fees = parseFloat(latestRate.fees.toString());
     const dailyIOF = parseFloat(latestRate.dailyIOF.toString());
     const extraIOF = parseFloat(latestRate.extraIOF.toString());
-    const lateFee = 0.020
-    console.log('lateFee::: ', lateFee);
+    const lateFee = parseFloat(latestRate.lateFee.toString());
+    const defaultInterest = parseFloat(latestRate.defaultInterest.toString());
+    
 
     // Parcela
     const calculatedInstallmentValue = ((loanAmount * (1 + fees) ** amountOfInstallments) / amountOfInstallments).toFixed(2);    
@@ -126,21 +127,38 @@ export class LoanService {
 
     // Valor total a prazo
     const totalTermValue = Math.round((valueInTheContract * (1 + fees) ** amountOfInstallments) * 100) / 100;
-
-    // Multa por atraso
-
-
-    const boleto = false;
-
+    
+    let boleto = false;
+    
     let finalInstallment = 0;
     if (boleto) {
       finalInstallment = Math.round((totalTermValue / amountOfInstallments + 10) * 100) / 100;
     } else {
       finalInstallment = Math.round((totalTermValue / amountOfInstallments) * 100) / 100;
     }
+    
+    // Multa por atraso
+    const lateFeeAmount: number = parseFloat((finalInstallment * lateFee).toFixed(2));
+    console.log('lateFeeAmount::: ', lateFeeAmount);
+
+    // Juros ao dia
+    const defaultInterestAmount: number = parseFloat((finalInstallment * defaultInterest).toFixed(2))
+    console.log('defaultInterestAmount::: ', defaultInterestAmount);
+
+    // Valor mutuado
+    const loanedAmountPlusFinalIOF: number = parseFloat((loanAmount+finalIOF).toFixed(2))
+    console.log('loanedAmountPlusFinalIOF::: ', loanedAmountPlusFinalIOF);
+
+    // Juros ao mês
+    const interestRatePerMonth: number = parseFloat((fees*100).toFixed(2))
+    console.log('interestRatePerMonth::: ', interestRatePerMonth);
 
     return {
+      lateFeeAmount,
+      defaultInterestAmount,
+      loanedAmountPlusFinalIOF,
       calculatedInstallmentValue,
+      interestRatePerMonth,
       charges,
       valueMain,
       startDate,

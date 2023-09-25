@@ -41,7 +41,14 @@
                   <label for="lateFee" class="form-label">Multa por atraso</label>
                   <input type="number" formControlName="lateFee" class="form-control form-control-sm" id="lateFee" step="0.001" />
                   <small *ngIf="rateForm.get('lateFee')?.invalid && rateForm.get('lateFee')?.touched" class="text-danger">
-                    O IOF Adicional obrigatório.
+                    A Multa por atraso obrigatória.
+                  </small>
+                </div>
+                <div class="col-sm-4">
+                  <label for="defaultInterest" class="form-label">Juros Moratório</label>
+                  <input type="number" formControlName="defaultInterest" class="form-control form-control-sm" id="defaultInterest" step="0.001" />
+                  <small *ngIf="rateForm.get('defaultInterest')?.invalid && rateForm.get('defaultInterest')?.touched" class="text-danger">
+                    O Juros Moratório obrigatório.
                   </small>
                 </div>
               </div>

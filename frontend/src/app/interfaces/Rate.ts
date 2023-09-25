@@ -3,4 +3,5 @@ export interface Rate {
     dailyIOF?: number | null;
     extraIOF?: number | null;
     lateFee?: number | null;
+    defaultInterest?: number | null;
 }

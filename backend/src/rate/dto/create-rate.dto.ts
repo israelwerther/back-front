@@ -12,4 +12,7 @@ export class CreateRateDto {
 
     @IsNumber()
     lateFee: number;
+
+    @IsNumber()
+    defaultInterest: number;
 }

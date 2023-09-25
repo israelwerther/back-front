@@ -21,7 +21,11 @@ export class RateEntity {
 
     @Column({ name: 'late_fee', type: 'double precision', nullable: true })
     @Field()
-    lateFee: number;
+    lateFee: number; // Multa por atraso
+
+    @Column({ name: 'default_interest', type: 'double precision', nullable: true })
+    @Field()
+    defaultInterest: number; // Juros moratório
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

@@ -30,6 +30,7 @@ export class RateComponent {
       dailyIOF: [0, Validators.required],
       extraIOF: [0, Validators.required],
       lateFee: [0, Validators.required],
+      defaultInterest: [0, Validators.required],
     });
   }
 
@@ -51,6 +52,7 @@ export class RateComponent {
         dailyIOF: this.rateForm.value.dailyIOF,
         extraIOF: this.rateForm.value.extraIOF,
         lateFee: this.rateForm.value.lateFee,
+        defaultInterest: this.rateForm.value.defaultInterest,
       }
 
       this.createRate(rateData).subscribe({
@@ -104,6 +106,7 @@ export class RateComponent {
             dailyIOF
             extraIOF
             lateFee
+            defaultInterest
           }
         }
       `,

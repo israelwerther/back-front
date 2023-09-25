@@ -67,7 +67,7 @@ export class CredcoopLoanCreateComponent implements OnInit {
       this.credcoopLoanService.createCredcoopLoan(loanData).subscribe({
         next: () => {
           this.showSuccessToast();
-          this.router.navigate(['emprestimos-credcoop-lista']);
+          // this.router.navigate(['emprestimos-credcoop-lista']);
         },
         error: (error) => {
           this.showErrorToast();
@@ -89,7 +89,7 @@ export class CredcoopLoanCreateComponent implements OnInit {
   }
 
   startDate: string = this.publicService.getTodayDate();
-  amountOfInstallments: number = 5;
+  amountOfInstallments: number = 12;
 
   returnInstallments(startDate: string, amountOfInstallments: number) {
     this.credcoopLoanService.getInstallments(startDate, amountOfInstallments).subscribe((result) => {
