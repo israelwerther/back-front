@@ -7,7 +7,7 @@ import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { AddressListComponent } from './views/address-list/address-list.component';
 import { CredcoopClientComponent } from './views/credcoop-client/credcoop.component';
-import { CredcoopClientCreateComponent } from './views/credcoop-client/credcoop-create/credcoop-create.component';
+import { CredcoopClientCreateComponent } from './views/credcoop-client/create/credcoop-create.component';
 import { CredcoopClientListComponent } from './views/credcoop-client/credcoop-list/credcoop-list.component';
 import { CredcoopClientUpdateComponent } from './views/credcoop-client/credcoop-update/credcoop-update.component';
 import { CredcoopLoanCreateComponent } from './views/credcoop-loan/credcoop-loan-create/credcoop-loan-create.component';
